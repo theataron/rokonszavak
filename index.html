@@ -3,11 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rokonszavak – heti szójáték</title>
-<meta name="description" content="Minden héten 16 szó és négy rejtett rokonság. Találd meg, mi köti össze őket!">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='7' r='4.5' fill='%231E2B45'/%3E%3Cpath d='M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8' stroke='%231E2B45' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='8' cy='30' r='3.6' fill='%23F4B8BF'/%3E%3Ccircle cx='16' cy='30' r='3.6' fill='%23F8CBA0'/%3E%3Ccircle cx='24' cy='30' r='3.6' fill='%23CDA88A'/%3E%3Ccircle cx='32' cy='30' r='3.6' fill='%234B4E5C'/%3E%3C/svg%3E">
+<title>Rokonszavak – heti magyar szójáték</title>
+<meta name="description" content="Ingyenes magyar szójáték: minden héten 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!">
+<link rel="canonical" href="https://rokonszavak.hu/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rokonszavak">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:url" content="https://rokonszavak.hu/">
+<meta property="og:title" content="Rokonszavak – heti magyar szójáték">
+<meta property="og:description" content="Ingyenes magyar szójáték: minden héten 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!">
+<meta property="og:image" content="https://rokonszavak.hu/og-kep.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rokonszavak – heti magyar szójáték">
+<meta name="twitter:description" content="Ingyenes magyar szójáték: minden héten 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!">
+<meta name="twitter:image" content="https://rokonszavak.hu/og-kep.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='7' r='4.5' fill='%232A2333'/%3E%3Cpath d='M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8' stroke='%232A2333' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='8' cy='30' r='3.6' fill='%23E0A33C'/%3E%3Ccircle cx='16' cy='30' r='3.6' fill='%23D4594A'/%3E%3Ccircle cx='24' cy='30' r='3.6' fill='%239C4278'/%3E%3Ccircle cx='32' cy='30' r='3.6' fill='%232C4356'/%3E%3C/svg%3E">
 <script>
-  /* Sets light/dark mode before the page appears (no flash) */
   (function () {
     var t = null;
     try { t = localStorage.getItem("rokonszavak-tema"); } catch (e) {}
@@ -18,205 +31,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-21WQD8V9BJ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-21WQD8V9BJ');
-</script>
-  <style>
-/* ===== DESIGN: colours and fonts (change them here) ===== */
-:root{
-  color-scheme:light;
-  --bg:#EAF0F4;         /* page background: porcelain blue-white */
-  --paper:#FFFFFF;      /* tiles, header, dialogs */
-  --ink:#1E2B45;        /* main text, selected tiles, buttons */
-  --ink-soft:#5B6780;   /* secondary text */
-  --edge:#C5D0DB;       /* tile edge, lines */
-  --l1:#F4B8BF;         /* level 1: meggyvirág */
-  --l2:#F8CBA0;         /* level 2: barack */
-  --l3:#CDA88A;         /* level 3: dió */
-  --l4:#4B4E5C;         /* level 4: grafit */
-  --on-ink:#FFFFFF;      /* text on top of --ink */
-  --ink-hover:#2D3D5E;
-  --ink-edge:#0E1830;
-  --tile-hover:#F5F8FA;
-  --card-text:#1E2B45;  /* text on level 1-3 cards (always dark) */
-  --backdrop:rgba(30,43,69,.45);
-  --serif:"Alegreya", Georgia, "Times New Roman", serif;
-  --sans:"Alegreya Sans", "Segoe UI", system-ui, sans-serif;
-}
-/* ===== DARK MODE colours ===== */
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#131A29;
-  --paper:#1D2638;
-  --ink:#E6ECF5;
-  --ink-soft:#9DA9BF;
-  --edge:#34405A;
-  --on-ink:#131A29;
-  --ink-hover:#FFFFFF;
-  --ink-edge:#AEB9CC;
-  --tile-hover:#253049;
-  --l1:#E8A3AD;
-  --l2:#EDB88A;
-  --l3:#C29A7B;
-  --l4:#5A5F73;
-  --backdrop:rgba(0,0,0,.6);
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.45;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-
-/* ===== HEADER ===== */
-.site-header{background:var(--paper);border-bottom:1px solid var(--edge)}
-.header-inner{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:6px 16px}
-.brand{color:var(--ink);display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;padding:4px 0}
-.brand svg{width:36px;height:36px;flex:none}
-.brand-name{font-family:var(--serif);font-weight:800;font-size:27px;line-height:1;letter-spacing:-0.01em}
-.main-nav{display:flex;align-items:center;gap:2px}
-.nav-link{position:relative;text-decoration:none;font-weight:500;padding:8px 10px;border-radius:8px}
-.nav-link:hover{background:var(--bg)}
-.nav-link[aria-current="page"]{font-weight:800}
-.nav-link[aria-current="page"]::after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:2px;background:var(--ink)}
-.icon-btn{border:0;background:transparent;width:40px;height:40px;border-radius:8px;display:grid;place-items:center;cursor:pointer}
-.icon-btn:hover{background:var(--bg)}
-.icon-sun{display:none}
-:root[data-theme="dark"] .icon-sun{display:block}
-:root[data-theme="dark"] .icon-moon{display:none}
-
-/* ===== LAYOUT ===== */
-main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:28px 16px 40px}
-.game{max-width:520px;margin:0 auto}
-.intro{text-align:center}
-.intro h1{font-family:var(--serif);font-weight:700;font-size:clamp(27px,6.5vw,36px);line-height:1.12;margin:0 0 6px}
-.intro p{margin:0;color:var(--ink-soft)}
-.intro .how{color:var(--ink);margin:0 auto 6px;max-width:420px}
-.practice-note{display:inline-block;margin-top:12px;padding:5px 12px;border-radius:999px;background:var(--paper);border:1px solid var(--edge);font-size:14px;color:var(--ink)}
-.toast-area{min-height:40px;display:flex;align-items:center;justify-content:center;margin:8px 0 6px}
-.toast{background:var(--ink);color:var(--on-ink);padding:6px 14px;border-radius:999px;font-size:15px;font-weight:500;animation:pop .18s ease-out}
-
-/* ===== TILES ===== */
-.families{display:flex;flex-direction:column;gap:8px}
-.families:not(:empty){margin-bottom:8px}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.tile{min-height:clamp(64px,17vw,84px);padding:4px;border:0;border-radius:10px;background:var(--paper);box-shadow:inset 0 -3px 0 var(--edge);font-weight:700;font-size:clamp(14px,3.9vw,18px);line-height:1.15;overflow-wrap:break-word;cursor:pointer;transition:background-color .12s ease,transform .08s ease}
-.tile:hover{background:var(--tile-hover)}
-.tile:active{transform:translateY(1px)}
-.tile[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);box-shadow:inset 0 -3px 0 var(--ink-edge)}
-.tile.shake{animation:shake .32s ease}
-
-/* ===== SOLVED "FAMILY" CARDS (the family-tree reveal) ===== */
-.family{border-radius:14px;padding:12px 6px 12px;text-align:center}
-.family[data-level="1"],.family[data-level="2"],.family[data-level="3"]{color:var(--card-text)}
-.family[data-level="1"]{background:var(--l1)}
-.family[data-level="2"]{background:var(--l2)}
-.family[data-level="3"]{background:var(--l3)}
-.family[data-level="4"]{background:var(--l4);color:#fff}
-.family-head{display:flex;align-items:center;justify-content:center;gap:8px;padding:0 8px}
-.family-title{font-family:var(--serif);font-weight:700;font-size:19px;line-height:1.2;margin:0}
-.pips{display:inline-flex;gap:3px;flex:none}
-.pip{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor}
-.pip.on{background:currentColor}
-.tree{position:relative;display:grid;grid-template-columns:repeat(4,1fr);height:16px;margin:6px 0 2px}
-.tree::before{content:"";position:absolute;left:50%;top:0;width:1.5px;height:6px;background:currentColor;transform:translateX(-50%)}
-.tree::after{content:"";position:absolute;top:6px;left:12.5%;right:12.5%;height:1.5px;background:currentColor}
-.tree i{justify-self:center;width:1.5px;height:10px;margin-top:6px;background:currentColor;transform-origin:top}
-.family-words{display:grid;grid-template-columns:repeat(4,1fr);gap:0 4px;margin:0;font-weight:700;font-size:clamp(14px,3.8vw,17px);line-height:1.2}
-.family-note{margin:8px 10px 0;font-size:14px;line-height:1.35;opacity:.9}
-.family.animate{animation:rise .3s ease-out both}
-.family.animate .tree::after{animation:grow-x .35s ease-out .15s both}
-.family.animate .tree i{animation:grow-y .25s ease-out .45s both}
-
-/* ===== STATUS + BUTTONS ===== */
-.status{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0 14px;color:var(--ink-soft);font-size:15px}
-.lives{display:inline-flex;gap:7px}
-.life{width:12px;height:12px;border-radius:50% 0 50% 0;background:var(--ink);transition:opacity .25s,transform .25s}
-.life.used{opacity:.15;transform:scale(.75)}
-.controls{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
-.btn{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:9px 18px;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none;display:inline-block}
-.btn:hover{background:var(--paper)}
-.btn-primary{background:var(--ink);color:var(--on-ink)}
-.btn-primary:hover{background:var(--ink-hover)}
-.btn:disabled{opacity:.35;cursor:not-allowed}
-.end{text-align:center;margin-top:18px}
-.end p{margin:0 0 12px;font-size:18px}
-.next-info{text-align:center;color:var(--ink-soft);font-size:15px;margin:24px 0 0}
-
-/* ===== RULES PAGE ===== */
-.rules{max-width:600px;margin:0 auto}
-.rules h1{font-family:var(--serif);font-weight:800;font-size:clamp(32px,7vw,42px);line-height:1.1;margin:0 0 12px}
-.rules .lead{font-size:20px;line-height:1.45;margin:0 0 8px}
-.rules h2{font-family:var(--serif);font-weight:700;font-size:23px;margin:32px 0 8px}
-.rules p{margin:0 0 12px}
-.rules ol,.rules ul:not(.level-list){margin:0 0 12px;padding-left:22px}
-.rules ol li,.rules ul:not(.level-list) li{margin:0 0 8px;padding-left:4px}
-.level-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
-.level-list li{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px}
-.level-list li{color:var(--card-text)}
-.level-list li[data-level="4"]{color:#fff}
-.level-list strong{min-width:64px;white-space:nowrap}
-.rules .family-title{margin:0;font-size:19px}
-.example{margin:16px 0 4px}
-.rules .back{margin-top:32px}
-
-/* ===== DIALOG (results + statistics) ===== */
-dialog{border:0;border-radius:18px;padding:0;width:calc(100% - 32px);max-width:420px;background:var(--paper);color:var(--ink)}
-dialog::backdrop{background:var(--backdrop)}
-.modal-body{padding:26px 22px 22px}
-.modal-close{position:absolute;top:10px;right:10px}
-.modal-title{font-family:var(--serif);font-weight:800;font-size:30px;line-height:1.1;margin:0 0 4px;padding-right:36px}
-.modal-sub{margin:0;color:var(--ink-soft)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0 18px;text-align:center}
-.stat-num{font-family:var(--serif);font-weight:700;font-size:30px;line-height:1}
-.stat-label{font-size:13px;line-height:1.2;color:var(--ink-soft);margin-top:4px}
-.dist-title{font-size:16px;font-weight:700;margin:0 0 8px}
-.dist-row{display:grid;grid-template-columns:104px 1fr;align-items:center;gap:8px;margin:5px 0;font-size:14px}
-.bar{height:20px;border-radius:6px;background:var(--bg);overflow:hidden}
-.bar span{display:block;height:100%;min-width:24px;padding:0 7px;border-radius:6px;background:var(--ink-soft);color:var(--on-ink);font-size:12px;font-weight:700;line-height:20px;text-align:right}
-.bar.current span{background:var(--ink)}
-.modal-note{font-size:14px;color:var(--ink-soft);margin:14px 0 0}
-.modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.modal-toast{font-size:14px;margin:10px 0 0;min-height:20px}
-
-.site-footer{text-align:center;padding:20px 16px 28px;color:var(--ink-soft);font-size:14px}
-
-@keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-@keyframes rise{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
-@keyframes grow-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes grow-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-[hidden]{display:none!important}
-</style>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/suti.js"></script>
 </head>
 <body>
-
-<!-- ===== HEADER: logo + menu ===== -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="#jatek" aria-label="Rokonszavak – vissza a játékhoz">
+    <a class="brand" href="/" aria-label="Rokonszavak – vissza a játékhoz">
       <svg viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="20" cy="7" r="4.5" fill="currentColor"/>
         <path d="M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <circle cx="8" cy="30" r="3.6" fill="#F4B8BF"/>
-        <circle cx="16" cy="30" r="3.6" fill="#F8CBA0"/>
-        <circle cx="24" cy="30" r="3.6" fill="#CDA88A"/>
-        <circle cx="32" cy="30" r="3.6" fill="#4B4E5C"/>
+        <circle cx="8" cy="30" r="3.6" fill="#E0A33C"/><circle cx="16" cy="30" r="3.6" fill="#D4594A"/>
+        <circle cx="24" cy="30" r="3.6" fill="#9C4278"/><circle cx="32" cy="30" r="3.6" fill="#2C4356"/>
       </svg>
       <span class="brand-name">Rokonszavak</span>
     </a>
     <nav class="main-nav" aria-label="Fő menü">
-      <a class="nav-link" href="#jatek" data-route="jatek">Játék</a>
-      <a class="nav-link" href="#szabalyok" data-route="szabalyok">Játékszabályok</a>
+      <a class="nav-link" href="/" data-route="jatek" aria-current="page">Játék</a>
+      <a class="nav-link" href="/archivum/" data-route="archivum">Archívum</a>
+      <a class="nav-link" href="/szabalyok/" data-route="szabalyok">Szabályok</a>
       <button class="icon-btn" id="btn-stats" type="button" aria-label="Statisztika" title="Statisztika">
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <svg width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
       </button>
       <button class="icon-btn" id="btn-theme" type="button" aria-label="Sötét mód bekapcsolása" title="Sötét mód bekapcsolása">
         <svg class="icon-moon" width="21" height="21" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
@@ -225,10 +60,8 @@ dialog::backdrop{background:var(--backdrop)}
     </nav>
   </div>
 </header>
-
 <main>
-  <!-- ===== GAME VIEW ===== -->
-  <section id="view-jatek" class="game" aria-labelledby="game-title">
+  <section class="game" aria-labelledby="game-title">
     <div class="intro">
       <h1 id="game-title">Melyik négy szó illik össze?</h1>
       <p class="how">Keress négy csoportot: minden csoport négy szava valamilyen közös tulajdonság miatt tartozik össze.</p>
@@ -258,53 +91,8 @@ dialog::backdrop{background:var(--backdrop)}
 
     <p class="next-info" id="next-info"></p>
   </section>
-
-  <!-- ===== RULES VIEW (Játékszabályok) ===== -->
-  <article id="view-szabalyok" class="rules" hidden>
-    <h1>Játékszabályok</h1>
-    <p class="lead">Minden héten 16 szót kapsz. Ezek között négy csoport rejtőzik: egy csoportba négy olyan szó tartozik, amelyek valamilyen közös tulajdonság miatt összeillenek. A feladatod, hogy megtaláld mind a négy csoportot.</p>
-    <p>Két példa:</p>
-    <ul>
-      <li><strong>Tavasz, Nyár, Ősz, Tél</strong>: mind évszakok.</li>
-      <li><strong>Rák, Kos, Bak, Oroszlán</strong>: mind állatok, de itt azért tartoznak össze, mert csillagjegyek is.</li>
-    </ul>
-
-    <h2>Így játssz</h2>
-    <ol>
-      <li>Jelölj ki négy szót, amelyekről úgy gondolod, összetartoznak.</li>
-      <li>Nyomd meg a Beküldés gombot.</li>
-      <li>Ha eltaláltad, a négy szó egy csoportba rendeződik, és kiderül, mi a közös bennük.</li>
-      <li>Négy tévedésed van. Ha mindet elhasználod, a játék véget ér, és megmutatjuk a megoldást.</li>
-    </ol>
-
-    <h2>Mire figyelj?</h2>
-    <p>A közös tulajdonság sokféle lehet: egy téma, egy szófaj, egy hozzájuk illeszthető végződés vagy egy rejtett szójáték. Vigyázz a kakukktojásokra: sok szó több csoportba is beleillene, de minden szónak csak egy helye van.</p>
-    <p>Ha négyből három szó egy csoportba tartozik, a játék szól, hogy közel jársz. Ugyanazt a négyest nem számoljuk kétszer tévedésnek.</p>
-
-    <h2>A nehézségi szintek</h2>
-    <p>A pöttyök mutatják, melyik szinten jársz.</p>
-    <ul class="level-list">
-      <li data-level="1" style="background:var(--l1)"><strong>1. szint</strong> a legkönnyebb csoport</li>
-      <li data-level="2" style="background:var(--l2)"><strong>2. szint</strong> egy kicsit ravaszabb</li>
-      <li data-level="3" style="background:var(--l3)"><strong>3. szint</strong> itt már gondolkodni kell</li>
-      <li data-level="4" style="background:var(--l4)"><strong>4. szint</strong> a legtrükkösebb, gyakran szójáték</li>
-    </ul>
-    <p class="example">Egy megfejtett csoport így néz ki:</p>
-    <div id="rules-example"></div>
-
-    <h2>Mikor jön új feladvány?</h2>
-    <p>Minden hétfőn éjfélkor. Egy feladványt egyszer játszhatsz le, a haladásodat a böngésződ megjegyzi.</p>
-
-    <h2>Statisztika</h2>
-    <p>Az eredményeidet csak ez a böngésző tárolja, ezen az eszközön. Ha törlöd a böngészési adatokat, vagy másik eszközön játszol, a statisztikád nem jön veled.</p>
-
-    <a class="btn btn-primary back" href="#jatek">Vissza a játékhoz</a>
-  </article>
 </main>
 
-<footer class="site-footer">© 2026 Rokonszavak. Heti szójáték magyarul.</footer>
-
-<!-- ===== RESULT / STATISTICS DIALOG ===== -->
 <dialog id="dialog" aria-labelledby="modal-title">
   <button class="icon-btn modal-close" id="btn-close" type="button" aria-label="Bezárás">
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -324,381 +112,35 @@ dialog::backdrop{background:var(--backdrop)}
   </div>
 </dialog>
 
-<script>
-/* =====================================================================
-   PUZZLES – this is the part you edit.
-   - start: the Monday the puzzle goes live (YYYY-MM-DD)
-   - level: 1 = easiest ... 4 = trickiest
-   - note: optional explanation shown after the group is solved
-   ===================================================================== */
-const PUZZLES = [
-  {
-    id: 1,
-    start: "2026-09-21",
-    groups: [
-      { level: 1, title: "Testrészek", words: ["Könyök", "Boka", "Térd", "Tarkó"] },
-      { level: 2, title: "Húsvéti hagyományok", words: ["Tojás", "Sonka", "Barka", "Kölni"], note: "A kölni a locsolkodás kelléke." },
-      { level: 3, title: "Népi hangszerek", words: ["Citera", "Tárogató", "Cimbalom", "Duda"] },
-      { level: 4, title: "Főnevek, amelyek igék is", words: ["Dob", "Nyúl", "Szív", "Fog"], note: "Dobni, nyúlni, szívni, fogni." }
-    ]
-  },
-  {
-    id: 2,
-    start: "2026-09-28",
-    groups: [
-      { level: 1, title: "Fémek", words: ["Réz", "Ón", "Ólom", "Cink"] },
-      { level: 2, title: "Mesterségek", words: ["Pék", "Kovács", "Molnár", "Ács"] },
-      { level: 3, title: "A tűz világa", words: ["Láng", "Parázs", "Hamu", "Szikra"] },
-      { level: 4, title: "Költők vezetéknevei", words: ["Arany", "Vas", "Füst", "Szabó"], note: "Arany János, Vas István, Füst Milán, Szabó Lőrinc." }
-    ]
-  },
-  {
-    id: 3,
-    start: "2026-10-05",
-    groups: [
-      { level: 1, title: "Tanyasi állatok", words: ["Kecske", "Ló", "Tyúk", "Liba"] },
-      { level: 2, title: "A ház részei", words: ["Kapu", "Padlás", "Pince", "Erkély"] },
-      { level: 3, title: "Az erdőben", words: ["Moha", "Avar", "Tisztás", "Odú"] },
-      { level: 4, title: "-ász/-ész végződéssel mesterség lesz", words: ["Hal", "Vad", "Kert", "Juh"], note: "Halász, vadász, kertész, juhász." }
-    ]
-  }
-];
-/* ===================== end of the editable part ===================== */
+<section class="about">
+  <h2>Mi ez a játék?</h2>
+  <p>A Rokonszavak ingyenes magyar szójáték: minden héten 16 szóból kell négy darab négyes csoportot kialakítanod aszerint, hogy mi a közös bennük. Regisztráció nélkül játszható, telefonon és számítógépen is.</p>
+</section>
 
-const MAX_MISTAKES = 4;
-const STORAGE_KEY = "rokonszavak-v1";
-const MONTHS = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
-const DAYS = ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"];
-const $ = (id) => document.getElementById(id);
+<footer class="site-footer">
+  <ul class="footer-nav">
+    <li><a href="/">Játék</a></li>
+    <li><a href="/archivum/">Archívum</a></li>
+    <li><a href="/szabalyok/">Szabályok</a></li>
+    <li><a href="/adatvedelem/">Adatvédelem és sütik</a></li>
+    <li><a href="#" id="suti-beallitas">Süti beállítások</a></li>
+  </ul>
+  <p>© 2026 Rokonszavak. Heti szójáték magyarul.</p>
+</footer>
 
-/* ---------- dates ---------- */
-function parseDate(s) { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); }
-function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
-function formatWeek(start) {
-  const end = addDays(start, 6);
-  if (start.getMonth() === end.getMonth()) return `${MONTHS[start.getMonth()]} ${start.getDate()}–${end.getDate()}.`;
-  return `${MONTHS[start.getMonth()]} ${start.getDate()}. – ${MONTHS[end.getMonth()]} ${end.getDate()}.`;
-}
-function formatDay(d) { return `${MONTHS[d.getMonth()]} ${d.getDate()}.`; }
+<div class="suti-sav" id="suti-sav" role="dialog" aria-label="Süti beállítások" hidden>
+  <div class="suti-belso">
+    <p class="suti-szoveg">Sütiket és hasonló technológiákat használunk. A játék működéséhez szükséges tárolás mindig aktív, a névtelen látogatottsági mérés (Google Analytics) viszont csak a hozzájárulásoddal indul el. <a href="/adatvedelem/">Részletek</a></p>
+    <div class="suti-gombok">
+      <button class="btn" id="suti-elutasit" type="button">Csak a szükségesek</button>
+      <button class="btn btn-primary" id="suti-elfogad" type="button">Elfogadom</button>
+    </div>
+  </div>
+</div>
 
-/* ---------- pick this week's puzzle ---------- */
-PUZZLES.sort((a, b) => parseDate(a.start) - parseDate(b.start));
-const params = new URLSearchParams(location.search);
-if (params.has("reset")) {                                 // index.html?reset=1 clears saved progress + stats
-  try { localStorage.removeItem("rokonszavak-v1"); } catch (e) {}
-  location.replace(location.pathname + location.hash);
-}
-const testId = parseInt(params.get("teszt"), 10);          // e.g. index.html?teszt=2
-const testMode = PUZZLES.some(p => p.id === testId);
-const now = new Date();
-let puzzle;
-let isPreview = false;
-if (testMode) {
-  puzzle = PUZZLES.find(p => p.id === testId);
-} else {
-  const started = PUZZLES.filter(p => parseDate(p.start) <= now);
-  if (started.length) puzzle = started[started.length - 1];
-  else { puzzle = PUZZLES[0]; isPreview = true; }
-}
-const practice = testMode;                                 // only ?teszt= rounds are not saved
-const nextPuzzle = PUZZLES.find(p => parseDate(p.start) > now && (isPreview || p.id !== puzzle.id));
-
-/* ---------- storage (browser only) ---------- */
-function freshStore() {
-  return { progress: {}, stats: { played: 0, wins: 0, lost: 0, streak: 0, best: 0, lastWonId: null, dist: [0, 0, 0, 0] } };
-}
-function loadStore() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return freshStore();
-    const data = JSON.parse(raw);
-    const base = freshStore();
-    return { progress: data.progress || {}, stats: Object.assign(base.stats, data.stats || {}) };
-  } catch (e) { return freshStore(); }
-}
-const store = loadStore();
-function save() {
-  if (practice) return;
-  store.progress[puzzle.id] = state;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch (e) { /* storage unavailable: game still works */ }
-}
-
-/* ---------- game state ---------- */
-function shuffle(list) {
-  const a = [...list];
-  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
-  return a;
-}
-const allWords = puzzle.groups.flatMap(g => g.words);
-let state = practice ? null : store.progress[puzzle.id];
-if (!state) state = { order: shuffle(allWords), solved: [], mistakes: 0, guesses: [], status: "playing" };
-let selected = [];
-
-/* ---------- helpers ---------- */
-function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
-let toastTimer;
-function toast(msg) {
-  const t = $("toast");
-  t.textContent = msg; t.hidden = false;
-  t.style.animation = "none"; void t.offsetWidth; t.style.animation = "";
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.hidden = true; }, 2400);
-}
-
-function familyCard(group, animate) {
-  const card = document.createElement("section");
-  card.className = "family" + (animate ? " animate" : "");
-  card.dataset.level = group.level;
-  card.setAttribute("aria-label", `${group.level}. szint: ${group.title}`);
-  const pips = [1, 2, 3, 4].map(n => `<i class="pip${n <= group.level ? " on" : ""}"></i>`).join("");
-  card.innerHTML =
-    `<div class="family-head"><h2 class="family-title">${esc(group.title)}</h2><span class="pips" aria-hidden="true">${pips}</span></div>` +
-    `<div class="tree" aria-hidden="true"><i></i><i></i><i></i><i></i></div>` +
-    `<p class="family-words">${group.words.map(w => `<span>${esc(w)}</span>`).join("")}</p>` +
-    (group.note ? `<p class="family-note">${esc(group.note)}</p>` : "");
-  return card;
-}
-
-/* ---------- rendering ---------- */
-function render(newlySolved) {
-  const fam = $("families");
-  fam.innerHTML = "";
-  state.solved.forEach(i => fam.appendChild(familyCard(puzzle.groups[i], i === newlySolved)));
-  if (state.status === "lost") {
-    puzzle.groups.forEach((g, i) => { if (!state.solved.includes(i)) fam.appendChild(familyCard(g, true)); });
-  }
-
-  const solvedWords = new Set(state.solved.flatMap(i => puzzle.groups[i].words));
-  const grid = $("grid");
-  grid.innerHTML = "";
-  if (state.status === "playing") {
-    state.order.filter(w => !solvedWords.has(w)).forEach(word => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "tile";
-      b.textContent = word;
-      b.dataset.word = word;
-      b.setAttribute("aria-pressed", selected.includes(word) ? "true" : "false");
-      b.addEventListener("click", () => toggle(word, b));
-      grid.appendChild(b);
-    });
-  }
-
-  const left = MAX_MISTAKES - state.mistakes;
-  $("lives").innerHTML = Array.from({ length: MAX_MISTAKES }, (_, i) => `<i class="life${i >= left ? " used" : ""}"></i>`).join("");
-  $("lives").setAttribute("aria-label", `${left} tévedés van hátra`);
-
-  const over = state.status !== "playing";
-  $("status").hidden = over;
-  $("controls").hidden = over;
-  $("end").hidden = !over;
-  if (over) {
-    $("end-text").textContent = state.status === "won"
-      ? (state.mistakes === 0 ? "Megfejtetted, hiba nélkül!" : `Megfejtetted, ${state.mistakes} tévedéssel.`)
-      : "Most nem jött össze. Fent látod a megoldást.";
-  }
-  updateButtons();
-}
-
-function updateButtons() {
-  $("btn-submit").disabled = selected.length !== 4;
-  $("btn-deselect").disabled = selected.length === 0;
-}
-
-/* ---------- actions ---------- */
-function toggle(word, button) {
-  if (state.status !== "playing") return;
-  if (selected.includes(word)) {
-    selected = selected.filter(w => w !== word);
-  } else {
-    if (selected.length >= 4) { toast("Egyszerre négy szót jelölhetsz ki."); return; }
-    selected.push(word);
-  }
-  button.setAttribute("aria-pressed", selected.includes(word) ? "true" : "false");
-  updateButtons();
-}
-
-function submit() {
-  if (selected.length !== 4 || state.status !== "playing") return;
-  const key = [...selected].sort().join("|");
-  if (state.guesses.includes(key)) { toast("Ezt a négyest már kipróbáltad."); return; }
-  state.guesses.push(key);
-
-  const hit = puzzle.groups.findIndex((g, i) => !state.solved.includes(i) && g.words.every(w => selected.includes(w)));
-  if (hit >= 0) {
-    state.solved.push(hit);
-    selected = [];
-    if (state.solved.length === puzzle.groups.length) finish(true);
-    save();
-    render(hit);
-    toast(`Megvan: ${puzzle.groups[hit].title}`);
-    return;
-  }
-
-  const near = puzzle.groups.some((g, i) => !state.solved.includes(i) && g.words.filter(w => selected.includes(w)).length === 3);
-  state.mistakes++;
-  document.querySelectorAll('.tile[aria-pressed="true"]').forEach(t => {
-    t.classList.remove("shake"); void t.offsetWidth; t.classList.add("shake");
-  });
-  if (state.mistakes >= MAX_MISTAKES) {
-    selected = [];
-    finish(false);
-    save();
-    setTimeout(() => render(-1), 350);
-    toast("Elfogytak a tévedések.");
-    return;
-  }
-  save();
-  const left = MAX_MISTAKES - state.mistakes;
-  $("lives").querySelectorAll(".life").forEach((l, i) => l.classList.toggle("used", i >= left));
-  $("lives").setAttribute("aria-label", `${left} tévedés van hátra`);
-  toast(near ? "Közel jársz: három szó egy csoportba tartozik." : "Ez a négy szó nem tartozik össze.");
-}
-
-function finish(won) {
-  state.status = won ? "won" : "lost";
-  if (!practice) {
-    const s = store.stats;
-    s.played++;
-    if (won) {
-      s.wins++;
-      s.dist[state.mistakes]++;
-      s.streak = s.lastWonId === puzzle.id - 1 ? s.streak + 1 : 1;
-      s.best = Math.max(s.best, s.streak);
-      s.lastWonId = puzzle.id;
-    } else {
-      s.lost++;
-      s.streak = 0;
-    }
-  }
-  setTimeout(() => openDialog(true), 1100);
-}
-
-/* ---------- next puzzle text ---------- */
-function nextText() {
-  if (!nextPuzzle) return "A következő feladvány hamarosan érkezik.";
-  const start = parseDate(nextPuzzle.start);
-  const diff = start - new Date();
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  let left;
-  if (diff < 3600000) left = "egy órán belül";
-  else if (days > 0) left = `még ${days} nap ${hours} óra`;
-  else left = `még ${hours} óra`;
-  const label = nextPuzzle.id === puzzle.id ? "Hivatalos indulás" : "Következő feladvány";
-  return `${label}: ${DAYS[start.getDay()]}, ${formatDay(start)} (${left})`;
-}
-
-/* ---------- dialog ---------- */
-function openDialog(asResult) {
-  const s = store.stats;
-  const over = state.status !== "playing";
-  const showResult = asResult && over;
-  $("modal-title").textContent = showResult ? (state.status === "won" ? "Megfejtetted!" : "Most nem jött össze") : "Statisztika";
-  $("modal-sub").textContent = showResult
-    ? (state.status === "won"
-        ? (state.mistakes === 0 ? "Hiba nélkül, szép munka." : `${state.mistakes} tévedéssel.`)
-        : "Jövő héten új feladvány vár.")
-    : (s.played ? "Így állsz eddig." : "Még nincs lejátszott feladványod. Fejtsd meg az elsőt, és itt látod majd az eredményeidet.");
-
-  const rate = s.played ? Math.round((s.wins / s.played) * 100) : 0;
-  const cells = [[s.played, "Lejátszva"], [rate + "%", "Nyerési arány"], [s.streak, "Sorozat"], [s.best, "Legjobb sorozat"]];
-  $("modal-stats").innerHTML = cells.map(([n, l]) => `<div><div class="stat-num">${n}</div><div class="stat-label">${l}</div></div>`).join("");
-
-  const rows = [["Hiba nélkül", s.dist[0], state.status === "won" && state.mistakes === 0],
-                ["1 tévedéssel", s.dist[1], state.status === "won" && state.mistakes === 1],
-                ["2 tévedéssel", s.dist[2], state.status === "won" && state.mistakes === 2],
-                ["3 tévedéssel", s.dist[3], state.status === "won" && state.mistakes === 3],
-                ["Nem sikerült", s.lost, state.status === "lost"]];
-  const max = Math.max(1, ...rows.map(r => r[1]));
-  $("modal-dist").innerHTML = rows.map(([label, n, cur]) =>
-    `<div class="dist-row"><span>${label}</span><div class="bar${cur && !practice ? " current" : ""}"><span style="width:${Math.max(8, (n / max) * 100)}%">${n}</span></div></div>`
-  ).join("");
-
-  $("modal-note").textContent = (practice ? "Ez gyakorló kör volt, az eredménye nem került a statisztikába. " : "") + nextText();
-  $("btn-share").hidden = !over;
-  $("modal-toast").textContent = "";
-  const dlg = $("dialog");
-  if (!dlg.open) dlg.showModal();
-}
-
-function shareText() {
-  const lines = [`Rokonszavak #${puzzle.id}`];
-  if (state.status === "won") lines.push(state.mistakes === 0 ? "Megfejtve, hiba nélkül." : `Megfejtve, ${state.mistakes} tévedéssel.`);
-  else lines.push("Most nem jött össze.");
-  if (state.solved.length) lines.push("Szintek sorrendje: " + state.solved.map(i => puzzle.groups[i].level).join(", "));
-  lines.push("rokonszavak.hu");
-  return lines.join("\n");
-}
-
-async function share() {
-  const text = shareText();
-  if (navigator.share) {
-    try { await navigator.share({ text }); return; } catch (e) { if (e.name === "AbortError") return; }
-  }
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch (e) {
-    const ta = document.createElement("textarea");
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); } catch (err) {}
-    ta.remove();
-  }
-  $("modal-toast").textContent = "Kimásoltuk az eredményt, beillesztheted bárhova.";
-}
-
-/* ---------- page switching (Játék / Játékszabályok) ---------- */
-function route() {
-  const page = location.hash === "#szabalyok" ? "szabalyok" : "jatek";
-  $("view-jatek").hidden = page !== "jatek";
-  $("view-szabalyok").hidden = page !== "szabalyok";
-  document.querySelectorAll(".nav-link").forEach(a => {
-    if (a.dataset.route === page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
-  });
-  document.title = page === "szabalyok" ? "Játékszabályok – Rokonszavak" : "Rokonszavak – heti szójáték";
-  window.scrollTo(0, 0);
-}
-
-/* ---------- start ---------- */
-$("puzzle-info").textContent = `${puzzle.id}. heti feladvány, ${formatWeek(parseDate(puzzle.start))}`;
-if (testMode) {
-  $("practice-note").textContent = `Tesztmód: ${puzzle.id}. feladvány. Az eredmény nem mentődik.`;
-  $("practice-note").hidden = false;
-} else if (isPreview) {
-  $("practice-note").textContent = `Előzetes. A hivatalos indulás: ${formatDay(parseDate(puzzle.start))}`;
-  $("practice-note").hidden = false;
-}
-$("next-info").textContent = nextText();
-$("rules-example").appendChild(familyCard({ level: 3, title: "Csillagjegyek", words: ["Rák", "Kos", "Bak", "Oroszlán"], note: "Mind állatok is, de itt a csillagjegy a közös." }, false));
-
-$("btn-submit").addEventListener("click", submit);
-$("btn-deselect").addEventListener("click", () => { selected = []; render(-1); });
-$("btn-shuffle").addEventListener("click", () => { state.order = shuffle(state.order); save(); render(-1); });
-$("btn-result").addEventListener("click", () => openDialog(true));
-$("btn-stats").addEventListener("click", () => openDialog(false));
-$("btn-share").addEventListener("click", share);
-$("btn-close").addEventListener("click", () => $("dialog").close());
-$("btn-close-2").addEventListener("click", () => $("dialog").close());
-$("dialog").addEventListener("click", e => { if (e.target === $("dialog")) $("dialog").close(); });
-window.addEventListener("hashchange", route);
-
-/* ---------- light / dark mode ---------- */
-function updateThemeButton() {
-  const dark = document.documentElement.dataset.theme === "dark";
-  const label = dark ? "Világos mód bekapcsolása" : "Sötét mód bekapcsolása";
-  $("btn-theme").setAttribute("aria-label", label);
-  $("btn-theme").title = label;
-}
-$("btn-theme").addEventListener("click", () => {
-  const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-  document.documentElement.dataset.theme = next;
-  try { localStorage.setItem("rokonszavak-tema", next); } catch (e) {}
-  updateThemeButton();
-});
-updateThemeButton();
-
-route();
-render(-1);
-</script>
+<script>window.RSZ = {"mode": "aktualis"};</script>
+<script src="assets/feladvanyok.js"></script>
+<script src="assets/jatek.js"></script>
+<script src="assets/tema.js"></script>
 </body>
 </html>
