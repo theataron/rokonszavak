@@ -6,10 +6,10 @@
   --ink:#2A2333;        /* main text, selected circles, buttons */
   --ink-soft:#6B6277;   /* secondary text */
   --edge:#DDD5CB;       /* circle edge, lines */
-  --l1:#E0A33C;         /* level 1: borostyán */
-  --l2:#D4594A;         /* level 2: korall */
-  --l3:#9C4278;         /* level 3: bogyó */
-  --l4:#2C4356;         /* level 4: petrol */
+  --l1:#F2C53D;         /* level 1: sárga (dark text) */
+  --l2:#EE8A2E;         /* level 2: narancs (dark text) */
+  --l3:#D2382F;         /* level 3: piros (white text) */
+  --l4:#7A1F35;         /* level 4: bordó (white text) */
   --on-ink:#FFFFFF;
   --ink-hover:#3D3348;
   --ink-edge:#181320;
@@ -23,7 +23,7 @@
   color-scheme:dark;
   --bg:#171320; --paper:#231D30; --ink:#F0EAF5; --ink-soft:#A79DB4; --edge:#3A3247;
   --on-ink:#171320; --ink-hover:#FFFFFF; --ink-edge:#B9AFC6; --tile-hover:#2E2740;
-  --l1:#D79B3B; --l2:#C8564A; --l3:#93406F; --l4:#2F4A60; --backdrop:rgba(0,0,0,.65);
+  --l1:#E0B43A; --l2:#DE7F2C; --l3:#C4362E; --l4:#8A2A40; --backdrop:rgba(0,0,0,.65);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -81,7 +81,7 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 /* ===== SOLVED GROUPS (pills) ===== */
 .family{border-radius:999px;padding:14px 30px 16px;text-align:center}
 .family[data-level="1"]{background:var(--l1);color:var(--card-text)}
-.family[data-level="2"]{background:var(--l2);color:#fff}
+.family[data-level="2"]{background:var(--l2);color:var(--card-text)}
 .family[data-level="3"]{background:var(--l3);color:#fff}
 .family[data-level="4"]{background:var(--l4);color:#fff}
 .family-head{display:flex;align-items:center;justify-content:center;gap:8px}
@@ -125,7 +125,7 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 .szoveg ol li,.szoveg ul:not(.level-list) li{margin:0 0 8px;padding-left:4px}
 .level-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
 .level-list li{display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:999px;color:#fff}
-.level-list li[data-level="1"]{color:var(--card-text)}
+.level-list li[data-level="1"],.level-list li[data-level="2"]{color:var(--card-text)}
 .level-list strong{min-width:64px;white-space:nowrap}
 .szoveg .family-title{margin:0;font-size:19px}
 .example{margin:16px 0 4px}
@@ -139,7 +139,7 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 .arch-kartya:hover{border-color:var(--ink)}
 .arch-nap{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;background:var(--bg);color:var(--ink)}
 .arch-kartya[data-allapot="megfejtve"] .arch-nap{background:var(--l1);color:var(--card-text)}
-.arch-kartya[data-allapot="nem-sikerult"] .arch-nap{background:var(--l2);color:#fff}
+.arch-kartya[data-allapot="nem-sikerult"] .arch-nap{background:var(--l2);color:var(--card-text)}
 .arch-cim{font-weight:700;line-height:1.2;white-space:nowrap}
 .arch-alcim{font-size:13.5px;color:var(--ink-soft)}
 .jelmagyarazat{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 22px;font-size:14px;color:var(--ink-soft)}
