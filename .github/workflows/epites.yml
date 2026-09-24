@@ -1,0 +1,52 @@
+# Éjszakai építés: a munkafüzetből legyártja a feladvanyok.js-t, az aloldalakat és a sitemapet.
+# A napi váltást nem ez csinálja (azt a böngésző végzi éjfélkor, budapesti idő szerint),
+# ez csak betölti a holnapi feladványt, és elkészíti a tegnapi megoldásoldalát.
+name: Építés
+
+on:
+  schedule:
+    - cron: "15 23 * * *"   # 00:15 télen, 01:15 nyáron (budapesti idő)
+  push:
+    branches: [main]
+    paths: ["feladvanyok.xlsx"]   # ha feltöltöd a munkafüzetet, azonnal újraépít
+  workflow_dispatch:              # kézi indítás az Actions fülön
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epites
+  cancel-in-progress: false
+
+jobs:
+  epites:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: openpyxl telepítése
+        run: python -m pip install openpyxl
+
+      - name: Oldalak építése
+        run: python build.py
+
+      - name: Változások mentése
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/feladvanyok.js index.html 404.html sitemap.xml robots.txt archivum szabalyok adatvedelem feladvany
+          if git diff --cached --quiet; then
+            echo "Nincs változás."
+          else
+            git commit -m "Napi építés $(TZ=Europe/Budapest date +%F)"
+            git push
+          fi
+
+      # Ha egy héten belül elfogynak a feladványok, ez a lépés pirosra fut,
+      # és a GitHub e-mailt küld róla. A tervezett szünet (amikor van még későbbi feladvány) nem számít.
+      - name: Feladvány-készlet ellenőrzése
+        run: python scripts/xlsx_to_js.py --keszlet

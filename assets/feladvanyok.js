@@ -1,10 +1,9 @@
 /* =====================================================================
-   FELADVÁNYOK – ez az egyetlen hely, ahol a feladványokat szerkeszted.
-   - start: az a hétfő, amikor a feladvány élesedik (ÉÉÉÉ-HH-NN)
+   FELADVÁNYOK – ezt a fájlt a build.py generálja a feladvanyok.xlsx-ből.
+   NE szerkeszd kézzel: a munkafüzetet írd át, és futtasd a build.py-t.
+   - start: az a nap, amikor a feladvány élesedik (ÉÉÉÉ-HH-NN, budapesti idő)
    - level: 1 = legkönnyebb ... 4 = legtrükkösebb
-   - note: rövid magyarázat, ami a megfejtés után jelenik meg
-   Fontos: a szavak legfeljebb 9 karakteresek legyenek (a körök mérete miatt).
-   Új feladvány után futtasd a build.py-t, hogy az aloldalak frissüljenek.
+   - note: rövid kiegészítés, ami a megfejtés után jelenik meg
    ===================================================================== */
 window.FELADVANYOK = [
   {
@@ -18,23 +17,23 @@ window.FELADVANYOK = [
     ]
   },
   {
-    "id": 2,
-    "start": "2026-09-28",
+    "id": "rsz-002",
+    "start": "2026-09-24",
     "groups": [
-      { "level": 1, "title": "Fémek", "words": ["Réz", "Ón", "Ólom", "Cink"] },
-      { "level": 2, "title": "Mesterségek", "words": ["Pék", "Kovács", "Molnár", "Ács"] },
-      { "level": 3, "title": "A tűz világa", "words": ["Láng", "Parázs", "Hamu", "Szikra"] },
-      { "level": 4, "title": "Költők vezetéknevei", "words": ["Arany", "Vas", "Füst", "Szabó"], "note": "Arany János, Vas István, Füst Milán, Szabó Lőrinc." }
+      { "level": 1, "title": "Magyar levesek", "words": ["Palóc", "Jókai", "Újházi", "Gulyás"] },
+      { "level": 2, "title": "Budapesti hidak", "words": ["Lánc", "Erzsébet", "Margit", "Szabadság"] },
+      { "level": 3, "title": "Foglalkozás és gyakori vezetéknév", "words": ["Kovács", "Szabó", "Molnár", "Halász"] },
+      { "level": 4, "title": "Amit le lehet tenni", "words": ["Vizsga", "Eskü", "Fegyver", "Lant"] }
     ]
   },
   {
-    "id": 3,
-    "start": "2026-10-05",
+    "id": "rsz-003",
+    "start": "2026-09-25",
     "groups": [
-      { "level": 1, "title": "Tanyasi állatok", "words": ["Kecske", "Ló", "Tyúk", "Liba"] },
-      { "level": 2, "title": "A ház részei", "words": ["Kapu", "Padlás", "Pince", "Erkély"] },
-      { "level": 3, "title": "Az erdőben", "words": ["Moha", "Avar", "Tisztás", "Odú"] },
-      { "level": 4, "title": "-ász/-ész véggel mesterség", "words": ["Hal", "Vad", "Kert", "Juh"], "note": "Halász, vadász, kertész, juhász." }
+      { "level": 1, "title": "Csillagjegyek", "words": ["Rák", "Kos", "Bika", "Ikrek"] },
+      { "level": 2, "title": "Magyar kutyafajták", "words": ["Puli", "Vizsla", "Kuvasz", "Pumi"] },
+      { "level": 3, "title": "Aminek nyelve van", "words": ["Cipő", "Harang", "Öv", "Mérleg"] },
+      { "level": 4, "title": "Egy betű cseréjével vármegye", "words": ["Fehér", "Bélés", "Rest", "Volna"], "note": "Fejér, Békés, Pest, Tolna" }
     ]
   }
 ];
