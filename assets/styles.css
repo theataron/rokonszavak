@@ -1,16 +1,18 @@
 /* ===== DESIGN: colours and fonts (change them here) ===== */
 :root{
   color-scheme:light;
-  --bg:#F8FFE5;         /* page background */
-  --tile:#E8EFD0;       /* unsolved tile */
+  --bg:#FFFFFF;         /* page background */
+  --tile:#FFF8DC;       /* unsolved tile (light yellow), also quiet fills (menu hover, bars) */
+  --tile-szegely:#9C8430; /* 1px tile border: the tile alone barely shows on white; this is 3.65:1 on white, 3.42:1 on the tile */
+  --tile-melyseg:none;  /* inset bottom edge on tiles (dark mode only) */
+  --kijelolt-gyuru:#4E4187; /* 2px ring around selected tiles */
   --text:#1A1F2B;       /* main text, selected tiles, buttons */
   --paper:#FFFFFF;      /* header, dialogs, cards */
   --text-soft:#555C68;  /* secondary text */
-  --edge:#D2DAB8;       /* tile edge, lines */
-  --tile-hover:#DEE6C3;
+  --edge:#D2DAB8;       /* lines, card edges */
+  --tile-hover:#FFF1C4;
   --on-text:#FFFFFF;    /* text on --text (selected tile, primary button) */
   --text-hover:#2E3546;
-  --text-edge:#0B0E14;
   --backdrop:rgba(26,31,43,.5);
   --shadow:rgba(26,31,43,.12);
   /* Level colours: identical in both themes, they carry meaning */
@@ -26,8 +28,9 @@
 :root[data-theme="dark"]{
   color-scheme:dark;
   --bg:#151922; --tile:#262E3D; --text:#F8FFE5;
+  --tile-szegely:#262E3D; --tile-melyseg:inset 0 -3px 0 #353F52;
   --paper:#1D2330; --text-soft:#A9B1BE; --edge:#353F52; --tile-hover:#303A4C;
-  --on-text:#151922; --text-hover:#FFFFFF; --text-edge:#C5CCB0;
+  --on-text:#151922; --text-hover:#FFFFFF;
   --backdrop:rgba(0,0,0,.65); --shadow:rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
@@ -46,11 +49,11 @@ button{font:inherit;color:inherit}
 .brand-name{font-family:var(--serif);font-weight:800;font-size:clamp(19px,5vw,27px);line-height:1;letter-spacing:-0.01em}
 .main-nav{display:flex;align-items:center;gap:2px}
 .nav-link{position:relative;text-decoration:none;font-weight:500;padding:8px 9px;border-radius:8px;white-space:nowrap}
-.nav-link:hover{background:var(--bg)}
+.nav-link:hover{background:var(--tile)}
 .nav-link[aria-current="page"]{font-weight:800}
 .nav-link[aria-current="page"]::after{content:"";position:absolute;left:9px;right:9px;bottom:3px;height:2px;border-radius:2px;background:var(--text)}
 .icon-btn{border:0;background:transparent;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;cursor:pointer}
-.icon-btn:hover{background:var(--bg)}
+.icon-btn:hover{background:var(--tile)}
 .icon-sun{display:none}
 :root[data-theme="dark"] .icon-sun{display:block}
 :root[data-theme="dark"] .icon-moon{display:none}
@@ -90,7 +93,7 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 .families:not(:empty){margin-bottom:10px}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 /* Rounded rectangles (radius 18px, never below 14px). Font size comes from data-meret (set from the word length in jatek.js). */
-.tile{height:78px;min-width:0;display:flex;align-items:center;justify-content:center;padding:6px 3px;border:0;border-radius:18px;background:var(--tile);box-shadow:inset 0 -3px 0 var(--edge);font-weight:700;font-size:17px;line-height:1.1;text-align:center;text-transform:uppercase;letter-spacing:0;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere;overflow:hidden;cursor:pointer;transition:background-color .12s ease,transform .08s ease}
+.tile{height:78px;min-width:0;display:flex;align-items:center;justify-content:center;padding:6px 3px;border:1px solid var(--tile-szegely);border-radius:18px;background:var(--tile);box-shadow:var(--tile-melyseg);font-weight:700;font-size:17px;line-height:1.1;text-align:center;text-transform:uppercase;letter-spacing:0;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:anywhere;overflow:hidden;cursor:pointer;transition:background-color .12s ease,transform .1s ease}
 .tile[data-meret="m"]{font-size:15px}
 .tile[data-meret="l"]{font-size:13px}
 .tile[data-meret="xl"]{font-size:11px}
@@ -103,7 +106,8 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 .tile.meres{overflow-wrap:normal;hyphens:manual;-webkit-hyphens:manual}
 .tile:hover{background:var(--tile-hover)}
 .tile:active{transform:translateY(1px)}
-.tile[aria-pressed="true"]{background:var(--text);color:var(--on-text);box-shadow:inset 0 -3px 0 var(--text-edge)}
+.tile[aria-pressed="true"]{background:var(--text);color:var(--on-text);border-color:var(--text);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--kijelolt-gyuru);transform:scale(.95)}
+.tile[aria-pressed="true"]:active{transform:scale(.93)}
 .tile.shake{animation:shake .32s ease}
 
 /* ===== SOLVED GROUPS (pills) ===== */
@@ -170,7 +174,7 @@ main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:26px 16px 36px}
 .honap-racs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
 .arch-kartya{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:16px;background:var(--paper);border:1px solid var(--edge);text-decoration:none}
 .arch-kartya:hover{border-color:var(--text)}
-.arch-nap{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;background:var(--bg);color:var(--text)}
+.arch-nap{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;background:var(--tile);color:var(--text)}
 .arch-kartya[data-allapot="megfejtve"] .arch-nap{background:var(--szint-1);color:var(--szint-sotet-szoveg)}
 .arch-kartya[data-allapot="nem-sikerult"] .arch-nap{background:var(--szint-4);color:var(--szint-vilagos-szoveg)}
 .arch-cim{font-weight:700;line-height:1.2;white-space:nowrap}
@@ -199,17 +203,35 @@ dialog::backdrop{background:var(--backdrop)}
 .stat-label{font-size:13px;line-height:1.2;color:var(--text-soft);margin-top:4px}
 .dist-title{font-size:16px;font-weight:700;margin:0 0 8px}
 .dist-row{display:grid;grid-template-columns:104px 1fr;align-items:center;gap:8px;margin:5px 0;font-size:14px}
-.bar{height:20px;border-radius:6px;background:var(--bg);overflow:hidden}
+.bar{height:20px;border-radius:6px;background:var(--tile);overflow:hidden}
 .bar span{display:block;height:100%;min-width:24px;padding:0 7px;border-radius:6px;background:var(--text-soft);color:var(--on-text);font-size:12px;font-weight:700;line-height:20px;text-align:right}
 .bar.current span{background:var(--text)}
 .modal-note{font-size:14px;color:var(--text-soft);margin:14px 0 0}
 .modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .modal-toast{font-size:14px;margin:10px 0 0;min-height:20px}
 
-/* ===== ABOUT + FOOTER ===== */
-.about{max-width:600px;margin:0 auto;padding:0 16px 8px;text-align:center;color:var(--text-soft);font-size:15px}
-.about h2{font-family:var(--serif);font-size:19px;color:var(--text);margin:0 0 6px}
-.about p{margin:0}
+/* ===== HOMEPAGE TEXT (below the game, quieter than the game) ===== */
+.ismerteto{max-width:560px;margin:72px auto 0;padding-top:28px;border-top:1px solid var(--edge);color:var(--text-soft);font-size:15px;line-height:1.55}
+.ismerteto h2{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.25;color:var(--text);margin:28px 0 6px}
+.ismerteto h2:first-child{margin-top:0}
+.ismerteto h3{font-size:15.5px;font-weight:700;color:var(--text);margin:18px 0 2px}
+.ismerteto p{margin:0 0 10px}
+.ismerteto a{font-weight:700;color:var(--text)}
+
+/* ===== CONTACT FORM ===== */
+.kapcsolat-urlap{display:flex;flex-direction:column;margin:28px 0 8px;padding:20px 18px;border:1px solid var(--edge);border-radius:18px;background:var(--paper)}
+.kapcsolat-urlap label{font-weight:700;margin:0 0 6px}
+.kapcsolat-urlap input,.kapcsolat-urlap textarea{font:inherit;color:var(--text);background:var(--bg);width:100%;min-height:48px;padding:10px 14px;margin:0 0 16px;border:1.5px solid var(--text-soft);border-radius:14px}
+.kapcsolat-urlap textarea{resize:vertical;min-height:140px}
+.kapcsolat-urlap input:focus-visible,.kapcsolat-urlap textarea:focus-visible{outline:3px solid var(--text);outline-offset:1px}
+.kapcsolat-urlap .btn{align-self:flex-start;min-height:48px;padding:10px 26px}
+.rejtett{display:none}
+.urlap-eredmeny{margin:14px 0 0;padding:10px 14px;border-radius:14px;font-weight:700}
+.urlap-eredmeny.siker{background:var(--szint-1);color:var(--szint-sotet-szoveg)}
+.urlap-eredmeny.hiba{background:var(--szint-4);color:var(--szint-vilagos-szoveg)}
+.urlap-megj{margin:14px 0 0;font-size:14px;color:var(--text-soft)}
+
+/* ===== FOOTER ===== */
 .site-footer{padding:22px 16px 30px;color:var(--text-soft);font-size:14px;text-align:center}
 .footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:0 0 10px;padding:0;list-style:none}
 .footer-nav a{text-decoration:none;font-weight:500}
@@ -217,6 +239,8 @@ dialog::backdrop{background:var(--backdrop)}
 
 /* ===== COOKIE BAR ===== */
 .suti-sav{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--paper);border-top:1px solid var(--edge);box-shadow:0 -6px 24px var(--shadow)}
+/* First visit only: until the visitor answers, the page behind the bar is dimmed and can't be clicked */
+.suti-hatter{position:fixed;inset:0;z-index:49;background:var(--backdrop)}
 .suti-belso{max-width:760px;margin:0 auto;padding:16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
 .suti-szoveg{flex:1 1 280px;font-size:14.5px;line-height:1.4;margin:0}
 .suti-gombok{display:flex;gap:10px;flex-wrap:wrap}
