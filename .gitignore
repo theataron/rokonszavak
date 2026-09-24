@@ -1,2 +1,6 @@
 # Unpublished puzzle drafts: never push these (the repo is public)
 vazlatok/
+
+# Python cache and Excel lock files
+__pycache__/
+~$*

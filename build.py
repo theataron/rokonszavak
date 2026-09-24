@@ -5,43 +5,40 @@ Rokonszavak oldalgenerator.
 Futtatas:      python build.py
 Teszt datum:   python build.py --ma 2026-10-20
 
-Mit csinal: beolvassa az assets/feladvanyok.js fajlt, es ujrairja a
-foooldalt, a szabalyok / archivum / adatvedelem oldalakat, a mar elindult
-feladvanyok aloldalait (/feladvany/N/) es a sitemap.xml-t.
+Mit csinal:
+1. a feladvanyok.xlsx-bol ellenorzes utan legyartja az assets/feladvanyok.js-t
+   (scripts/xlsx_to_js.py; hibanal itt megall, es semmit nem ir at),
+2. ujrairja a fooldalt, a szabalyok / archivum / adatvedelem oldalakat, a mar
+   elindult feladvanyok aloldalait (/feladvany/<id>/) es a sitemap.xml-t.
 A jovobeli feladvanyoknak NEM keszit oldalt, hogy ne szivarogjon ki a megoldas.
+A napi valtast nem ez csinalja: a bongeszo valasztja ki a mai feladvanyt
+(budapesti ido szerint) az assets/feladvanyok.js-bol.
+A "mai datum" mindig a budapesti datum, akarhol fut a script.
 """
-import json, os, re, sys, shutil
-from datetime import date, timedelta
+import hashlib, json, os, sys, shutil
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts"))
+import xlsx_to_js
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://rokonszavak.hu"
 MONTHS = ["január", "február", "március", "április", "május", "június",
           "július", "augusztus", "szeptember", "október", "november", "december"]
-
-
-def today():
-    if "--ma" in sys.argv:
-        y, m, d = map(int, sys.argv[sys.argv.index("--ma") + 1].split("-"))
-        return date(y, m, d)
-    return date.today()
-
-
-def load_puzzles():
-    raw = open(os.path.join(ROOT, "assets", "feladvanyok.js"), encoding="utf-8").read()
-    data = json.loads(raw[raw.index("["):raw.rindex("]") + 1])
-    return sorted(data, key=lambda p: p["start"])
+WEEKDAYS = ["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"]
 
 
 def d(s):
-    y, m, dd = map(int, s.split("-"))
-    return date(y, m, dd)
+    return xlsx_to_js.parse_date(s)
 
 
-def week_label(start):
-    end = start + timedelta(days=6)
-    if start.month == end.month:
-        return "%s %d–%d." % (MONTHS[start.month - 1], start.day, end.day)
-    return "%s %d. – %s %d." % (MONTHS[start.month - 1], start.day, MONTHS[end.month - 1], end.day)
+def day_label(day):
+    return "%s %d." % (MONTHS[day.month - 1], day.day)
+
+
+def asset(name, base):
+    """Eszkoz URL-je verzioszammal (a tartalom hash-e), hogy a bongeszo ne regi masolatot hasznaljon."""
+    data = open(os.path.join(ROOT, "assets", name), "rb").read()
+    return "%sassets/%s?v=%s" % (base, name, hashlib.sha1(data).hexdigest()[:10])
 
 
 def esc(s):
@@ -51,14 +48,14 @@ def esc(s):
 LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="20" cy="7" r="4.5" fill="currentColor"/>
         <path d="M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <circle cx="8" cy="30" r="3.6" fill="#F2C53D"/><circle cx="16" cy="30" r="3.6" fill="#EE8A2E"/>
-        <circle cx="24" cy="30" r="3.6" fill="#D2382F"/><circle cx="32" cy="30" r="3.6" fill="#7A1F35"/>
+        <circle cx="8" cy="30" r="3.6" fill="#7DDE92"/><circle cx="16" cy="30" r="3.6" fill="#2EBFA5"/>
+        <circle cx="24" cy="30" r="3.6" fill="#2B76C6"/><circle cx="32" cy="30" r="3.6" fill="#4E4187"/>
       </svg>"""
 
-FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='7' r='4.5' fill='%232A2333'/%3E"
-           "%3Cpath d='M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8' stroke='%232A2333' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E"
-           "%3Ccircle cx='8' cy='30' r='3.6' fill='%23F2C53D'/%3E%3Ccircle cx='16' cy='30' r='3.6' fill='%23EE8A2E'/%3E"
-           "%3Ccircle cx='24' cy='30' r='3.6' fill='%23D2382F'/%3E%3Ccircle cx='32' cy='30' r='3.6' fill='%237A1F35'/%3E%3C/svg%3E")
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='7' r='4.5' fill='%231A1F2B'/%3E"
+           "%3Cpath d='M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8' stroke='%231A1F2B' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E"
+           "%3Ccircle cx='8' cy='30' r='3.6' fill='%237DDE92'/%3E%3Ccircle cx='16' cy='30' r='3.6' fill='%232EBFA5'/%3E"
+           "%3Ccircle cx='24' cy='30' r='3.6' fill='%232B76C6'/%3E%3Ccircle cx='32' cy='30' r='3.6' fill='%234E4187'/%3E%3C/svg%3E")
 
 
 def head(title, desc, path, depth, extra=""):
@@ -96,8 +93,8 @@ def head(title, desc, path, depth, extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{base}assets/styles.css">
-<script src="{base}assets/suti.js"></script>
+<link rel="stylesheet" href="{asset('styles.css', base)}">
+<script src="{asset('suti.js', base)}"></script>
 {extra}</head>
 <body>
 """
@@ -142,7 +139,7 @@ GAME = """  <section class="game" aria-labelledby="game-title">
     <div class="toast-area" aria-live="polite"><span class="toast" id="toast" hidden></span></div>
 
     <div class="families" id="families"></div>
-    <div class="grid" id="grid" role="group" aria-label="Szavak"></div>
+    <div class="grid" id="grid" role="group" aria-label="Szavak" lang="hu"></div>
 
     <div class="status" id="status">
       <span>Hátralévő tévedések:</span>
@@ -151,12 +148,13 @@ GAME = """  <section class="game" aria-labelledby="game-title">
     <div class="controls" id="controls">
       <button class="btn" id="btn-shuffle" type="button">Keverés</button>
       <button class="btn" id="btn-deselect" type="button">Kijelölés törlése</button>
-      <button class="btn btn-primary" id="btn-submit" type="button">Beküldés</button>
+      <button class="btn btn-primary" id="btn-submit" type="button">Küldés</button>
     </div>
 
     <div class="end" id="end" hidden>
       <p id="end-text"></p>
       <button class="btn btn-primary" id="btn-result" type="button">Eredmény megtekintése</button>
+      <a class="btn" id="btn-archive" href="/archivum/" hidden>Irány az archívum</a>
     </div>
 
     <p class="next-info" id="next-info"></p>
@@ -201,7 +199,7 @@ def footer(depth, about=True):
     base = "../" * depth if depth else "/"
     about_html = """<section class="about">
   <h2>Mi ez a játék?</h2>
-  <p>A Rokonszavak ingyenes magyar szójáték: minden héten 16 szóból kell négy darab négyes csoportot kialakítanod aszerint, hogy mi a közös bennük. Regisztráció nélkül játszható, telefonon és számítógépen is.</p>
+  <p>A Rokonszavak ingyenes magyar szójáték: minden nap 16 szóból kell négy darab négyes csoportot kialakítanod aszerint, hogy mi a közös bennük. Regisztráció nélkül játszható, telefonon és számítógépen is.</p>
 </section>
 
 """ if about else ""
@@ -213,7 +211,7 @@ def footer(depth, about=True):
     <li><a href="{base}adatvedelem/">Adatvédelem és sütik</a></li>
     <li><a href="#" id="suti-beallitas">Süti beállítások</a></li>
   </ul>
-  <p>© 2026 Rokonszavak. Heti szójáték magyarul.</p>
+  <p>© 2026 Rokonszavak. Napi szójáték magyarul.</p>
 </footer>
 
 <div class="suti-sav" id="suti-sav" role="dialog" aria-label="Süti beállítások" hidden>
@@ -231,9 +229,9 @@ def footer(depth, about=True):
 def scripts(depth, cfg=None):
     base = "../" * depth if depth else ""
     cfg_line = f'<script>window.RSZ = {json.dumps(cfg, ensure_ascii=False)};</script>\n' if cfg else ""
-    return f"""{cfg_line}<script src="{base}assets/feladvanyok.js"></script>
-<script src="{base}assets/jatek.js"></script>
-<script src="{base}assets/tema.js"></script>
+    return f"""{cfg_line}<script src="{asset('feladvanyok.js', base)}"></script>
+<script src="{asset('jatek.js', base)}"></script>
+<script src="{asset('tema.js', base)}"></script>
 </body>
 </html>
 """
@@ -249,8 +247,8 @@ def write(path, content):
 # ---------------------------------------------------------------- pages
 def build_index():
     lead = '<p class="how">Keress négy csoportot: minden csoport négy szava valamilyen közös tulajdonság miatt tartozik össze.</p>'
-    html = (head("Rokonszavak – heti magyar szójáték",
-                 "Ingyenes magyar szójáték: minden héten 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!", "/", 0)
+    html = (head("Rokonszavak – napi magyar szójáték",
+                 "Ingyenes magyar szójáték: minden nap 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!", "/", 0)
             + header("jatek", 0)
             + "<main>\n" + (GAME % {"h1": "Melyik négy szó illik össze?", "lead": lead}) + "</main>\n\n"
             + DIALOG + "\n" + footer(0) + "\n" + scripts(0, {"mode": "aktualis"}))
@@ -261,7 +259,7 @@ def build_rules():
     body = """<main>
   <article class="szoveg">
     <h1>Játékszabályok</h1>
-    <p class="lead">Minden héten 16 szót kapsz. Ezek között négy csoport rejtőzik: egy csoportba négy olyan szó tartozik, amelyek valamilyen közös tulajdonság miatt összeillenek. A feladatod, hogy megtaláld mind a négy csoportot.</p>
+    <p class="lead">Minden nap 16 szót kapsz. Ezek között négy csoport rejtőzik: egy csoportba négy olyan szó tartozik, amelyek valamilyen közös tulajdonság miatt összeillenek. A feladatod, hogy megtaláld mind a négy csoportot.</p>
     <p>Két példa:</p>
     <ul>
       <li><strong>Tavasz, Nyár, Ősz, Tél</strong>: mind évszakok.</li>
@@ -271,7 +269,7 @@ def build_rules():
     <h2>Így játssz</h2>
     <ol>
       <li>Jelölj ki négy szót, amelyekről úgy gondolod, összetartoznak.</li>
-      <li>Nyomd meg a Beküldés gombot.</li>
+      <li>Nyomd meg a Küldés gombot.</li>
       <li>Ha eltaláltad, a négy szó egy csoportba rendeződik, és kiderül, mi a közös bennük.</li>
       <li>Négy tévedésed van. Ha mindet elhasználod, a játék véget ér, és megmutatjuk a megoldást.</li>
     </ol>
@@ -284,16 +282,16 @@ def build_rules():
     <h2>A nehézségi szintek</h2>
     <p>A pöttyök mutatják, melyik szinten jársz.</p>
     <ul class="level-list">
-      <li data-level="1" style="background:var(--l1)"><strong>1. szint</strong> a legkönnyebb csoport</li>
-      <li data-level="2" style="background:var(--l2)"><strong>2. szint</strong> egy kicsit ravaszabb</li>
-      <li data-level="3" style="background:var(--l3)"><strong>3. szint</strong> itt már gondolkodni kell</li>
-      <li data-level="4" style="background:var(--l4)"><strong>4. szint</strong> a legtrükkösebb, gyakran szójáték</li>
+      <li data-level="1" style="background:var(--szint-1)"><strong>1. szint</strong> a legkönnyebb csoport</li>
+      <li data-level="2" style="background:var(--szint-2)"><strong>2. szint</strong> egy kicsit ravaszabb</li>
+      <li data-level="3" style="background:var(--szint-3)"><strong>3. szint</strong> itt már gondolkodni kell</li>
+      <li data-level="4" style="background:var(--szint-4)"><strong>4. szint</strong> a legtrükkösebb, gyakran szójáték</li>
     </ul>
     <p class="example">Egy megfejtett csoport így néz ki:</p>
     <div id="rules-example"></div>
 
     <h2>Mikor jön új feladvány?</h2>
-    <p>Minden hétfőn éjfélkor. A korábbi feladványokat bármikor megtalálod az <a href="../archivum/">archívumban</a>.</p>
+    <p>Minden nap éjfélkor, magyar idő szerint. A korábbi feladványokat bármikor megtalálod az <a href="../archivum/">archívumban</a>.</p>
 
     <h2>Statisztika</h2>
     <p>Az eredményeidet csak ez a böngésző tárolja, ezen az eszközön. Ha törlöd a böngészési adatokat, vagy másik eszközön játszol, a statisztikád nem jön veled. Az archívumban lejátszott feladványok nem számítanak bele a statisztikába.</p>
@@ -340,14 +338,18 @@ def build_privacy():
     write("adatvedelem/index.html", html)
 
 
-def build_puzzle_page(p, solved_week):
+def build_puzzle_page(p, solved_day):
     start = d(p["start"])
-    label = week_label(start)
-    title = "Rokonszavak %d. feladvány – %d. %s" % (p["id"], start.year, label)
-    desc = "A %d. Rokonszavak feladvány (%s): játszd le újra, vagy nézd meg a megoldást." % (p["id"], label)
-    lead = ('<p class="how">A Rokonszavak %d. heti feladványa. Játszd le, vagy nézd meg a megoldást a lap alján.</p>' % p["id"])
+    label = "%d. %s" % (start.year, day_label(start))
+    weekday = WEEKDAYS[start.weekday()]
+    title = "Rokonszavak – %s (%s)" % (label, weekday)
+    desc = "Rokonszavak feladvány, %s (%s): játszd le, vagy nézd meg a megoldást." % (label, weekday)
+    if solved_day:
+        lead = '<p class="how">%s, %s. Játszd le, vagy nézd meg a megoldást a lap alján.</p>' % (label, weekday)
+    else:
+        lead = '<p class="how">%s, %s. A megoldás a nap végén kerül ide.</p>' % (label, weekday)
     solution = ""
-    if solved_week:
+    if solved_day:
         items = []
         for g in sorted(p["groups"], key=lambda g: g["level"]):
             note = (' <span class="megj">%s</span>' % esc(g["note"])) if g.get("note") else ""
@@ -361,11 +363,11 @@ def build_puzzle_page(p, solved_week):
     </ul>
   </details>
 """ % ("\n      ".join(items))
-    body = ("<main>\n" + (GAME % {"h1": "Rokonszavak %d. feladvány" % p["id"], "lead": lead}) + solution + "</main>\n")
-    html = (head(title, desc, "/feladvany/%d/" % p["id"], 2)
+    body = ("<main>\n" + (GAME % {"h1": "Rokonszavak, " + day_label(start), "lead": lead}) + solution + "</main>\n")
+    html = (head(title, desc, "/feladvany/%s/" % p["id"], 2)
             + header("archivum", 2) + body + "\n" + DIALOG + "\n" + ARCHIVE_DIALOG + "\n"
             + footer(2, about=False) + "\n" + scripts(2, {"mode": "archiv", "id": p["id"]}))
-    write("feladvany/%d/index.html" % p["id"], html)
+    write("feladvany/%s/index.html" % p["id"], html)
 
 
 def build_archive(published):
@@ -378,10 +380,10 @@ def build_archive(published):
         cards = []
         for p in sorted(months[(y, m)], key=lambda p: p["start"], reverse=True):
             start = d(p["start"])
-            cards.append("""<a class="arch-kartya" href="../feladvany/%d/" data-feladvany="%d">
+            cards.append("""<a class="arch-kartya" href="../feladvany/%s/" data-feladvany="%s">
           <span class="arch-nap">%d</span>
-          <span><span class="arch-cim">%d. feladvány</span><br><span class="arch-alcim">%s</span></span>
-        </a>""" % (p["id"], p["id"], start.day, p["id"], week_label(start)))
+          <span><span class="arch-cim">%s</span><br><span class="arch-alcim">%s</span></span>
+        </a>""" % (p["id"], p["id"], start.day, day_label(start).capitalize(), WEEKDAYS[start.weekday()]))
         blocks.append("""<section class="honap">
       <h2>%d. %s</h2>
       <div class="honap-racs">
@@ -389,31 +391,31 @@ def build_archive(published):
       </div>
     </section>""" % (y, MONTHS[m - 1], "\n        ".join(cards)))
     if not blocks:
-        blocks = ['<p>Az első feladvány hamarosan érkezik. Nézz vissza jövő héten!</p>']
+        blocks = ['<p>Az első feladvány hamarosan érkezik. Nézz vissza holnap!</p>']
     body = """<main>
   <article class="szoveg">
     <h1>Archívum</h1>
-    <p class="lead">Itt találod az összes korábbi Rokonszavak feladványt. Bármelyiket lejátszhatod, de az archív játékok eredménye nem kerül bele a statisztikádba.</p>
+    <p class="lead">Itt találod az összes korábbi Rokonszavak feladványt, napról napra. Bármelyiket lejátszhatod, de az archív játékok eredménye nem kerül bele a statisztikádba.</p>
     <div class="jelmagyarazat">
-      <span><i class="jel" style="background:var(--l1)"></i> megfejtetted</span>
-      <span><i class="jel" style="background:var(--l2)"></i> nem sikerült</span>
+      <span><i class="jel" style="background:var(--szint-1)"></i> megfejtetted</span>
+      <span><i class="jel" style="background:var(--szint-4)"></i> nem sikerült</span>
       <span><i class="jel" style="background:var(--bg)"></i> még nem játszottad</span>
     </div>
     %s
-    <a class="btn btn-primary back" href="../">A heti feladvány</a>
+    <a class="btn btn-primary back" href="../">A mai feladvány</a>
   </article>
 </main>
 """ % ("\n    ".join(blocks))
     html = (head("Archívum – korábbi Rokonszavak feladványok",
-                 "A korábbi Rokonszavak feladványok hétről hétre. Játszd le bármelyiket, vagy nézd meg a megoldást.",
+                 "A korábbi Rokonszavak feladványok napról napra. Játszd le bármelyiket, vagy nézd meg a megoldást.",
                  "/archivum/", 1)
             + header("archivum", 1) + body + "\n" + footer(1, about=False) + "\n"
-            + f'<script src="../assets/feladvanyok.js"></script>\n<script src="../assets/archivum.js"></script>\n<script src="../assets/tema.js"></script>\n</body>\n</html>\n')
+            + f'<script src="{asset("archivum.js", "../")}"></script>\n<script src="{asset("tema.js", "../")}"></script>\n</body>\n</html>\n')
     write("archivum/index.html", html)
 
 
 def build_sitemap(published):
-    urls = ["/", "/archivum/", "/szabalyok/"] + ["/feladvany/%d/" % p["id"] for p in published] + ["/adatvedelem/"]
+    urls = ["/", "/archivum/", "/szabalyok/"] + ["/feladvany/%s/" % p["id"] for p in published] + ["/adatvedelem/"]
     items = "\n".join('  <url><loc>%s%s</loc></url>' % (SITE, u) for u in urls)
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % items)
     write("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE)
@@ -434,10 +436,18 @@ def build_404():
 
 
 def main():
-    ma = today()
-    puzzles = load_puzzles()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    ma = xlsx_to_js.today()
+    print("Mai dátum (Budapest):", ma)
+    try:
+        all_puzzles, _ = xlsx_to_js.run(ma)
+    except xlsx_to_js.BuildHiba as e:
+        xlsx_to_js.hibak_kiirasa(e.args[0])
+        sys.exit(1)
+    puzzles = sorted(xlsx_to_js.load_js(), key=lambda p: p["start"])
     published = [p for p in puzzles if d(p["start"]) <= ma]
-    print("Mai dátum:", ma, "| feladványok:", len(puzzles), "| megjelent:", len(published))
+    print("Megjelent feladványok:", len(published))
     # a mar nem aktualis (pl. jovobeli) feladvanyoldalak torlese
     folder = os.path.join(ROOT, "feladvany")
     keep = {str(p["id"]) for p in published}
@@ -451,10 +461,11 @@ def main():
     build_privacy()
     build_archive(published)
     for p in published:
-        build_puzzle_page(p, solved_week=(d(p["start"]) + timedelta(days=7) <= ma))
+        build_puzzle_page(p, solved_day=(d(p["start"]) < ma))
     build_sitemap(published)
     build_404()
     print("Kész.")
+    xlsx_to_js.report(all_puzzles, ma)
 
 
 if __name__ == "__main__":

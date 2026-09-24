@@ -1,6 +1,8 @@
 /* Rokonszavak – játékmotor. Két mód:
-   RSZ.mode = "aktualis" : a főoldal, a heti feladvány, számít a statisztikába
-   RSZ.mode = "archiv"   : egy régi feladvány aloldala, NEM számít a statisztikába */
+   RSZ.mode = "aktualis" : a főoldal, a mai feladvány, számít a statisztikába
+   RSZ.mode = "archiv"   : egy régi feladvány aloldala, NEM számít a statisztikába
+   A mai feladványt a böngésző választja ki, budapesti idő szerint: éjfélkor
+   mindenkinél egyszerre vált, bárhol van a látogató. */
 (function () {
   var CFG = window.RSZ || { mode: "aktualis" };
   var PUZZLES = (window.FELADVANYOK || []).slice().sort(function (a, b) { return a.start < b.start ? -1 : 1; });
@@ -9,15 +11,35 @@
   var MONTHS = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
   var DAYS = ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"];
   var $ = function (id) { return document.getElementById(id); };
+  var params = new URLSearchParams(location.search);
 
   function parseDate(s) { var p = s.split("-").map(Number); return new Date(p[0], p[1] - 1, p[2]); }
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
-  function formatWeek(start) {
-    var end = addDays(start, 6);
-    if (start.getMonth() === end.getMonth()) return MONTHS[start.getMonth()] + " " + start.getDate() + "–" + end.getDate() + ".";
-    return MONTHS[start.getMonth()] + " " + start.getDate() + ". – " + MONTHS[end.getMonth()] + " " + end.getDate() + ".";
-  }
+  function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
   function formatDay(d) { return MONTHS[d.getMonth()] + " " + d.getDate() + "."; }
+  function longDay(d) { var n = DAYS[d.getDay()]; return n.charAt(0).toUpperCase() + n.slice(1) + ", " + formatDay(d); }
+
+  /* Budapesti idő részei. A formatToParts nem függ attól, milyen sorrendben írja ki a dátumot a böngésző. */
+  function budapestParts() {
+    var out = {};
+    new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date()).forEach(function (p) { out[p.type] = p.value; });
+    return out;
+  }
+  /* A mai nap (ÉÉÉÉ-HH-NN) Budapesten. Helyi teszteléshez: localhost/?ma=2026-09-25 */
+  function budapestToday() {
+    var fake = params.get("ma");
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && /^\d{4}-\d{2}-\d{2}$/.test(fake || "")) return fake;
+    var p = budapestParts();
+    return p.year + "-" + p.month + "-" + p.day;
+  }
+  /* A legutóbbi feladvány, amely adott napon vagy előtte indult. */
+  function pickCurrent(day) {
+    var found = null;
+    PUZZLES.forEach(function (p) { if (p.start <= day) found = p; });
+    return found;
+  }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   /* ---------- tárolás ---------- */
@@ -35,24 +57,25 @@
   var store = loadStore();
 
   /* ---------- melyik feladvány ---------- */
-  var params = new URLSearchParams(location.search);
   if (params.has("reset")) {
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
     location.replace(location.pathname);
   }
-  var now = new Date();
-  var currentPuzzle = null;
-  for (var i = 0; i < PUZZLES.length; i++) { if (parseDate(PUZZLES[i].start) <= now) currentPuzzle = PUZZLES[i]; }
+  var today = budapestToday();
+  var currentPuzzle = pickCurrent(today);
+  /* Ha mára nincs feladvány, a legutóbbi jelenik meg újra: ez nem számít új napnak a sorozatban. */
+  var isFallback = !!currentPuzzle && currentPuzzle.start !== today;
+  function byId(id) { return PUZZLES.filter(function (p) { return String(p.id) === String(id); })[0]; }
 
-  var testId = parseInt(params.get("teszt"), 10);
-  var testMode = CFG.mode === "aktualis" && PUZZLES.some(function (p) { return p.id === testId; });
+  var testId = params.get("teszt");
+  var testMode = CFG.mode === "aktualis" && !!byId(testId);
   var archive = CFG.mode === "archiv";
   var puzzle, isPreview = false;
 
   if (archive) {
-    puzzle = PUZZLES.filter(function (p) { return p.id === CFG.id; })[0];
+    puzzle = byId(CFG.id);
   } else if (testMode) {
-    puzzle = PUZZLES.filter(function (p) { return p.id === testId; })[0];
+    puzzle = byId(testId);
   } else if (currentPuzzle) {
     puzzle = currentPuzzle;
   } else {
@@ -62,11 +85,10 @@
 
   var isLivePuzzle = currentPuzzle && puzzle.id === currentPuzzle.id;
   var countsForStats = !archive && !testMode;
-  var nextPuzzle = null;
-  for (var j = 0; j < PUZZLES.length; j++) {
-    var st = parseDate(PUZZLES[j].start);
-    if (st > now && (isPreview || !currentPuzzle || PUZZLES[j].id !== currentPuzzle.id)) { nextPuzzle = PUZZLES[j]; break; }
-  }
+  var onFallback = isFallback && !archive && !testMode;
+  var nextPuzzle = PUZZLES.filter(function (p) { return p.start > today; })[0] || null;
+  var prevIndex = PUZZLES.indexOf(puzzle) - 1;
+  var prevPuzzleId = prevIndex >= 0 ? PUZZLES[prevIndex].id : null;
 
   function slot() { return archive ? store.archiv : store.progress; }
   function save() {
@@ -127,13 +149,15 @@
     if (state.status === "playing") {
       state.order.filter(function (w) { return solvedWords.indexOf(w) === -1; }).forEach(function (word) {
         var b = document.createElement("button");
+        var len = Array.from(word).length;
         b.type = "button"; b.className = "tile"; b.textContent = word;
-        b.dataset.word = word; b.dataset.len = word.length;
+        b.dataset.word = word; b.dataset.meret = len <= 8 ? "s" : len <= 12 ? "m" : len <= 17 ? "l" : "xl";
         b.setAttribute("aria-pressed", selected.indexOf(word) > -1 ? "true" : "false");
         b.addEventListener("click", function () { toggle(word, b); });
         grid.appendChild(b);
       });
     }
+    fitTiles();
     var left = MAX_MISTAKES - state.mistakes;
     $("lives").innerHTML = Array.apply(null, { length: MAX_MISTAKES }).map(function (_, i) { return '<i class="life' + (i >= left ? " used" : "") + '"></i>'; }).join("");
     $("lives").setAttribute("aria-label", left + " tévedés van hátra");
@@ -146,6 +170,27 @@
     }
     updateButtons();
   }
+  /* A CSS-ben megadott betűméret a felső határ (data-meret). Ha a leghosszabb szórész így sem
+     fér ki egy sorba, addig kicsinyít, amíg ki nem fér, hogy ne törjön szét a szó közepén. */
+  function fitTiles() {
+    Array.prototype.forEach.call(document.querySelectorAll("#grid .tile"), function (t) {
+      t.style.fontSize = "";
+      t.classList.add("meres");
+      var cs = getComputedStyle(t), size = parseFloat(cs.fontSize);
+      var room = t.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      var range = document.createRange();
+      range.selectNodeContents(t);
+      var widest = function () {
+        return Math.max.apply(null, [0].concat(Array.prototype.map.call(range.getClientRects(), function (r) { return r.width; })));
+      };
+      while (size > 10 && widest() > room) { size -= 0.5; t.style.fontSize = size + "px"; }
+      t.classList.remove("meres");
+    });
+  }
+  var fitTimer;
+  window.addEventListener("resize", function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitTiles, 120); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTiles);
+
   function updateButtons() {
     $("btn-submit").disabled = selected.length !== 4;
     $("btn-deselect").disabled = selected.length === 0;
@@ -202,12 +247,19 @@
     if (countsForStats && !isPreview) {
       var s = store.stats;
       s.played++;
+      /* Sorozat: az előző feladványt (a dátum szerinti sorrendben) is megfejtetted-e.
+         Újra megjelenített (tartalék) feladvány nem növeli és nem is nullázza. */
       if (won) {
         s.wins++; s.dist[state.mistakes]++;
-        s.streak = s.lastWonId === puzzle.id - 1 ? s.streak + 1 : 1;
-        s.best = Math.max(s.best, s.streak);
-        s.lastWonId = puzzle.id;
-      } else { s.lost++; s.streak = 0; }
+        if (!onFallback) {
+          s.streak = prevPuzzleId !== null && s.lastWonId === prevPuzzleId ? s.streak + 1 : 1;
+          s.best = Math.max(s.best, s.streak);
+          s.lastWonId = puzzle.id;
+        }
+      } else {
+        s.lost++;
+        if (!onFallback) s.streak = 0;
+      }
     }
     setTimeout(function () { openDialog(true); }, 1100);
   }
@@ -216,11 +268,14 @@
   function nextText() {
     if (archive) return "";
     if (!nextPuzzle) return "A következő feladvány hamarosan érkezik.";
-    var start = parseDate(nextPuzzle.start), diff = start - new Date();
-    var days = Math.floor(diff / 86400000), hours = Math.floor((diff % 86400000) / 3600000);
-    var left = diff < 3600000 ? "egy órán belül" : (days > 0 ? "még " + days + " nap " + hours + " óra" : "még " + hours + " óra");
-    var label = currentPuzzle && nextPuzzle.id === currentPuzzle.id ? "Hivatalos indulás" : "Következő feladvány";
-    return label + ": " + DAYS[start.getDay()] + ", " + formatDay(start) + " (" + left + ")";
+    if (nextPuzzle.start === iso(addDays(parseDate(today), 1))) {
+      var t = budapestParts();
+      var mins = Math.max(1, 1440 - (+t.hour * 60 + +t.minute));
+      var h = Math.floor(mins / 60), m = mins % 60;
+      var left = h ? "még " + h + " óra " + m + " perc" : "még " + m + " perc";
+      return "Új feladvány éjfélkor, magyar idő szerint (" + left + ").";
+    }
+    return "Következő feladvány: " + longDay(parseDate(nextPuzzle.start)).toLowerCase() + ".";
   }
 
   /* ---------- eredmény / statisztika ---------- */
@@ -249,7 +304,7 @@
     if (!dlg.open) dlg.showModal();
   }
   function shareText() {
-    var lines = ["Rokonszavak #" + puzzle.id];
+    var lines = ["Rokonszavak, " + formatDay(parseDate(puzzle.start))];
     if (state.status === "won") lines.push(state.mistakes === 0 ? "Megfejtve, hiba nélkül." : "Megfejtve, " + state.mistakes + " tévedéssel.");
     else lines.push("Most nem jött össze.");
     if (state.solved.length) lines.push("Szintek sorrendje: " + state.solved.map(function (i) { return puzzle.groups[i].level; }).join(", "));
@@ -281,17 +336,36 @@
 
   /* ---------- indítás ---------- */
   if ($("puzzle-info")) {
-    $("puzzle-info").textContent = puzzle.id + ". feladvány, " + formatWeek(parseDate(puzzle.start));
+    $("puzzle-info").textContent = longDay(parseDate(puzzle.start));
   }
   if ($("practice-note")) {
-    if (testMode) { $("practice-note").textContent = "Tesztmód: " + puzzle.id + ". feladvány. Az eredmény nem mentődik."; $("practice-note").hidden = false; }
+    var alreadyDone = state.status !== "playing";
+    if (testMode) { $("practice-note").textContent = "Tesztmód: " + puzzle.id + ". Az eredmény nem mentődik."; $("practice-note").hidden = false; }
     else if (isPreview) { $("practice-note").textContent = "Előzetes. A hivatalos indulás: " + formatDay(parseDate(puzzle.start)); $("practice-note").hidden = false; }
+    else if (onFallback) {
+      $("practice-note").innerHTML = alreadyDone
+        ? 'Ma nincs új feladvány, ezt már befejezted. Addig is válogass az <a href="/archivum/">archívumból</a>!'
+        : "Ma nincs új feladvány, ezért a legutóbbit mutatjuk. A sorozatodat nem befolyásolja.";
+      $("practice-note").hidden = false;
+    }
     else if (archive && isLivePuzzle) { $("practice-note").innerHTML = 'Ez a most futó feladvány. A <a href="/">főoldalon</a> játszva számít a statisztikádba.'; $("practice-note").hidden = false; }
     else if (archive) { $("practice-note").textContent = "Archív feladvány. Az eredménye nem számít bele a statisztikádba."; $("practice-note").hidden = false; }
   }
+  if ($("btn-archive")) $("btn-archive").hidden = !onFallback;
   if ($("next-info")) {
-    if (archive) $("next-info").innerHTML = '<a href="/">A heti feladvány</a> &nbsp; <a href="/archivum/">Archívum</a>';
+    if (archive) $("next-info").innerHTML = '<a href="/">A mai feladvány</a> &nbsp; <a href="/archivum/">Archívum</a>';
     else $("next-info").textContent = nextText();
+  }
+  /* Ha a lap éjfélkor is nyitva van, az új nap feladványára frissít (a haladás el van mentve). */
+  if (!archive && !testMode) {
+    var checkDay = function () {
+      if (document.hidden) return;
+      var cur = pickCurrent(budapestToday());
+      if (cur && cur !== currentPuzzle) location.reload();
+      else if ($("next-info")) $("next-info").textContent = nextText();
+    };
+    document.addEventListener("visibilitychange", checkDay);
+    setInterval(checkDay, 60000);
   }
   if ($("rules-example")) {
     $("rules-example").appendChild(familyCard({ level: 3, title: "Csillagjegyek", words: ["Rák", "Kos", "Bak", "Oroszlán"], note: "Mind állatok is, de itt a csillagjegy a közös." }, false));
