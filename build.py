@@ -52,10 +52,14 @@ LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="24" cy="30" r="3.6" fill="#2B76C6"/><circle cx="32" cy="30" r="3.6" fill="#4E4187"/>
       </svg>"""
 
-FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='7' r='4.5' fill='%231A1F2B'/%3E"
-           "%3Cpath d='M20 11v6M8 17h24M8 17v8M16 17v8M24 17v8M32 17v8' stroke='%231A1F2B' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E"
-           "%3Ccircle cx='8' cy='30' r='3.6' fill='%237DDE92'/%3E%3Ccircle cx='16' cy='30' r='3.6' fill='%232EBFA5'/%3E"
-           "%3Ccircle cx='24' cy='30' r='3.6' fill='%232B76C6'/%3E%3Ccircle cx='32' cy='30' r='3.6' fill='%234E4187'/%3E%3C/svg%3E")
+# Ikonok: a scripts/favicon.py gyartja oket a logobol (feher korben, hogy sotet lapfulon is latsszon).
+ICONS = """<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#FFFFFF">"""
 
 
 def head(title, desc, path, depth, extra=""):
@@ -81,7 +85,7 @@ def head(title, desc, path, depth, extra=""):
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{SITE}/og-kep.png">
-<link rel="icon" href="{FAVICON}">
+{ICONS}
 <script>
   (function () {{
     var t = null;
@@ -136,7 +140,7 @@ GAME = """  <section class="game" aria-labelledby="game-title">
       <span class="practice-note" id="practice-note" hidden></span>
     </div>
 
-    <div class="toast-area" aria-live="polite"><span class="toast" id="toast" hidden></span></div>
+    <div class="toast-area" role="status" aria-live="polite"><span class="toast" id="toast" hidden></span></div>
 
     <div class="families" id="families"></div>
     <div class="grid" id="grid" role="group" aria-label="Szavak" lang="hu"></div>
@@ -195,26 +199,87 @@ ARCHIVE_DIALOG = """<dialog id="dialog-archiv" aria-labelledby="archiv-cim">
 """
 
 
-def footer(depth, about=True):
-    base = "../" * depth if depth else "/"
-    about_html = """<section class="about">
-  <h2>Mi ez a játék?</h2>
-  <p>A Rokonszavak ingyenes magyar szójáték: minden nap 16 szóból kell négy darab négyes csoportot kialakítanod aszerint, hogy mi a közös bennük. Regisztráció nélkül játszható, telefonon és számítógépen is.</p>
-</section>
+# A fooldal jatek alatti ismertetoje: ez a lap fo keresheto szovege (maga a jatek JS-bol rajzolodik ki).
+# A GYIK kerdesei es valaszai egyben a FAQPage strukturalt adat forrasai is.
+GYIK = [
+    ("Ingyenes a játék?",
+     "Igen, a Rokonszavak teljesen ingyenes, és nem kell hozzá regisztrálni."),
+    ("Hol tárolódik, hogy meddig jutottam?",
+     "Kizárólag a saját böngésződben. Nincs felhasználói fiók, és a haladásodat nem mentjük el nálunk. "
+     "Ha elfogadod a sütiket, névtelen statisztikát kapunk arról, hogyan alakulnak a játékok "
+     "(például hány tévedéssel fejtik meg a feladványt). "
+     "Ha törlöd a böngésződ tárolt adatait, a statisztikád is eltűnik."),
+    ("Mi történik, ha négyszer tévedek?",
+     "A feladvány véget ér, és megjelenik a helyes megoldás mind a négy csoporttal. "
+     "Másnap új feladvánnyal próbálkozhatsz."),
+    ("Mit jelentenek a színek?",
+     "A négy csoport nehézségi sorrendben kap színt: az első a legkönnyebb, a negyedik a legnehezebb, "
+     "és ez utóbbi szinte mindig valamilyen nyelvi csavarra épül."),
+    ("Játszhatok régebbi feladványokkal?",
+     "Igen, az archívumban minden korábbi nap elérhető."),
+]
 
-""" if about else ""
-    return f"""{about_html}<footer class="site-footer">
+ISMERTETO = """<section class="ismerteto">
+
+  <h2>Mi ez a napi szójáték?</h2>
+  <p>A Rokonszavak egy ingyenes magyar szójáték: minden nap kapsz tizenhat szót,
+  és meg kell találnod, melyik négy tartozik össze. Négy csoport, csoportonként
+  négy szó, és mindig pontosan egy olyan elrendezés van, amiben mind a négy
+  csoport kijön. Regisztráció nélkül játszható, telefonon és számítógépen is.</p>
+
+  <h2>Hogyan kell játszani?</h2>
+  <p>Jelölj ki négy szót, amelyekben szerinted van valami közös, majd nyomd meg a
+  Küldés gombot. Ha eltaláltad, a négy szó egy sorba rendeződik, és megjelenik a
+  csoport megnevezése. Négyszer tévedhetsz, utána a mai feladvány véget ér. A
+  Keverés gomb átrendezi a szavakat, ami sokszor segít új összefüggést észrevenni.</p>
+
+  <h2>Miért nehezebb, mint amilyennek látszik?</h2>
+  <p>Szinte minden feladványban van néhány szó, amelyik két vagy három csoportba is
+  beleillene. Ezek a csapdák: a legkézenfekvőbb négyes gyakran nem a helyes
+  megoldás. Érdemes azzal a csoporttal kezdeni, amelyikben egészen biztos vagy, és
+  a bizonytalan szavakat a végére hagyni.</p>
+  <p>A nehezebb csoportok sokszor nyelvi játékra épülnek: azonos alakú szavak,
+  többjelentésű szavak, szólások és közmondások, összetett szavak közös előtaggal,
+  vagy olyan szavak, amelyekben elbújik egy másik szó. Ez az a rész, ami magyarul
+  működik igazán, és amit egy fordított rejtvény soha nem tudna visszaadni.</p>
+
+  <h2>Napi egy feladvány</h2>
+  <p>Minden nap éjfélkor új feladvány érkezik. A korábbiak nem vesznek el: az
+  <a href="/archivum/">archívumban</a> bármelyiket előveheted, és sorra veheted
+  őket. Az archív játékok eredménye nem számít bele a statisztikádba, így nyugodtan
+  kísérletezhetsz.</p>
+  <p>Jó agytorna reggeli kávé mellé, és pont annyi ideig tart, ameddig egy
+  keresztrejtvény bemelegítése. Ha szereted az online rejtvény és fejtörő
+  típusú játékokat, ez ugyanabba a napi szokásba illeszkedik.</p>
+
+  <h2>Gyakori kérdések</h2>
+%s
+</section>
+""" % "".join("\n  <h3>%s</h3>\n  <p>%s</p>\n" % (esc(q), esc(a)) for q, a in GYIK)
+
+GYIK_JSONLD = ('<script type="application/ld+json">\n' + json.dumps({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{"@type": "Question", "name": q,
+                    "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in GYIK],
+}, ensure_ascii=False, indent=2) + "\n</script>\n")
+
+
+def footer(depth):
+    base = "../" * depth if depth else "/"
+    return f"""<footer class="site-footer">
   <ul class="footer-nav">
     <li><a href="{base}">Játék</a></li>
     <li><a href="{base}archivum/">Archívum</a></li>
     <li><a href="{base}szabalyok/">Szabályok</a></li>
+    <li><a href="{base}rolunk/">Rólunk</a></li>
     <li><a href="{base}adatvedelem/">Adatvédelem és sütik</a></li>
     <li><a href="#" id="suti-beallitas">Süti beállítások</a></li>
   </ul>
   <p>© 2026 Rokonszavak. Napi szójáték magyarul.</p>
 </footer>
 
-<div class="suti-sav" id="suti-sav" role="dialog" aria-label="Süti beállítások" hidden>
+<div class="suti-sav" id="suti-sav" role="dialog" aria-modal="true" aria-label="Süti beállítások" hidden>
   <div class="suti-belso">
     <p class="suti-szoveg">Sütiket és hasonló technológiákat használunk. A játék működéséhez szükséges tárolás mindig aktív, a névtelen látogatottsági mérés (Google Analytics) viszont csak a hozzájárulásoddal indul el. <a href="{base}adatvedelem/">Részletek</a></p>
     <div class="suti-gombok">
@@ -247,10 +312,12 @@ def write(path, content):
 # ---------------------------------------------------------------- pages
 def build_index():
     lead = '<p class="how">Keress négy csoportot: minden csoport négy szava valamilyen közös tulajdonság miatt tartozik össze.</p>'
-    html = (head("Rokonszavak – napi magyar szójáték",
-                 "Ingyenes magyar szójáték: minden nap 16 szó, négy rejtett csoport. Találd meg, mi köti össze őket!", "/", 0)
+    html = (head("Napi szójáték és online rejtvény magyarul – Rokonszavak",
+                 "Napi szójáték és ingyenes online rejtvény magyarul: minden nap 16 szó, négy rejtett csoport. "
+                 "Találd meg, mi köti össze őket!", "/", 0, GYIK_JSONLD)
             + header("jatek", 0)
-            + "<main>\n" + (GAME % {"h1": "Melyik négy szó illik össze?", "lead": lead}) + "</main>\n\n"
+            + "<main>\n" + (GAME % {"h1": "Melyik négy szó illik össze?", "lead": lead})
+            + "\n" + ISMERTETO + "</main>\n\n"
             + DIALOG + "\n" + footer(0) + "\n" + scripts(0, {"mode": "aktualis"}))
     write("index.html", html)
 
@@ -303,29 +370,83 @@ def build_rules():
     html = (head("Játékszabályok – Rokonszavak",
                  "Hogyan kell játszani a Rokonszavak szójátékkal? 16 szó, négy csoport, négy tévedés. Példákkal és a nehézségi szintekkel.",
                  "/szabalyok/", 1)
-            + header("szabalyok", 1) + body + "\n" + footer(1, about=False) + "\n" + scripts(1))
+            + header("szabalyok", 1) + body + "\n" + footer(1) + "\n" + scripts(1))
     write("szabalyok/index.html", html)
+
+
+def build_about():
+    body = """<main>
+  <article class="szoveg">
+    <h1>Rólunk</h1>
+
+    <p>A Rokonszavakat 2026 szeptemberében indítottam el: egy napi magyar szójáték,
+    amiben tizenhat szóból kell négy négyes csoportot kialakítani.</p>
+
+    <p>Az ötlet abból jött, hogy a hasonló játékok többsége angolul működik jól, és
+    fordításban elveszik belőlük az, ami a legjobb bennük — a nyelvi csavar. A magyar
+    nyelvben viszont bőven van alapanyag: azonos alakú szavak, összetételek, szólások,
+    népi kifejezések. A feladványokat magam írom, egyesével.</p>
+
+    <p>Ha találtál benne hibát, van ötleted egy csoportra, vagy csak meg akarod írni,
+    hogy melyik feladvány fogott ki rajtad, szívesen olvasom. Írj az alábbi űrlapon
+    keresztül.</p>
+
+    <p>A játék ingyenes, és regisztráció nélkül játszható.</p>
+
+    <form action="https://api.web3forms.com/submit" method="POST" class="kapcsolat-urlap">
+      <input type="hidden" name="access_key" value="57956d75-d1ca-4938-a17e-4536a3bed390">
+      <input type="hidden" name="subject" value="Rokonszavak – üzenet az oldalról">
+      <input type="hidden" name="from_name" value="Rokonszavak">
+
+      <label for="nev">Neved</label>
+      <input type="text" id="nev" name="name" required autocomplete="name">
+
+      <label for="email">E-mail-címed</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+
+      <label for="uzenet">Üzeneted</label>
+      <textarea id="uzenet" name="message" rows="6" required></textarea>
+
+      <input type="checkbox" name="botcheck" class="rejtett" style="display:none"
+             tabindex="-1" autocomplete="off">
+
+      <button type="submit" class="btn btn-primary">Küldés</button>
+      <p class="urlap-eredmeny" id="urlap-eredmeny" role="status" aria-live="polite" hidden></p>
+      <p class="urlap-megj">Az üzeneted a Web3Forms szolgáltatáson keresztül érkezik meg hozzám. Részletek az <a href="../adatvedelem/">Adatvédelem</a> oldalon.</p>
+    </form>
+
+    <a class="btn btn-primary back" href="../">Vissza a játékhoz</a>
+  </article>
+</main>
+"""
+    html = (head("Rólunk – Rokonszavak",
+                 "Ki készíti a Rokonszavakat, és miért? Hibát találtál, vagy ötleted van egy csoportra? Írj az oldalon lévő űrlapon keresztül.",
+                 "/rolunk/", 1)
+            + header("", 1) + body + "\n" + footer(1) + "\n"
+            + f'<script src="{asset("kapcsolat.js", "../")}"></script>\n'
+            + scripts(1))
+    write("rolunk/index.html", html)
 
 
 def build_privacy():
     body = """<main>
   <article class="szoveg">
     <h1>Adatvédelem és sütik</h1>
-    <p class="lead">Röviden: a Rokonszavak nem kér regisztrációt, nem gyűjt nevet vagy e-mail-címet, és a játékeredményeid a saját böngésződben maradnak.</p>
+    <p class="lead">Röviden: a Rokonszavak nem kér regisztrációt, és a játékeredményeid a saját böngésződben maradnak. Nevet és e-mail-címet csak akkor kapunk, ha a <a href="../rolunk/">Rólunk</a> oldalon lévő űrlapon írsz nekünk.</p>
 
     <h2>Mit tárol a böngésződ?</h2>
     <p>A játék a böngésződ helyi tárhelyén (localStorage) őrzi a haladásodat, a statisztikádat, a világos vagy sötét mód beállítását, valamint a süti sávon adott válaszodat. Ezek az adatok nem kerülnek fel semmilyen szerverre, és bármikor törölhetők a böngésző adatainak törlésével.</p>
 
     <h2>Látogatottsági mérés</h2>
-    <p>A Google Analytics 4 segítségével névtelen statisztikát készítünk arról, hányan és milyen eszközről játszanak. Ez a mérés csak akkor indul el, ha a süti sávon az Elfogadom gombot választod. Ha a Csak a szükségesek lehetőséget választod, nem töltjük be a mérőkódot.</p>
+    <p>A Google Analytics 4 segítségével névtelen statisztikát készítünk arról, hányan és milyen eszközről játszanak, és hogyan alakulnak a játékok: például elkezdtek-e egy feladványt, hány tévedéssel fejtették meg, vagy megosztották-e az eredményt. Ebből látjuk, melyik feladvány sikerült túl könnyűre vagy túl nehézre. Ez a mérés csak akkor indul el, ha a süti sávon az Elfogadom gombot választod. Ha a Csak a szükségesek lehetőséget választod, nem töltjük be a mérőkódot, és a játékról sem küldünk semmit.</p>
     <p>A választásodat bármikor módosíthatod a lap alján lévő Süti beállítások linkre kattintva.</p>
+
+    <h2>Kapcsolatfelvételi űrlap</h2>
+    <p>Ha a <a href="../rolunk/">Rólunk</a> oldalon lévő űrlapon üzenetet küldesz, a neved, az e-mail-címed és az üzeneted a <a href="https://web3forms.com/privacy" rel="noopener">Web3Forms</a> szolgáltatáson keresztül jut el hozzám e-mailben. A Web3Forms adatfeldolgozóként, az Egyesült Államokban lévő szerverein kezeli ezeket az adatokat. Az adataidat kizárólag arra használom, hogy válaszoljak az üzenetedre, más célra nem használom fel őket, és senkinek nem adom tovább.</p>
+    <p>Ha szeretnéd, hogy töröljem a levelezésünket, írd meg, és megteszem.</p>
 
     <h2>Betűtípusok</h2>
     <p>Az oldal a Google Fonts szolgáltatásból tölt be betűtípusokat, ami azt jelenti, hogy a böngésződ kapcsolatba lép a Google szerverével.</p>
-
-    <h2>Üzemeltető</h2>
-    <p>Név: [ide írd a neved]<br>E-mail: [ide írd az e-mail-címed]</p>
-    <p>Kérdésed vagy adattörlési kérésed van? Írj a fenti címre.</p>
 
     <a class="btn btn-primary back" href="../">Vissza a játékhoz</a>
   </article>
@@ -334,7 +455,7 @@ def build_privacy():
     html = (head("Adatvédelem és sütik – Rokonszavak",
                  "Milyen adatokat tárol a Rokonszavak? Regisztráció nincs, az eredmények a böngésződben maradnak.",
                  "/adatvedelem/", 1)
-            + header("", 1) + body + "\n" + footer(1, about=False) + "\n" + scripts(1))
+            + header("", 1) + body + "\n" + footer(1) + "\n" + scripts(1))
     write("adatvedelem/index.html", html)
 
 
@@ -366,7 +487,7 @@ def build_puzzle_page(p, solved_day):
     body = ("<main>\n" + (GAME % {"h1": "Rokonszavak, " + day_label(start), "lead": lead}) + solution + "</main>\n")
     html = (head(title, desc, "/feladvany/%s/" % p["id"], 2)
             + header("archivum", 2) + body + "\n" + DIALOG + "\n" + ARCHIVE_DIALOG + "\n"
-            + footer(2, about=False) + "\n" + scripts(2, {"mode": "archiv", "id": p["id"]}))
+            + footer(2) + "\n" + scripts(2, {"mode": "archiv", "id": p["id"]}))
     write("feladvany/%s/index.html" % p["id"], html)
 
 
@@ -399,7 +520,7 @@ def build_archive(published):
     <div class="jelmagyarazat">
       <span><i class="jel" style="background:var(--szint-1)"></i> megfejtetted</span>
       <span><i class="jel" style="background:var(--szint-4)"></i> nem sikerült</span>
-      <span><i class="jel" style="background:var(--bg)"></i> még nem játszottad</span>
+      <span><i class="jel" style="background:var(--tile)"></i> még nem játszottad</span>
     </div>
     %s
     <a class="btn btn-primary back" href="../">A mai feladvány</a>
@@ -409,13 +530,14 @@ def build_archive(published):
     html = (head("Archívum – korábbi Rokonszavak feladványok",
                  "A korábbi Rokonszavak feladványok napról napra. Játszd le bármelyiket, vagy nézd meg a megoldást.",
                  "/archivum/", 1)
-            + header("archivum", 1) + body + "\n" + footer(1, about=False) + "\n"
+            + header("archivum", 1) + body + "\n" + footer(1) + "\n"
             + f'<script src="{asset("archivum.js", "../")}"></script>\n<script src="{asset("tema.js", "../")}"></script>\n</body>\n</html>\n')
     write("archivum/index.html", html)
 
 
 def build_sitemap(published):
-    urls = ["/", "/archivum/", "/szabalyok/"] + ["/feladvany/%s/" % p["id"] for p in published] + ["/adatvedelem/"]
+    urls = (["/", "/archivum/", "/szabalyok/"] + ["/feladvany/%s/" % p["id"] for p in published]
+            + ["/rolunk/", "/adatvedelem/"])
     items = "\n".join('  <url><loc>%s%s</loc></url>' % (SITE, u) for u in urls)
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s\n</urlset>\n' % items)
     write("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % SITE)
@@ -431,7 +553,7 @@ def build_404():
 </main>
 """
     html = (head("Nincs ilyen oldal – Rokonszavak", "A keresett oldal nem található.", "/404.html", 0)
-            + header("", 0) + body + "\n" + footer(0, about=False) + "\n</body>\n</html>\n")
+            + header("", 0) + body + "\n" + footer(0) + "\n</body>\n</html>\n")
     write("404.html", html)
 
 
@@ -458,6 +580,7 @@ def main():
                 print("   törölve: feladvany/%s" % name)
     build_index()
     build_rules()
+    build_about()
     build_privacy()
     build_archive(published)
     for p in published:

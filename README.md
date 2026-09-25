@@ -10,6 +10,7 @@ Napi magyar szójáték: 16 szó, négy csoport.
 | `/archivum/` | a korábbi feladványok naptára, napról napra |
 | `/szabalyok/` | Játékszabályok |
 | `/feladvany/rsz-002/` | egy-egy korábbi feladvány saját oldala (SEO + archív játék) |
+| `/rolunk/` | Rólunk + kapcsolati űrlap (Web3Forms) |
 | `/adatvedelem/` | Adatvédelem és sütik |
 
 Közös fájlok:
@@ -23,6 +24,8 @@ Közös fájlok:
 | `assets/suti.js` | süti sáv + Google Analytics (csak elfogadás után indul) |
 | `assets/archivum.js`, `assets/tema.js` | archívum jelölések, sötét mód |
 | `build.py`, `scripts/` | az oldalgenerátor |
+| `assets/kapcsolat.js` | a Rólunk oldal űrlapja (a háttérben küldi el) |
+| `favicon.*`, `icon-*.png`, `apple-touch-icon.png`, `site.webmanifest` | ikonok; a `scripts/favicon.py` gyártja őket a logóból |
 
 Ne töröld: `CNAME` (a domain), `og-kep.png` (megosztási kép), `robots.txt`, `sitemap.xml`.
 

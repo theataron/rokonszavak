@@ -112,15 +112,46 @@
   var state = testMode ? newState() : (slot()[puzzle.id] || newState());
   var selected = [];
 
+  /* ---------- mérés (GA4) ----------
+     Csak a statisztikába számító játék küld eseményeket; az archív játék csak egy
+     archive_start-ot. Tesztmód és előzetes semmit. A hozzájárulást a suti.js ellenőrzi. */
+  var tracksGame = countsForStats && !isPreview;
+  function track(name, params) {
+    if (testMode || isPreview || !window.rszEsemeny) return;
+    var p = { puzzle_id: String(puzzle.id) };
+    for (var k in params) p[k] = params[k];
+    window.rszEsemeny(name, p);
+  }
+  function gameEvent(name, params) { if (tracksGame) track(name, params); }
+  /* Az első koppintásnál: game_start (vagy archive_start), feladványonként egyszer.
+     A kezdés ideje a mentett állásba kerül, így a játékidő újratöltés után is stimmel. */
+  function markStart() {
+    if (state.startedAt || state.status !== "playing") return;
+    state.startedAt = Date.now();
+    save();
+    if (archive) track("archive_start");
+    else gameEvent("game_start");
+  }
+
   /* ---------- megjelenítés ---------- */
-  var toastTimer;
-  function toast(msg) {
+  var toastTimer, toastShownAt = 0, toastSticky = false;
+  /* sticky: a toast a játékos következő lépéséig kint marad (de legalább 3 másodpercig).
+     Enélkül 2,4 másodperc után eltűnik. */
+  function toast(msg, sticky) {
     var t = $("toast");
     if (!t) return;
     t.textContent = msg; t.hidden = false;
     t.style.animation = "none"; void t.offsetWidth; t.style.animation = "";
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { t.hidden = true; }, 2400);
+    toastShownAt = Date.now(); toastSticky = !!sticky;
+    if (!sticky) toastTimer = setTimeout(function () { t.hidden = true; }, 2400);
+  }
+  /* A játékos lépett (kijelölt, törölt, kevert, küldött): a kint maradó toast mehet. */
+  function releaseToast() {
+    if (!toastSticky) return;
+    toastSticky = false;
+    var t = $("toast");
+    toastTimer = setTimeout(function () { t.hidden = true; }, Math.max(0, 3000 - (Date.now() - toastShownAt)));
   }
   function familyCard(group, animate) {
     var card = document.createElement("section");
@@ -199,6 +230,8 @@
   /* ---------- játék ---------- */
   function toggle(word, button) {
     if (state.status !== "playing") return;
+    markStart();
+    releaseToast();
     var idx = selected.indexOf(word);
     if (idx > -1) selected.splice(idx, 1);
     else {
@@ -210,6 +243,7 @@
   }
   function submit() {
     if (selected.length !== 4 || state.status !== "playing") return;
+    releaseToast();
     var key = selected.slice().sort().join("|");
     if (state.guesses.indexOf(key) > -1) { toast("Ezt a négyest már kipróbáltad."); return; }
     state.guesses.push(key);
@@ -219,6 +253,7 @@
     });
     if (hit > -1) {
       state.solved.push(hit); selected = [];
+      gameEvent("group_found", { level: puzzle.groups[hit].level, mistakes: state.mistakes });
       if (state.solved.length === puzzle.groups.length) finish(true);
       save(); render(hit); toast("Megvan: " + puzzle.groups[hit].title);
       return;
@@ -227,6 +262,8 @@
       return state.solved.indexOf(i) === -1 && g.words.filter(function (w) { return selected.indexOf(w) > -1; }).length === 3;
     });
     state.mistakes++;
+    gameEvent("mistake", { mistakes: state.mistakes });
+    if (near) gameEvent("one_away", { mistakes: state.mistakes });
     Array.prototype.forEach.call(document.querySelectorAll('.tile[aria-pressed="true"]'), function (t) {
       t.classList.remove("shake"); void t.offsetWidth; t.classList.add("shake");
     });
@@ -239,10 +276,17 @@
     save();
     var left = MAX_MISTAKES - state.mistakes;
     Array.prototype.forEach.call($("lives").querySelectorAll(".life"), function (l, i) { l.classList.toggle("used", i >= left); });
-    toast(near ? "Közel jársz: három szó egy csoportba tartozik." : "Ez a négy szó nem tartozik össze.");
+    if (near) toast("Közel jársz: három szó egy csoportba tartozik.", true);
+    else toast("Ez a négy szó nem tartozik össze.");
   }
   function finish(won) {
     state.status = won ? "won" : "lost";
+    if (won) {
+      var result = { mistakes: state.mistakes };
+      if (state.startedAt) result.duration = Math.round((Date.now() - state.startedAt) / 1000);
+      gameEvent("game_success", result);
+    }
+    else gameEvent("game_fail", { solved: state.solved.length });
     if (archive) store.archivDone[puzzle.id] = JSON.parse(JSON.stringify(state));
     if (countsForStats && !isPreview) {
       var s = store.stats;
@@ -312,6 +356,7 @@
     return lines.join("\n");
   }
   function share() {
+    track("share_result", { result: state.status === "won" ? "success" : "fail" });
     var text = shareText();
     if (navigator.share) {
       navigator.share({ text: text }).catch(function () {});
@@ -372,8 +417,8 @@
   }
 
   $("btn-submit").addEventListener("click", submit);
-  $("btn-deselect").addEventListener("click", function () { selected = []; render(-1); });
-  $("btn-shuffle").addEventListener("click", function () { state.order = shuffle(state.order); save(); render(-1); });
+  $("btn-deselect").addEventListener("click", function () { releaseToast(); selected = []; render(-1); });
+  $("btn-shuffle").addEventListener("click", function () { releaseToast(); state.order = shuffle(state.order); save(); render(-1); });
   $("btn-result").addEventListener("click", function () { openDialog(true); });
   if ($("btn-stats")) $("btn-stats").addEventListener("click", function () { openDialog(false); });
   $("btn-share").addEventListener("click", share);
