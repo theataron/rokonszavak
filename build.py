@@ -54,7 +54,8 @@ LOGO = """<svg viewBox="0 0 40 40" aria-hidden="true">
 
 # Ikonok: a scripts/favicon.py gyartja oket a logobol (feher korben, hogy sotet lapfulon is latsszon).
 ICONS = """<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
-<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
 <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
