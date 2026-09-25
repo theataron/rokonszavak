@@ -7,7 +7,7 @@ Kell hozza: python -m pip install pillow
 
 A logo (a fejlecben latott csaladfa-jel) egy atlatszatlan feher korre kerul, igy sotet
 bongeszotemaban is jol latszik a lapfulon. Kimenet a repo gyokereben:
-  favicon.svg, favicon.ico (16/32/48), favicon-32.png, favicon-48.png,
+  favicon.svg, favicon.ico (16/32/48), favicon-16x16.png, favicon-32x32.png, favicon-48.png,
   apple-touch-icon.png (180, teli feher negyzet: az iOS maga kerekiti le, az atlatszo
   sarkokat pedig feketere festene), icon-192.png, icon-512.png (a site.webmanifest-hez).
 """
@@ -79,14 +79,15 @@ def svg():
 def main():
     out = lambda name: os.path.join(ROOT, name)
     open(out("favicon.svg"), "w", encoding="utf-8", newline="\n").write(svg())
-    draw(32).save(out("favicon-32.png"), optimize=True)
+    draw(16).save(out("favicon-16x16.png"), optimize=True)
+    draw(32).save(out("favicon-32x32.png"), optimize=True)
     draw(48).save(out("favicon-48.png"), optimize=True)
     draw(180, square=True).convert("RGB").save(out("apple-touch-icon.png"), optimize=True)
     draw(192).save(out("icon-192.png"), optimize=True)
     draw(512).save(out("icon-512.png"), optimize=True)
     draw(48).save(out("favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)],
                   append_images=[draw(16), draw(32)])
-    print("Kész: favicon.svg, favicon.ico, favicon-32.png, favicon-48.png, apple-touch-icon.png, icon-192.png, icon-512.png")
+    print("Kész: favicon.svg, favicon.ico, favicon-16x16.png, favicon-32x32.png, favicon-48.png, apple-touch-icon.png, icon-192.png, icon-512.png")
 
 
 if __name__ == "__main__":

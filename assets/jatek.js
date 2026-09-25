@@ -81,6 +81,10 @@
   } else {
     puzzle = PUZZLES[0]; isPreview = true;
   }
+  /* A szabályok oldalán nincs játéktábla, ezért a példát a korai kilépés előtt rajzoljuk ki. */
+  if ($("rules-example")) {
+    $("rules-example").appendChild(familyCard({ level: 3, title: "Csillagjegyek", words: ["Rák", "Kos", "Bak", "Oroszlán"], note: "Mind állatok is, de itt a csillagjegy a közös." }, false));
+  }
   if (!puzzle || !$("grid")) return;
 
   var isLivePuzzle = currentPuzzle && puzzle.id === currentPuzzle.id;
@@ -411,9 +415,6 @@
     };
     document.addEventListener("visibilitychange", checkDay);
     setInterval(checkDay, 60000);
-  }
-  if ($("rules-example")) {
-    $("rules-example").appendChild(familyCard({ level: 3, title: "Csillagjegyek", words: ["Rák", "Kos", "Bak", "Oroszlán"], note: "Mind állatok is, de itt a csillagjegy a közös." }, false));
   }
 
   $("btn-submit").addEventListener("click", submit);
