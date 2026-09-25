@@ -35,5 +35,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Aminek nyelve van", "words": ["Cipő", "Harang", "Öv", "Mérleg"] },
       { "level": 4, "title": "Egy betű cseréjével vármegye", "words": ["Fehér", "Bélés", "Rest", "Volna"], "note": "Fejér, Békés, Pest, Tolna" }
     ]
+  },
+  {
+    "id": "rsz-004",
+    "start": "2026-09-26",
+    "groups": [
+      { "level": 1, "title": "Magyar kártya színei", "words": ["Makk", "Tök", "Zöld", "Piros"] },
+      { "level": 2, "title": "Pálinkafajták", "words": ["Barack", "Szilva", "Törköly", "Kökény"] },
+      { "level": 3, "title": "Ételnév, ami személynévből jön", "words": ["Dobos", "Rigó", "Esterházy", "Zserbó"], "note": "Dobos C. József, Rigó Jancsi, Esterházy Pál, Gerbeaud Emil" },
+      { "level": 4, "title": "Amit el lehet sütni", "words": ["Poén", "Puska", "Vicc", "Ágyú"] }
+    ]
   }
 ];
