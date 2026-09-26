@@ -177,6 +177,7 @@ DIALOG = """<dialog id="dialog" aria-labelledby="modal-title">
     <p class="dist-title">Megfejtések tévedések szerint</p>
     <div id="modal-dist"></div>
     <p class="modal-note" id="modal-note"></p>
+    <p class="modal-cta" id="modal-cta" hidden>Hívd ki a barátaidat!</p>
     <div class="modal-actions">
       <button class="btn btn-primary" id="btn-share" type="button">Eredmény megosztása</button>
       <button class="btn" id="btn-close-2" type="button">Bezárás</button>
