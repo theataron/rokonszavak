@@ -207,6 +207,8 @@ dialog::backdrop{background:var(--backdrop)}
 .bar span{display:block;height:100%;min-width:24px;padding:0 7px;border-radius:6px;background:var(--text-soft);color:var(--on-text);font-size:12px;font-weight:700;line-height:20px;text-align:right}
 .bar.current span{background:var(--text)}
 .modal-note{font-size:14px;color:var(--text-soft);margin:14px 0 0}
+.modal-cta{font-size:18px;font-weight:400;color:var(--text);text-align:center;white-space:nowrap;margin:18px 0 0}
+.modal-cta:not([hidden]) + .modal-actions{margin-top:10px}
 .modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 .modal-toast{font-size:14px;margin:10px 0 0;min-height:20px}
 

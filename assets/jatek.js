@@ -347,17 +347,24 @@
     else if (testMode) note = "Ez teszt kör volt, az eredménye nem került a statisztikába. ";
     $("modal-note").textContent = note + nextText();
     $("btn-share").hidden = !over;
+    if ($("modal-cta")) $("modal-cta").hidden = !over;
     $("modal-toast").textContent = "";
     var dlg = $("dialog");
     if (!dlg.open) dlg.showModal();
   }
+  /* Megosztható szöveg. A dátum a feladványé (start), nem a mai nap, így mindenki ugyanazt osztja meg.
+     A link legyen a legutolsó, különben egyes üzenetküldők nem mutatnak előnézetet. */
   function shareText() {
-    var lines = ["Rokonszavak, " + formatDay(parseDate(puzzle.start))];
-    if (state.status === "won") lines.push(state.mistakes === 0 ? "Megfejtve, hiba nélkül." : "Megfejtve, " + state.mistakes + " tévedéssel.");
-    else lines.push("Most nem jött össze.");
-    if (state.solved.length) lines.push("Szintek sorrendje: " + state.solved.map(function (i) { return puzzle.groups[i].level; }).join(", "));
-    lines.push("rokonszavak.hu");
-    return lines.join("\n");
+    var d = parseDate(puzzle.start);
+    var result = state.status !== "won" ? "Ez most nem sikerült"
+      : state.mistakes === 0 ? "Hibátlanul megoldva ✨" : "Megoldva " + state.mistakes + " hibával";
+    return [
+      "Rokonszavak – " + d.getFullYear() + ". " + formatDay(d),
+      result,
+      "",
+      "Magyar szójáték: 16 szó, 4 rejtett csoport – öt perc agytorna.",
+      "Megoldod te is? rokonszavak.hu"
+    ].join("\n");
   }
   function share() {
     track("share_result", { result: state.status === "won" ? "success" : "fail" });
