@@ -353,7 +353,8 @@
     if (!dlg.open) dlg.showModal();
   }
   /* Megosztható szöveg. A dátum a feladványé (start), nem a mai nap, így mindenki ugyanazt osztja meg.
-     A link legyen a legutolsó, különben egyes üzenetküldők nem mutatnak előnézetet. */
+     A link legyen a legutolsó, különben egyes üzenetküldők nem mutatnak előnézetet.
+     Az utm_ paraméterekből látszik a GA4-ben, hogy a látogató megosztott linkről jött. */
   function shareText() {
     var d = parseDate(puzzle.start);
     var result = state.status !== "won" ? "Ez most nem sikerült"
@@ -363,7 +364,7 @@
       result,
       "",
       "Magyar szójáték: 16 szó, 4 rejtett csoport – öt perc agytorna.",
-      "Megoldod te is? rokonszavak.hu"
+      "Megoldod te is? rokonszavak.hu/?utm_source=share&utm_medium=social"
     ].join("\n");
   }
   function share() {
