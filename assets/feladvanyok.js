@@ -45,5 +45,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Ételnév, ami személynévből jön", "words": ["Dobos", "Rigó", "Esterházy", "Zserbó"], "note": "Dobos C. József, Rigó Jancsi, Esterházy Pál, Gerbeaud Emil" },
       { "level": 4, "title": "Amit el lehet sütni", "words": ["Poén", "Puska", "Vicc", "Ágyú"] }
     ]
+  },
+  {
+    "id": "rsz-005",
+    "start": "2026-09-27",
+    "groups": [
+      { "level": 1, "title": "Magyar rajzfilmfigurák", "words": ["Vuk", "Süsü", "Frakk", "Kukori"] },
+      { "level": 2, "title": "___ + ÓRA", "words": ["Nap", "Homok", "Inga", "Torony"] },
+      { "level": 3, "title": "Keresztnévvel kezdődik", "words": ["Katapult", "Liliom", "Andorra", "Ferences"], "note": "Kata, Lili, Andor, Ferenc" },
+      { "level": 4, "title": "Visszafelé olvasva is magyar szó", "words": ["Kar", "Kép", "Lát", "Tér"], "note": "rak, pék, tál, rét" }
+    ]
   }
 ];
