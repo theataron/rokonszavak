@@ -55,5 +55,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Keresztnévvel kezdődik", "words": ["Katapult", "Liliom", "Andorra", "Ferences"], "note": "Kata, Lili, Andor, Ferenc" },
       { "level": 4, "title": "Visszafelé olvasva is magyar szó", "words": ["Kar", "Kép", "Lát", "Tér"], "note": "rak, pék, tál, rét" }
     ]
+  },
+  {
+    "id": "rsz-006",
+    "start": "2026-09-28",
+    "groups": [
+      { "level": 1, "title": "Sakkfigurák", "words": ["Bástya", "Futó", "Huszár", "Vezér"] },
+      { "level": 2, "title": "Magyar folyók", "words": ["Tisza", "Dráva", "Rába", "Sajó"] },
+      { "level": 3, "title": "Amit fel lehet venni", "words": ["Telefon", "Kabát", "Kölcsön", "Verseny"] },
+      { "level": 4, "title": "Amit meg lehet oldani", "words": ["Rejtvény", "Feladat", "Csomó", "Cipőfűző"] }
+    ]
   }
 ];
