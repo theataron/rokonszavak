@@ -65,5 +65,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit fel lehet venni", "words": ["Telefon", "Kabát", "Kölcsön", "Verseny"] },
       { "level": 4, "title": "Amit meg lehet oldani", "words": ["Rejtvény", "Feladat", "Csomó", "Cipőfűző"] }
     ]
+  },
+  {
+    "id": "rsz-007",
+    "start": "2026-09-29",
+    "groups": [
+      { "level": 1, "title": "Madarak", "words": ["Gólya", "Fecske", "Bagoly", "Pinty"] },
+      { "level": 2, "title": "___ + KÖNYV", "words": ["Tan", "Szak", "Mese", "Zseb"] },
+      { "level": 3, "title": "Aminek füle van", "words": ["Bögre", "Kosár", "Fazék", "Zsák"] },
+      { "level": 4, "title": "Pénznemek, amik mást is jelentenek", "words": ["Font", "Márka", "Korona", "Frank"] }
+    ]
   }
 ];
