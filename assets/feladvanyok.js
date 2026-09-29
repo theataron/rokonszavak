@@ -75,5 +75,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Aminek füle van", "words": ["Bögre", "Kosár", "Fazék", "Zsák"] },
       { "level": 4, "title": "Pénznemek, amik mást is jelentenek", "words": ["Font", "Márka", "Korona", "Frank"] }
     ]
+  },
+  {
+    "id": "rsz-008",
+    "start": "2026-09-30",
+    "groups": [
+      { "level": 1, "title": "Gombák", "words": ["Vargánya", "Csiperke", "Galóca", "Rizike"] },
+      { "level": 2, "title": "Balatoni települések", "words": ["Tihany", "Siófok", "Fonyód", "Keszthely"] },
+      { "level": 3, "title": "Amit el lehet kapni", "words": ["Labda", "Nátha", "Fonál", "Tolvaj"] },
+      { "level": 4, "title": "Magyar városok anagrammái", "words": ["Rege", "Gulya", "Kóma", "Degesz"], "note": "Eger, Gyula, Makó, Szeged" }
+    ]
   }
 ];
