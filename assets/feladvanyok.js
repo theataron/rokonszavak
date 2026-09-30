@@ -85,5 +85,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit el lehet kapni", "words": ["Labda", "Nátha", "Fonál", "Tolvaj"] },
       { "level": 4, "title": "Magyar városok anagrammái", "words": ["Rege", "Gulya", "Kóma", "Degesz"], "note": "Eger, Gyula, Makó, Szeged" }
     ]
+  },
+  {
+    "id": "rsz-009",
+    "start": "2026-10-01",
+    "groups": [
+      { "level": 1, "title": "Fűszerek", "words": ["Kömény", "Bors", "Kapor", "Babér"] },
+      { "level": 2, "title": "SZÉL + ___", "words": ["Malom", "Csend", "Kakas", "Vihar"] },
+      { "level": 3, "title": "Aminek lába van", "words": ["Asztal", "Gomba", "Nadrág", "Szék"] },
+      { "level": 4, "title": "Palindrom szavak", "words": ["Görög", "Indián", "Kerek", "Pap"] }
+    ]
   }
 ];
