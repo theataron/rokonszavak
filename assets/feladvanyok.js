@@ -95,5 +95,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Aminek lába van", "words": ["Asztal", "Gomba", "Nadrág", "Szék"] },
       { "level": 4, "title": "Palindrom szavak", "words": ["Görög", "Indián", "Kerek", "Pap"] }
     ]
+  },
+  {
+    "id": "rsz-010",
+    "start": "2026-10-02",
+    "groups": [
+      { "level": 1, "title": "Magyar sajtok", "words": ["Trappista", "Pannónia", "Óvári", "Karaván"] },
+      { "level": 2, "title": "SZEM + ___", "words": ["Üveg", "Héj", "Golyó", "Tanú"] },
+      { "level": 3, "title": "Amit be lehet tartani", "words": ["Szó", "Ígéret", "Szabály", "Távolság"] },
+      { "level": 4, "title": "Városok, amik köznevek is", "words": ["Tata", "Baja", "Gyula", "Hajós"] }
+    ]
   }
 ];
