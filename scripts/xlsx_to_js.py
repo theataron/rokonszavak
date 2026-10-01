@@ -4,13 +4,16 @@ feladvanyok.xlsx  ->  assets/feladvanyok.js
 
 Futtatas:      python scripts/xlsx_to_js.py
 Teszt datum:   python scripts/xlsx_to_js.py --ma 2026-10-20
+Elo feladvany javitasa (csak tenyleges hiba eseten, kezzel):
+               python build.py --javitas rsz-009
 (A build.py magatol is lefuttatja, kulon nem kell.)
 
 Mit csinal:
 - beolvassa a munkafuzet "Feladványok" lapjat (a tobbi lapot nem nezi),
 - ellenoriz mindent; ha barmi hibas, kiirja a feladvany azonositojat es a
   hibat, es LEALL, a JS-hez nem nyul,
-- nem enged modositani mar elindult feladvanyt,
+- nem enged modositani mar elindult feladvanyt (kiveve a --javitas <id>
+  kapcsoloval megnevezett egyet: annal ebben a futasban a munkafuzet gyoz),
 - a JS-be csak a mai es a kovetkezo ELORE_NAPOK nap feladvanyai kerulnek,
   mert a JS nyilvanos: a tavolabbi feladvanyok nem szivarognak ki.
 A "csapda" oszlopot soha nem olvassa ki, igy az sehova nem kerulhet ki.
@@ -179,9 +182,17 @@ def tartalom(p):
                               for g in sorted(p["groups"], key=lambda g: g["level"])))
 
 
+def javitas_id():
+    """A --javitas kapcsoloval megnevezett elo feladvany, amit ebben a futasban szabad javitani."""
+    if "--javitas" in sys.argv:
+        return sys.argv[sys.argv.index("--javitas") + 1]
+    return None
+
+
 def merge(workbook, published, ma):
     """A munkafuzet + a mar kozzetett feladvanyok. Elindult feladvanyt nem enged modositani."""
     errors = []
+    javit = javitas_id()
     wb_by_id = {str(p["id"]): p for p in workbook}
     result = {}
     kept_old, dropped = [], []
@@ -192,6 +203,11 @@ def merge(workbook, published, ma):
             if key not in wb_by_id:
                 dropped.append(key)
             continue  # meg nem indult el, a munkafuzet donti el, mi lesz vele
+        if key == javit and key in wb_by_id:
+            if wb_by_id[key]["start"] != p["start"]:
+                errors.append("%s: javításnál a dátum nem változhat (%s)." % (key, p["start"]))
+            print("   JAVÍTÁS: %s élő feladvány a munkafüzet szerint frissül" % key)
+            continue  # a munkafuzet valtozata kerul be
         if key in wb_by_id and tartalom(wb_by_id[key]) != tartalom(p):
             errors.append("%s: ez a feladvány már élesben ment (%s), de a munkafüzetben megváltozott. "
                           "Élő feladványt nem szabad módosítani: állítsd vissza az eredeti szavakat, "

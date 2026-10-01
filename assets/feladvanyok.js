@@ -90,10 +90,10 @@ window.FELADVANYOK = [
     "id": "rsz-009",
     "start": "2026-10-01",
     "groups": [
-      { "level": 1, "title": "Fűszerek", "words": ["Kömény", "Bors", "Kapor", "Babér"] },
-      { "level": 2, "title": "SZÉL + ___", "words": ["Malom", "Csend", "Kakas", "Vihar"] },
-      { "level": 3, "title": "Aminek lába van", "words": ["Asztal", "Gomba", "Nadrág", "Szék"] },
-      { "level": 4, "title": "Palindrom szavak", "words": ["Görög", "Indián", "Kerek", "Pap"] }
+      { "level": 1, "title": "Fűszerek", "words": ["Kapor", "Bors", "Kömény", "Babér"] },
+      { "level": 2, "title": "SZÉL + ___", "words": ["Csend", "Vihar", "Kakas", "Malom"] },
+      { "level": 3, "title": "Oda-vissza ugyanaz", "words": ["Görög", "Kerek", "Pap", "Sas"] },
+      { "level": 4, "title": "___ + LÁB", "words": ["Szék", "Asztal", "Kamat", "Gólya"] }
     ]
   },
   {

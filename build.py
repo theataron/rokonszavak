@@ -37,7 +37,8 @@ def day_label(day):
 
 def asset(name, base):
     """Eszkoz URL-je verzioszammal (a tartalom hash-e), hogy a bongeszo ne regi masolatot hasznaljon."""
-    data = open(os.path.join(ROOT, "assets", name), "rb").read()
+    # sorvege-fuggetlen, hogy a Windowson futtatott build ugyanazt adja, mint a GitHub-os
+    data = open(os.path.join(ROOT, "assets", name), "rb").read().replace(b"\r\n", b"\n")
     return "%sassets/%s?v=%s" % (base, name, hashlib.sha1(data).hexdigest()[:10])
 
 
