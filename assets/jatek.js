@@ -111,6 +111,29 @@
   puzzle.groups.forEach(function (g) { allWords = allWords.concat(g.words); });
   function newState() { return { order: shuffle(allWords), solved: [], mistakes: 0, guesses: [], status: "playing" }; }
 
+  /* Ha egy feladvány szavait utólag javítani kellett, a régi mentett állás olyan szavakra
+     hivatkozhat, amik már nincsenek benne. Félbehagyott játéknál tiszta tábla jár; befejezett
+     játéknál az eredmény marad (a statisztika nem a szavakból számol), csak a szólista frissül. */
+  function sameWords(order) {
+    return Array.isArray(order) && order.length === allWords.length &&
+      allWords.every(function (w) { return order.indexOf(w) > -1; });
+  }
+  function repair(st) {
+    if (st.status === "playing") {
+      var fresh = newState();
+      if (st.startedAt) fresh.startedAt = st.startedAt; /* így a game_start nem mérődik kétszer */
+      return fresh;
+    }
+    st.order = shuffle(allWords); st.guesses = [];
+    return st;
+  }
+  var repaired = false;
+  [store.progress, store.archiv, store.archivDone].forEach(function (bucket) {
+    var old = bucket[puzzle.id];
+    if (old && !sameWords(old.order)) { bucket[puzzle.id] = repair(old); repaired = true; }
+  });
+  if (repaired && !testMode) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); } catch (e) {} }
+
   var mainDone = store.progress[puzzle.id] && store.progress[puzzle.id].status !== "playing";
   var archDone = store.archivDone[puzzle.id];
   var state = testMode ? newState() : (slot()[puzzle.id] || newState());
