@@ -105,5 +105,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit be lehet tartani", "words": ["Szó", "Ígéret", "Szabály", "Távolság"] },
       { "level": 4, "title": "Városok, amik köznevek is", "words": ["Tata", "Baja", "Gyula", "Hajós"] }
     ]
+  },
+  {
+    "id": "rsz-011",
+    "start": "2026-10-03",
+    "groups": [
+      { "level": 1, "title": "Budapesti metrómegállók", "words": ["Astoria", "Blaha", "Opera", "Lehel"] },
+      { "level": 2, "title": "Magyar kártyajátékok", "words": ["Ulti", "Römi", "Makaó", "Snapszer"] },
+      { "level": 3, "title": "Amit fel lehet állítani", "words": ["Rekord", "Sátor", "Csapat", "Szobor"] },
+      { "level": 4, "title": "Ikerszavak első tagja", "words": ["Csiga", "Tarka", "Dimbes", "Ripsz"], "note": "csiga-biga, tarka-barka, dimbes-dombos, ripsz-ropsz" }
+    ]
   }
 ];
