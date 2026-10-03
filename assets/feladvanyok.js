@@ -115,5 +115,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit fel lehet állítani", "words": ["Rekord", "Sátor", "Csapat", "Szobor"] },
       { "level": 4, "title": "Ikerszavak első tagja", "words": ["Csiga", "Tarka", "Dimbes", "Ripsz"], "note": "csiga-biga, tarka-barka, dimbes-dombos, ripsz-ropsz" }
     ]
+  },
+  {
+    "id": "rsz-012",
+    "start": "2026-10-04",
+    "groups": [
+      { "level": 1, "title": "Halak", "words": ["Ponty", "Harcsa", "Keszeg", "Csuka"] },
+      { "level": 2, "title": "TŰZ + ___", "words": ["Oltó", "Fal", "Kő", "Veszély"] },
+      { "level": 3, "title": "Aminek foga van", "words": ["Fésű", "Fűrész", "Gereblye", "Cipzár"] },
+      { "level": 4, "title": "Főnév és ige is egyben", "words": ["Vár", "Fog", "Nyúl", "Ég"] }
+    ]
   }
 ];
