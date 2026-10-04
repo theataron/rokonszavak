@@ -121,7 +121,7 @@ window.FELADVANYOK = [
     "start": "2026-10-04",
     "groups": [
       { "level": 1, "title": "Halak", "words": ["Ponty", "Harcsa", "Keszeg", "Csuka"] },
-      { "level": 2, "title": "TŰZ + ___", "words": ["Oltó", "Fal", "Kő", "Veszély"] },
+      { "level": 2, "title": "TŰZ + ___", "words": ["Oltó", "Fal", "Csap", "Veszély"] },
       { "level": 3, "title": "Aminek foga van", "words": ["Fésű", "Fűrész", "Gereblye", "Cipzár"] },
       { "level": 4, "title": "Főnév és ige is egyben", "words": ["Vár", "Fog", "Nyúl", "Ég"] }
     ]
