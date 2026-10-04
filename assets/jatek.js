@@ -189,7 +189,7 @@
     card.innerHTML =
       '<div class="family-head"><h2 class="family-title">' + esc(group.title) + '</h2><span class="pips" aria-hidden="true">' + pips + '</span></div>' +
       '<div class="tree" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
-      '<p class="family-words">' + group.words.map(function (w) { return "<span>" + esc(w) + "</span>"; }).join("") + "</p>" +
+      '<p class="family-words">' + group.words.map(function (w) { return '<span style="--betuk:' + Array.from(w).length + '">' + esc(w) + "</span>"; }).join("") + "</p>" +
       (group.note ? '<p class="family-note">' + esc(group.note) + "</p>" : "");
     return card;
   }
@@ -209,13 +209,14 @@
         var b = document.createElement("button");
         var len = Array.from(word).length;
         b.type = "button"; b.className = "tile"; b.textContent = word;
-        b.dataset.word = word; b.dataset.meret = len <= 8 ? "s" : len <= 12 ? "m" : len <= 17 ? "l" : "xl";
+        b.dataset.word = word; b.dataset.meret = len <= 8 ? "s" : len <= 9 ? "m" : len <= 12 ? "l" : "xl";
+        /* Betűk egy sorban: 10-ig egy sor, fölötte két sor. A CSS ebből számolja a betűméretet. */
+        b.style.setProperty("--betuk", len <= 10 ? len : Math.ceil(len / 2));
         b.setAttribute("aria-pressed", selected.indexOf(word) > -1 ? "true" : "false");
         b.addEventListener("click", function () { toggle(word, b); });
         grid.appendChild(b);
       });
     }
-    fitTiles();
     var left = MAX_MISTAKES - state.mistakes;
     $("lives").innerHTML = Array.apply(null, { length: MAX_MISTAKES }).map(function (_, i) { return '<i class="life' + (i >= left ? " used" : "") + '"></i>'; }).join("");
     $("lives").setAttribute("aria-label", left + " tévedés van hátra");
@@ -228,27 +229,6 @@
     }
     updateButtons();
   }
-  /* A CSS-ben megadott betűméret a felső határ (data-meret). Ha a leghosszabb szórész így sem
-     fér ki egy sorba, addig kicsinyít, amíg ki nem fér, hogy ne törjön szét a szó közepén. */
-  function fitTiles() {
-    Array.prototype.forEach.call(document.querySelectorAll("#grid .tile"), function (t) {
-      t.style.fontSize = "";
-      t.classList.add("meres");
-      var cs = getComputedStyle(t), size = parseFloat(cs.fontSize);
-      var room = t.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      var range = document.createRange();
-      range.selectNodeContents(t);
-      var widest = function () {
-        return Math.max.apply(null, [0].concat(Array.prototype.map.call(range.getClientRects(), function (r) { return r.width; })));
-      };
-      while (size > 10 && widest() > room) { size -= 0.5; t.style.fontSize = size + "px"; }
-      t.classList.remove("meres");
-    });
-  }
-  var fitTimer;
-  window.addEventListener("resize", function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitTiles, 120); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTiles);
-
   function updateButtons() {
     $("btn-submit").disabled = selected.length !== 4;
     $("btn-deselect").disabled = selected.length === 0;
