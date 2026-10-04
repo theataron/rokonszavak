@@ -125,5 +125,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Aminek foga van", "words": ["Fésű", "Fűrész", "Gereblye", "Cipzár"] },
       { "level": 4, "title": "Főnév és ige is egyben", "words": ["Vár", "Fog", "Nyúl", "Ég"] }
     ]
+  },
+  {
+    "id": "rsz-013",
+    "start": "2026-10-05",
+    "groups": [
+      { "level": 1, "title": "Magyar hegységek", "words": ["Mátra", "Bükk", "Mecsek", "Zemplén"] },
+      { "level": 2, "title": "___ + PIAC", "words": ["Bolha", "Fekete", "Hal", "Zöldség"] },
+      { "level": 3, "title": "Amit le lehet mosni", "words": ["Autó", "Szégyen", "Vád", "Gyalázat"] },
+      { "level": 4, "title": "Testrésszel kezdődik", "words": ["Karácsony", "Szemét", "Fejsze", "Hasáb"], "note": "kar, szem, fej, has" }
+    ]
   }
 ];
