@@ -130,10 +130,10 @@ window.FELADVANYOK = [
     "id": "rsz-013",
     "start": "2026-10-05",
     "groups": [
-      { "level": 1, "title": "Magyar hegységek", "words": ["Mátra", "Bükk", "Mecsek", "Zemplén"] },
-      { "level": 2, "title": "___ + PIAC", "words": ["Bolha", "Fekete", "Hal", "Zöldség"] },
-      { "level": 3, "title": "Amit le lehet mosni", "words": ["Autó", "Szégyen", "Vád", "Gyalázat"] },
-      { "level": 4, "title": "Testrésszel kezdődik", "words": ["Karácsony", "Szemét", "Fejsze", "Hasáb"], "note": "kar, szem, fej, has" }
+      { "level": 1, "title": "Magyar borvidékek", "words": ["Tokaj", "Villány", "Eger", "Szekszárd"] },
+      { "level": 2, "title": "A Pál utcai fiúk szereplői", "words": ["Nemecsek", "Boka", "Áts", "Geréb"] },
+      { "level": 3, "title": "Régi magyar mértékegységek", "words": ["Hold", "Öl", "Icce", "Akó"], "note": "1 hold ≈ 5755 m², 1 icce ≈ 0,8 liter" },
+      { "level": 4, "title": "Hangszer rejtőzik a szó elején", "words": ["Dobás", "Sípálya", "Lantos", "Kürtő"], "note": "dob, síp, lant, kürt" }
     ]
   }
 ];
