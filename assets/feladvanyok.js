@@ -135,5 +135,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Régi magyar mértékegységek", "words": ["Hold", "Öl", "Icce", "Akó"], "note": "1 hold ≈ 5755 m², 1 icce ≈ 0,8 liter" },
       { "level": 4, "title": "Hangszer rejtőzik a szó elején", "words": ["Dobás", "Sípálya", "Lantos", "Kürtő"], "note": "dob, síp, lant, kürt" }
     ]
+  },
+  {
+    "id": "rsz-014",
+    "start": "2026-10-06",
+    "groups": [
+      { "level": 1, "title": "Retró magyar édességek és üdítők", "words": ["Negro", "Bambi", "Traubi", "Boci"] },
+      { "level": 2, "title": "Varrás közben", "words": ["Öltés", "Szegély", "Gombolyag", "Tű"] },
+      { "level": 3, "title": "A SZÉP rokon értelmű szavai", "words": ["Csinos", "Bájos", "Takaros", "Helyes"] },
+      { "level": 4, "title": "Amit a tűz csinál", "words": ["Pattog", "Lobog", "Izzik", "Sistereg"] }
+    ]
   }
 ];
