@@ -145,5 +145,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A SZÉP rokon értelmű szavai", "words": ["Csinos", "Bájos", "Takaros", "Helyes"] },
       { "level": 4, "title": "Amit a tűz csinál", "words": ["Pattog", "Lobog", "Izzik", "Sistereg"] }
     ]
+  },
+  {
+    "id": "rsz-015",
+    "start": "2026-10-07",
+    "groups": [
+      { "level": 1, "title": "Tejtermékek", "words": ["Túró", "Tejföl", "Vaj", "Kefir"] },
+      { "level": 2, "title": "Magyar zenekarok", "words": ["Omega", "Illés", "Hungária", "Neoton"] },
+      { "level": 3, "title": "Kártyázás közben", "words": ["Oszt", "Emel", "Passzol", "Üt"] },
+      { "level": 4, "title": "Egy betű cseréjével állat lesz belőle", "words": ["Lila", "Sás", "Eger", "Kassa"], "note": "liba, sas, egér, kacsa" }
+    ]
   }
 ];
