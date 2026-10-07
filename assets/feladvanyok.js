@@ -155,5 +155,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kártyázás közben", "words": ["Oszt", "Emel", "Passzol", "Üt"] },
       { "level": 4, "title": "Egy betű cseréjével állat lesz belőle", "words": ["Lila", "Sás", "Eger", "Kassa"], "note": "liba, sas, egér, kacsa" }
     ]
+  },
+  {
+    "id": "rsz-016",
+    "start": "2026-10-08",
+    "groups": [
+      { "level": 1, "title": "Ami a kaszinóban van", "words": ["Rulett", "Zseton", "Krupié", "Jackpot"] },
+      { "level": 2, "title": "A BUTA rokon értelmű szavai", "words": ["Ostoba", "Balga", "Együgyű", "Dőre"] },
+      { "level": 3, "title": "Horgászfelszerelés", "words": ["Úszó", "Ólom", "Orsó", "Csali"] },
+      { "level": 4, "title": "Ital rejtőzik a szó elején", "words": ["Borotva", "Sörény", "Tejút", "Vízum"], "note": "bor, sör, tej, víz" }
+    ]
   }
 ];
