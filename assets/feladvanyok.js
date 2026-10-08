@@ -165,5 +165,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Horgászfelszerelés", "words": ["Úszó", "Ólom", "Orsó", "Csali"] },
       { "level": 4, "title": "Ital rejtőzik a szó elején", "words": ["Borotva", "Sörény", "Tejút", "Vízum"], "note": "bor, sör, tej, víz" }
     ]
+  },
+  {
+    "id": "rsz-017",
+    "start": "2026-10-09",
+    "groups": [
+      { "level": 1, "title": "Mezei virágok", "words": ["Pipacs", "Nefelejcs", "Margaréta", "Kankalin"] },
+      { "level": 2, "title": "Mai magyar márkák", "words": ["Prezi", "Wizz", "Barion", "Nanushka"], "note": "Prezi, Wizz Air, Barion, Nanushka" },
+      { "level": 3, "title": "Amit a víz csinál", "words": ["Csobog", "Zubog", "Csordul", "Szivárog"] },
+      { "level": 4, "title": "Szám rejtőzik a szó elején", "words": ["Ötlet", "Hatás", "Kétely", "Százalék"], "note": "öt, hat, két, száz" }
+    ]
   }
 ];
