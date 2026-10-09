@@ -175,5 +175,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit a víz csinál", "words": ["Csobog", "Zubog", "Csordul", "Szivárog"] },
       { "level": 4, "title": "Szám rejtőzik a szó elején", "words": ["Ötlet", "Hatás", "Kétely", "Százalék"], "note": "öt, hat, két, száz" }
     ]
+  },
+  {
+    "id": "rsz-018",
+    "start": "2026-10-10",
+    "groups": [
+      { "level": 1, "title": "Falusi ünnepek", "words": ["Farsang", "Szüret", "Búcsú", "Majális"] },
+      { "level": 2, "title": "Sütés közben", "words": ["Dagaszt", "Kel", "Pihen", "Sül"] },
+      { "level": 3, "title": "Mai fiatalok szavai", "words": ["Rizz", "Cringe", "Sigma", "Flex"] },
+      { "level": 4, "title": "___ + HÁZ", "words": ["Tár", "Üveg", "Kór", "Bér"], "note": "tárház, üvegház, kórház, bérház" }
+    ]
   }
 ];
