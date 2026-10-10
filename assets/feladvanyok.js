@@ -185,5 +185,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Mai fiatalok szavai", "words": ["Rizz", "Cringe", "Sigma", "Flex"] },
       { "level": 4, "title": "___ + HÁZ", "words": ["Tár", "Üveg", "Kór", "Bér"], "note": "tárház, üvegház, kórház, bérház" }
     ]
+  },
+  {
+    "id": "rsz-019",
+    "start": "2026-10-11",
+    "groups": [
+      { "level": 1, "title": "A magyar labdarúgó-válogatott tagjai", "words": ["Szoboszlai", "Dárdai", "Kerkez", "Dibusz"] },
+      { "level": 2, "title": "Asztalos szerszámai", "words": ["Gyalu", "Véső", "Reszelő", "Fúró"] },
+      { "level": 3, "title": "Állathangok", "words": ["Nyerít", "Mekeg", "Gágog", "Bőg"] },
+      { "level": 4, "title": "Gyümölcs rejtőzik a szóban", "words": ["Almanach", "Meggyőz", "Dióda", "Szederjes"], "note": "alma, meggy, dió, szeder" }
+    ]
   }
 ];
