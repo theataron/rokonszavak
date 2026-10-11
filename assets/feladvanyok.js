@@ -195,5 +195,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Állathangok", "words": ["Nyerít", "Mekeg", "Gágog", "Bőg"] },
       { "level": 4, "title": "Gyümölcs rejtőzik a szóban", "words": ["Almanach", "Meggyőz", "Dióda", "Szederjes"], "note": "alma, meggy, dió, szeder" }
     ]
+  },
+  {
+    "id": "rsz-020",
+    "start": "2026-10-12",
+    "groups": [
+      { "level": 1, "title": "Magyar hegységek", "words": ["Mátra", "Bükk", "Mecsek", "Pilis"] },
+      { "level": 2, "title": "Kötelező olvasmányok", "words": ["Toldi", "Tüskevár", "Abigél", "Bogáncs"], "note": "Arany, Fekete István, Szabó Magda" },
+      { "level": 3, "title": "A piros árnyalatai", "words": ["Bordó", "Meggy", "Skarlát", "Rőt"] },
+      { "level": 4, "title": "A GYORS rokon értelmű szavai", "words": ["Sebes", "Fürge", "Serény", "Szapora"] }
+    ]
   }
 ];
