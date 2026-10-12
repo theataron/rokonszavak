@@ -205,5 +205,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A piros árnyalatai", "words": ["Bordó", "Meggy", "Skarlát", "Rőt"] },
       { "level": 4, "title": "A GYORS rokon értelmű szavai", "words": ["Sebes", "Fürge", "Serény", "Szapora"] }
     ]
+  },
+  {
+    "id": "rsz-021",
+    "start": "2026-10-13",
+    "groups": [
+      { "level": 1, "title": "Ami a tolltartóban van", "words": ["Radír", "Vonalzó", "Hegyező", "Filctoll"] },
+      { "level": 2, "title": "Ásványok", "words": ["Opál", "Ametiszt", "Jáspis", "Borostyán"] },
+      { "level": 3, "title": "A SOK rokon értelmű szavai", "words": ["Rengeteg", "Temérdek", "Számtalan", "Garmada"], "note": "garmada = nagy halom" },
+      { "level": 4, "title": "Testrész rejtőzik a szó elején", "words": ["Fülke", "Hasáb", "Karácsony", "Szemét"], "note": "fül, has, kar, szem" }
+    ]
   }
 ];
