@@ -215,5 +215,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A SOK rokon értelmű szavai", "words": ["Rengeteg", "Temérdek", "Számtalan", "Garmada"], "note": "garmada = nagy halom" },
       { "level": 4, "title": "Testrész rejtőzik a szó elején", "words": ["Fülke", "Hasáb", "Karácsony", "Szemét"], "note": "fül, has, kar, szem" }
     ]
+  },
+  {
+    "id": "rsz-022",
+    "start": "2026-10-14",
+    "groups": [
+      { "level": 1, "title": "Magyar várak", "words": ["Siklós", "Sümeg", "Füzér", "Diósgyőr"] },
+      { "level": 2, "title": "Magyar feltalálók", "words": ["Rubik", "Bíró", "Kandó", "Jedlik"], "note": "Rubik Ernő, Bíró László, Kandó Kálmán, Jedlik Ányos" },
+      { "level": 3, "title": "Kertészkedés közben", "words": ["Metsz", "Ültet", "Öntöz", "Gyomlál"] },
+      { "level": 4, "title": "Egy betű cseréjével madár lesz belőle", "words": ["Gálya", "Verés", "Ponty", "Sós"], "note": "gólya, veréb, pinty, sas" }
+    ]
   }
 ];
