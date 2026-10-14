@@ -225,5 +225,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kertészkedés közben", "words": ["Metsz", "Ültet", "Öntöz", "Gyomlál"] },
       { "level": 4, "title": "Egy betű cseréjével madár lesz belőle", "words": ["Gálya", "Verés", "Ponty", "Sós"], "note": "gólya, veréb, pinty, sas" }
     ]
+  },
+  {
+    "id": "rsz-023",
+    "start": "2026-10-15",
+    "groups": [
+      { "level": 1, "title": "Magyar tájegységek", "words": ["Hortobágy", "Nyírség", "Hajdúság", "Kiskunság"] },
+      { "level": 2, "title": "Népi hangszerek", "words": ["Citera", "Tekerő", "Doromb", "Furulya"] },
+      { "level": 3, "title": "A FÁRADT rokon értelmű szavai", "words": ["Nyúzott", "Kimerült", "Bágyadt", "Törődött"] },
+      { "level": 4, "title": "Állat rejtőzik a szóban", "words": ["Kosár", "Sasszé", "Borzaszt", "Rákattan"], "note": "kos, sas, borz, rák" }
+    ]
   }
 ];
