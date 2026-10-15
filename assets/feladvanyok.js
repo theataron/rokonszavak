@@ -235,5 +235,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A FÁRADT rokon értelmű szavai", "words": ["Nyúzott", "Kimerült", "Bágyadt", "Törődött"] },
       { "level": 4, "title": "Állat rejtőzik a szóban", "words": ["Kosár", "Sasszé", "Borzaszt", "Rákattan"], "note": "kos, sas, borz, rák" }
     ]
+  },
+  {
+    "id": "rsz-024",
+    "start": "2026-10-16",
+    "groups": [
+      { "level": 1, "title": "Zöldségek", "words": ["Retek", "Cékla", "Karalábé", "Padlizsán"] },
+      { "level": 2, "title": "Ami a padláson van", "words": ["Pókháló", "Láda", "Gerenda", "Lom"] },
+      { "level": 3, "title": "Amit a szél csinál", "words": ["Süvít", "Zúg", "Fütyül", "Tombol"] },
+      { "level": 4, "title": "Ország rejtőzik a szóban", "words": ["Kínál", "Kirándul", "Indián", "Malária"], "note": "Kína, Irán, India, Mali" }
+    ]
   }
 ];
