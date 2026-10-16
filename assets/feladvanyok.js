@@ -243,7 +243,7 @@ window.FELADVANYOK = [
       { "level": 1, "title": "Zöldségek", "words": ["Retek", "Cékla", "Karalábé", "Padlizsán"] },
       { "level": 2, "title": "Ami a padláson van", "words": ["Pókháló", "Láda", "Gerenda", "Lom"] },
       { "level": 3, "title": "Amit a szél csinál", "words": ["Süvít", "Zúg", "Fütyül", "Tombol"] },
-      { "level": 4, "title": "Ország rejtőzik a szóban", "words": ["Kínál", "Kirándul", "Indián", "Malária"], "note": "Kína, Irán, India, Mali" }
+      { "level": 4, "title": "Ország rejtőzik a szóban", "words": ["Kínál", "Kirándul", "Indián", "Románc"], "note": "Kína, Irán, India, Omán" }
     ]
   }
 ];
