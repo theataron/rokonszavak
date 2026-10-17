@@ -245,5 +245,25 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amit a szél csinál", "words": ["Süvít", "Zúg", "Fütyül", "Tombol"] },
       { "level": 4, "title": "Ország rejtőzik a szóban", "words": ["Kínál", "Kirándul", "Indián", "Románc"], "note": "Kína, Irán, India, Omán" }
     ]
+  },
+  {
+    "id": "rsz-025",
+    "start": "2026-10-17",
+    "groups": [
+      { "level": 1, "title": "Magyar találmányok", "words": ["Gyufa", "Dinamó", "Szódavíz", "Golyóstoll"], "note": "Irinyi (gyufa), Jedlik (dinamó, szódavíz), Bíró (golyóstoll)" },
+      { "level": 2, "title": "Fizikai mennyiségek", "words": ["Munka", "Erő", "Nyomás", "Energia"] },
+      { "level": 3, "title": "Mértékegységek", "words": ["Láb", "Volt", "Karát", "Év"], "note": "1 láb = 30,48 cm; 1 karát = 0,2 gramm" },
+      { "level": 4, "title": "Nyelvtani fogalmak", "words": ["Eset", "Mód", "Szám", "Személy"] }
+    ]
+  },
+  {
+    "id": "rsz-026",
+    "start": "2026-10-18",
+    "groups": [
+      { "level": 1, "title": "Testrészek", "words": ["Írisz", "Lép", "Hörgő", "Ér"] },
+      { "level": 2, "title": "Szavak az Anyám tyúkjából", "words": ["Morzsa", "Szoba", "Galamb", "Kő"], "note": "Petőfi Sándor verse" },
+      { "level": 3, "title": "Kottajelek", "words": ["Kulcs", "Szünet", "Kereszt", "Ütem"], "note": "A kereszt félhanggal feljebb emel" },
+      { "level": 4, "title": "Matematikai fogalmak", "words": ["Tört", "Gyök", "Szög", "Sor"] }
+    ]
   }
 ];
