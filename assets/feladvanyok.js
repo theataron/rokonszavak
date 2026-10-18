@@ -265,5 +265,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kottajelek", "words": ["Kulcs", "Szünet", "Kereszt", "Ütem"], "note": "A kereszt félhanggal feljebb emel" },
       { "level": 4, "title": "Matematikai fogalmak", "words": ["Tört", "Gyök", "Szög", "Sor"] }
     ]
+  },
+  {
+    "id": "rsz-027",
+    "start": "2026-10-19",
+    "groups": [
+      { "level": 1, "title": "Kémiai elemek", "words": ["Szén", "Vas", "Hélium", "Arany"] },
+      { "level": 2, "title": "Növényi részek", "words": ["Bibe", "Szár", "Bimbó", "Rügy"], "note": "A bibe a termő felső, ragadós része" },
+      { "level": 3, "title": "Hajórészek", "words": ["Orr", "Far", "Árboc", "Kormány"] },
+      { "level": 4, "title": "Felszínformák", "words": ["Fok", "Öböl", "Nyereg", "Medence"], "note": "A nyereg két csúcs közti bemélyedés" }
+    ]
   }
 ];
