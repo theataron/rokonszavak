@@ -275,5 +275,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Hajórészek", "words": ["Orr", "Far", "Árboc", "Kormány"] },
       { "level": 4, "title": "Felszínformák", "words": ["Fok", "Öböl", "Nyereg", "Medence"], "note": "A nyereg két csúcs közti bemélyedés" }
     ]
+  },
+  {
+    "id": "rsz-028",
+    "start": "2026-10-20",
+    "groups": [
+      { "level": 1, "title": "Ami a cukrászdában van", "words": ["Fagylalt", "Krémes", "Somlói", "Rétes"] },
+      { "level": 2, "title": "A madár testrészei", "words": ["Csőr", "Toll", "Szárny", "Begy"] },
+      { "level": 3, "title": "Az óra részei", "words": ["Mutató", "Rugó", "Inga", "Korona"] },
+      { "level": 4, "title": "Optikai fogalmak", "words": ["Fény", "Árnyék", "Tükör", "Lencse"] }
+    ]
   }
 ];
