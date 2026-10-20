@@ -285,5 +285,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Az óra részei", "words": ["Mutató", "Rugó", "Inga", "Korona"] },
       { "level": 4, "title": "Optikai fogalmak", "words": ["Fény", "Árnyék", "Tükör", "Lencse"] }
     ]
+  },
+  {
+    "id": "rsz-029",
+    "start": "2026-10-21",
+    "groups": [
+      { "level": 1, "title": "Magyar sörmárkák", "words": ["Soproni", "Dreher", "Borsodi", "Kőbányai"] },
+      { "level": 2, "title": "A könyv részei", "words": ["Gerinc", "Fül", "Margó", "Kötés"], "note": "A fül a borító behajtott széle" },
+      { "level": 3, "title": "Közgazdasági fogalmak", "words": ["Kamat", "Hozam", "Kínálat", "Mérleg"] },
+      { "level": 4, "title": "Jogi fogalmak", "words": ["Per", "Vád", "Tanú", "Ítélet"] }
+    ]
   }
 ];
