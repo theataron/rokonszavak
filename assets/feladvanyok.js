@@ -295,5 +295,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Közgazdasági fogalmak", "words": ["Kamat", "Hozam", "Kínálat", "Mérleg"] },
       { "level": 4, "title": "Jogi fogalmak", "words": ["Per", "Vád", "Tanú", "Ítélet"] }
     ]
+  },
+  {
+    "id": "rsz-030",
+    "start": "2026-10-22",
+    "groups": [
+      { "level": 1, "title": "Konyhai eszközök", "words": ["Habverő", "Fakanál", "Tepsi", "Merőkanál"] },
+      { "level": 2, "title": "A számítógépen", "words": ["Egér", "Ablak", "Mappa", "Kukac"] },
+      { "level": 3, "title": "A levél részei", "words": ["Nyél", "Fonák", "Csúcs", "Szél"], "note": "A fonák a levél alsó oldala" },
+      { "level": 4, "title": "A fog részei", "words": ["Zománc", "Gyökér", "Korona", "Ideg"] }
+    ]
   }
 ];
