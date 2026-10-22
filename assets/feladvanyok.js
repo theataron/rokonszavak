@@ -310,10 +310,10 @@ window.FELADVANYOK = [
     "id": "rsz-031",
     "start": "2026-10-23",
     "groups": [
-      { "level": 1, "title": "Magyar olimpiai sportágak", "words": ["Vízilabda", "Kajak", "Párbajtőr", "Öttusa"] },
-      { "level": 2, "title": "Vasúti szavak", "words": ["Váltó", "Sín", "Kocsi", "Pálya"] },
-      { "level": 3, "title": "A folyó részei", "words": ["Torkolat", "Meder", "Part", "Forrás"] },
-      { "level": 4, "title": "Vulkáni szavak", "words": ["Kráter", "Láva", "Hamu", "Kőzet"] }
+      { "level": 1, "title": "Magyar néptáncok", "words": ["Verbunk", "Karikázó", "Ugrós", "Legényes"] },
+      { "level": 2, "title": "Vigadalom", "words": ["Muri", "Bál", "Dáridó", "Mulatság"], "note": "A dáridó nagy, hangos mulatozás" },
+      { "level": 3, "title": "Kerti kéziszerszámok", "words": ["Kasza", "Gereblye", "Kapa", "Villa"] },
+      { "level": 4, "title": "___fecske", "words": ["Füsti", "Molnár", "Vörhenyes", "Sarlós"], "note": "Füstifecske, molnárfecske, vörhenyes fecske, sarlósfecske" }
     ]
   }
 ];
