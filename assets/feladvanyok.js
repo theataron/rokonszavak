@@ -305,5 +305,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A levél részei", "words": ["Nyél", "Fonák", "Csúcs", "Szél"], "note": "A fonák a levél alsó oldala" },
       { "level": 4, "title": "A fog részei", "words": ["Zománc", "Gyökér", "Korona", "Ideg"] }
     ]
+  },
+  {
+    "id": "rsz-031",
+    "start": "2026-10-23",
+    "groups": [
+      { "level": 1, "title": "Magyar olimpiai sportágak", "words": ["Vízilabda", "Kajak", "Párbajtőr", "Öttusa"] },
+      { "level": 2, "title": "Vasúti szavak", "words": ["Váltó", "Sín", "Kocsi", "Pálya"] },
+      { "level": 3, "title": "A folyó részei", "words": ["Torkolat", "Meder", "Part", "Forrás"] },
+      { "level": 4, "title": "Vulkáni szavak", "words": ["Kráter", "Láva", "Hamu", "Kőzet"] }
+    ]
   }
 ];
