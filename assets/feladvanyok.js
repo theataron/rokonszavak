@@ -315,5 +315,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kerti kéziszerszámok", "words": ["Kasza", "Gereblye", "Kapa", "Villa"] },
       { "level": 4, "title": "___fecske", "words": ["Füsti", "Molnár", "Vörhenyes", "Sarlós"], "note": "Füstifecske, molnárfecske, vörhenyes fecske, sarlósfecske" }
     ]
+  },
+  {
+    "id": "rsz-032",
+    "start": "2026-10-24",
+    "groups": [
+      { "level": 1, "title": "Tüzelőanyagok", "words": ["Fa", "Koksz", "Brikett", "Pellet"] },
+      { "level": 2, "title": "Az ujjak nevei", "words": ["Hüvelyk", "Mutató", "Gyűrűs", "Középső"] },
+      { "level": 3, "title": "Űrmértékek", "words": ["Gallon", "Pint", "Liter", "Hordó"], "note": "1 pint ≈ 0,57 liter" },
+      { "level": 4, "title": "___KŐ", "words": ["Sarok", "Mérföld", "Fog", "Vese"], "note": "Sarokkő, mérföldkő, fogkő, vesekő" }
+    ]
   }
 ];
