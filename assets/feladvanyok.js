@@ -325,5 +325,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Űrmértékek", "words": ["Gallon", "Pint", "Liter", "Hordó"], "note": "1 pint ≈ 0,57 liter" },
       { "level": 4, "title": "___KŐ", "words": ["Sarok", "Mérföld", "Fog", "Vese"], "note": "Sarokkő, mérföldkő, fogkő, vesekő" }
     ]
+  },
+  {
+    "id": "rsz-033",
+    "start": "2026-10-25",
+    "groups": [
+      { "level": 1, "title": "Katonai rangok", "words": ["Tizedes", "Őrmester", "Hadnagy", "Zászlós"] },
+      { "level": 2, "title": "Bányászati fogalmak", "words": ["Tárna", "Vágat", "Csille", "Fejtés"], "note": "A csille a bányában használt kisvasúti kocsi" },
+      { "level": 3, "title": "Földtörténeti korok", "words": ["Jura", "Kréta", "Triász", "Perm"] },
+      { "level": 4, "title": "___ + PONT", "words": ["Fagy", "Súly", "Tám", "Vég"], "note": "fagypont, súlypont, támpont, végpont" }
+    ]
   }
 ];
