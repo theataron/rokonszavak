@@ -335,5 +335,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Földtörténeti korok", "words": ["Jura", "Kréta", "Triász", "Perm"] },
       { "level": 4, "title": "___ + PONT", "words": ["Fagy", "Súly", "Tám", "Vég"], "note": "fagypont, súlypont, támpont, végpont" }
     ]
+  },
+  {
+    "id": "rsz-034",
+    "start": "2026-10-26",
+    "groups": [
+      { "level": 1, "title": "Lombhullató fák", "words": ["Tölgy", "Bükk", "Nyír", "Juhar"] },
+      { "level": 2, "title": "Zenei hangközök", "words": ["Kvint", "Oktáv", "Terc", "Szekund"] },
+      { "level": 3, "title": "A gomba részei", "words": ["Kalap", "Tönk", "Lemez", "Spóra"] },
+      { "level": 4, "title": "Rendszertani kategóriák", "words": ["Faj", "Nem", "Rend", "Osztály"] }
+    ]
   }
 ];
