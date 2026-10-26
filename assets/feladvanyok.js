@@ -345,5 +345,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A gomba részei", "words": ["Kalap", "Tönk", "Lemez", "Spóra"] },
       { "level": 4, "title": "Rendszertani kategóriák", "words": ["Faj", "Nem", "Rend", "Osztály"] }
     ]
+  },
+  {
+    "id": "rsz-035",
+    "start": "2026-10-27",
+    "groups": [
+      { "level": 1, "title": "Időjárási jelenségek", "words": ["Zivatar", "Dér", "Jégeső", "Köd"] },
+      { "level": 2, "title": "Szövetfajták", "words": ["Bársony", "Selyem", "Vászon", "Flanel"] },
+      { "level": 3, "title": "Magyar Nobel-díjasok", "words": ["Gábor", "Wigner", "Oláh", "Kertész"], "note": "Gábor Dénes, Wigner Jenő, Oláh György, Kertész Imre" },
+      { "level": 4, "title": "Magyar matematikusok", "words": ["Erdős", "Bolyai", "Neumann", "Riesz"], "note": "Erdős Pál, Bolyai János, Neumann János, Riesz Frigyes" }
+    ]
   }
 ];
