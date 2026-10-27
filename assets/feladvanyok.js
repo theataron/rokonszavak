@@ -355,5 +355,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Magyar Nobel-díjasok", "words": ["Gábor", "Wigner", "Oláh", "Kertész"], "note": "Gábor Dénes, Wigner Jenő, Oláh György, Kertész Imre" },
       { "level": 4, "title": "Magyar matematikusok", "words": ["Erdős", "Bolyai", "Neumann", "Riesz"], "note": "Erdős Pál, Bolyai János, Neumann János, Riesz Frigyes" }
     ]
+  },
+  {
+    "id": "rsz-036",
+    "start": "2026-10-28",
+    "groups": [
+      { "level": 1, "title": "Ami a patikában található", "words": ["Recept", "Kenőcs", "Tabletta", "Kúp"] },
+      { "level": 2, "title": "Az agy részei", "words": ["Kisagy", "Nyúltvelő", "Híd", "Talamusz"], "note": "A híd az agytörzs egyik szakasza" },
+      { "level": 3, "title": "Vitaminhiány okozta betegségek", "words": ["Skorbut", "Angolkór", "Beriberi", "Pellagra"] },
+      { "level": 4, "title": "Régi pénzérmék", "words": ["Fillér", "Garas", "Peták", "Dukát"] }
+    ]
   }
 ];
