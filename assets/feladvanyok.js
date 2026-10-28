@@ -365,5 +365,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Vitaminhiány okozta betegségek", "words": ["Skorbut", "Angolkór", "Beriberi", "Pellagra"] },
       { "level": 4, "title": "Régi pénzérmék", "words": ["Fillér", "Garas", "Peták", "Dukát"] }
     ]
+  },
+  {
+    "id": "rsz-037",
+    "start": "2026-10-29",
+    "groups": [
+      { "level": 1, "title": "Írásjelek", "words": ["Vessző", "Pont", "Zárójel", "Aposztróf"] },
+      { "level": 2, "title": "Uralkodóházak", "words": ["Árpád", "Anjou", "Habsburg", "Jagelló"] },
+      { "level": 3, "title": "Spanyolország nyelvei", "words": ["Baszk", "Katalán", "Galego", "Asztúr"], "note": "A galego Galicia, az asztúr Asztúria nyelve" },
+      { "level": 4, "title": "Nyelvújítási szavak", "words": ["Zongora", "Rovar", "Évszak", "Mérnök"] }
+    ]
   }
 ];
