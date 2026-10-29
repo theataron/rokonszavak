@@ -375,5 +375,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Spanyolország nyelvei", "words": ["Baszk", "Katalán", "Galego", "Asztúr"], "note": "A galego Galicia, az asztúr Asztúria nyelve" },
       { "level": 4, "title": "Nyelvújítási szavak", "words": ["Zongora", "Rovar", "Évszak", "Mérnök"] }
     ]
+  },
+  {
+    "id": "rsz-038",
+    "start": "2026-10-30",
+    "groups": [
+      { "level": 1, "title": "Magyar tavak", "words": ["Balaton", "Velencei", "Fertő", "Hévíz"], "note": "Velencei-tó, Hévízi-tó, Fertő tó" },
+      { "level": 2, "title": "Halmazállapotok", "words": ["Szilárd", "Folyékony", "Légnemű", "Plazma"] },
+      { "level": 3, "title": "Szőlőfajták", "words": ["Kadarka", "Furmint", "Juhfark", "Ezerjó"] },
+      { "level": 4, "title": "Magyar filmrendezők", "words": ["Szabó", "Jancsó", "Tarr", "Enyedi"], "note": "Szabó István, Jancsó Miklós, Tarr Béla, Enyedi Ildikó" }
+    ]
   }
 ];
