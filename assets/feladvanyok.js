@@ -385,5 +385,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Szőlőfajták", "words": ["Kadarka", "Furmint", "Juhfark", "Ezerjó"] },
       { "level": 4, "title": "Magyar filmrendezők", "words": ["Szabó", "Jancsó", "Tarr", "Enyedi"], "note": "Szabó István, Jancsó Miklós, Tarr Béla, Enyedi Ildikó" }
     ]
+  },
+  {
+    "id": "rsz-039",
+    "start": "2026-10-31",
+    "groups": [
+      { "level": 1, "title": "Magyar népmesei alakok", "words": ["Táltos", "Tündér", "Óriás", "Manó"] },
+      { "level": 2, "title": "Középkori fegyverek", "words": ["Buzogány", "Szablya", "Alabárd", "Íj"] },
+      { "level": 3, "title": "Magyar világörökségi helyszínek", "words": ["Hollókő", "Aggtelek", "Tokaj", "Hortobágy"] },
+      { "level": 4, "title": "Honfoglaló törzsek", "words": ["Nyék", "Megyer", "Tarján", "Jenő"] }
+    ]
   }
 ];
