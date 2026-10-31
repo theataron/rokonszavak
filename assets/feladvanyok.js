@@ -395,5 +395,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Magyar világörökségi helyszínek", "words": ["Hollókő", "Aggtelek", "Tokaj", "Hortobágy"] },
       { "level": 4, "title": "Honfoglaló törzsek", "words": ["Nyék", "Megyer", "Tarján", "Jenő"] }
     ]
+  },
+  {
+    "id": "rsz-040",
+    "start": "2026-11-01",
+    "groups": [
+      { "level": 1, "title": "Pénzügyi okmányok", "words": ["Csekk", "Váltó", "Kötvény", "Nyugta"] },
+      { "level": 2, "title": "Közterhek", "words": ["Áfa", "Szja", "Illeték", "Vám"], "note": "szja = személyi jövedelemadó" },
+      { "level": 3, "title": "Mértani testek", "words": ["Kúp", "Gömb", "Henger", "Hasáb"] },
+      { "level": 4, "title": "Statisztikai fogalmak", "words": ["Terjedelem", "Szórás", "Módusz", "Medián"], "note": "A terjedelem a legnagyobb és a legkisebb érték különbsége" }
+    ]
   }
 ];
