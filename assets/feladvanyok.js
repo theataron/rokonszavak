@@ -405,5 +405,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Mértani testek", "words": ["Kúp", "Gömb", "Henger", "Hasáb"] },
       { "level": 4, "title": "Statisztikai fogalmak", "words": ["Terjedelem", "Szórás", "Módusz", "Medián"], "note": "A terjedelem a legnagyobb és a legkisebb érték különbsége" }
     ]
+  },
+  {
+    "id": "rsz-041",
+    "start": "2026-11-02",
+    "groups": [
+      { "level": 1, "title": "Építészeti elemek", "words": ["Oromzat", "Pillér", "Boltív", "Zsalu"] },
+      { "level": 2, "title": "Szófajok", "words": ["Főnév", "Ige", "Névmás", "Kötőszó"] },
+      { "level": 3, "title": "Színházi fogalmak", "words": ["Súgó", "Díszlet", "Kulissza", "Felvonás"] },
+      { "level": 4, "title": "Irodalmi műfajok", "words": ["Elégia", "Eposz", "Szonett", "Ballada"] }
+    ]
   }
 ];
