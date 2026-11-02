@@ -415,5 +415,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Színházi fogalmak", "words": ["Súgó", "Díszlet", "Kulissza", "Felvonás"] },
       { "level": 4, "title": "Irodalmi műfajok", "words": ["Elégia", "Eposz", "Szonett", "Ballada"] }
     ]
+  },
+  {
+    "id": "rsz-042",
+    "start": "2026-11-03",
+    "groups": [
+      { "level": 1, "title": "Hegymászó felszerelés", "words": ["Kötél", "Karabiner", "Hágóvas", "Sisak"] },
+      { "level": 2, "title": "Barlangi képződmények", "words": ["Cseppkő", "Szifon", "Kürtő", "Terem"], "note": "A szifon vízzel telt barlangszakasz" },
+      { "level": 3, "title": "Örökléstani fogalmak", "words": ["Gén", "Mutáció", "Genom", "Klón"] },
+      { "level": 4, "title": "Magyar irodalmi folyóiratok", "words": ["Nyugat", "Kortárs", "Holmi", "Jelenkor"] }
+    ]
   }
 ];
