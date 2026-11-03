@@ -425,5 +425,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Örökléstani fogalmak", "words": ["Gén", "Mutáció", "Genom", "Klón"] },
       { "level": 4, "title": "Magyar irodalmi folyóiratok", "words": ["Nyugat", "Kortárs", "Holmi", "Jelenkor"] }
     ]
+  },
+  {
+    "id": "rsz-043",
+    "start": "2026-11-04",
+    "groups": [
+      { "level": 1, "title": "Úszásnemek", "words": ["Gyors", "Hát", "Mell", "Pillangó"] },
+      { "level": 2, "title": "UV-fényben világít", "words": ["Tonik", "Skorpió", "Bankjegy", "Vazelin"] },
+      { "level": 3, "title": "Fénytörés kell hozzá", "words": ["Szivárvány", "Délibáb", "Nagyító", "Szemüveg"] },
+      { "level": 4, "title": "A szem részei", "words": ["Csap", "Pálcika", "Sárgafolt", "Üvegtest"] }
+    ]
   }
 ];
