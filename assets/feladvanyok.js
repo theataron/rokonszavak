@@ -435,5 +435,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Fénytörés kell hozzá", "words": ["Szivárvány", "Délibáb", "Nagyító", "Szemüveg"] },
       { "level": 4, "title": "A szem részei", "words": ["Csap", "Pálcika", "Sárgafolt", "Üvegtest"] }
     ]
+  },
+  {
+    "id": "rsz-044",
+    "start": "2026-11-05",
+    "groups": [
+      { "level": 1, "title": "Tésztaformák", "words": ["Masni", "Cső", "Spirál", "Kagyló"] },
+      { "level": 2, "title": "A kerékpár részei", "words": ["Küllő", "Agy", "Sárvédő", "Csengő"] },
+      { "level": 3, "title": "Kicsit radioaktív", "words": ["Banán", "Gránit", "Cigaretta", "Uránüveg"], "note": "A banán kálium-40-et, a dohány polónium-210-et, a gránit uránt és tóriumot tartalmaz" },
+      { "level": 4, "title": "Nem összetett szó, mégis két szóra bontható", "words": ["Törtető", "Tolvaj", "Tesó", "Sóhaj"], "note": "tör+tető, tol+vaj, te+só, só+haj" }
+    ]
   }
 ];
