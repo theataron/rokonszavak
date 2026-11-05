@@ -445,5 +445,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kicsit radioaktív", "words": ["Banán", "Gránit", "Cigaretta", "Uránüveg"], "note": "A banán kálium-40-et, a dohány polónium-210-et, a gránit uránt és tóriumot tartalmaz" },
       { "level": 4, "title": "Nem összetett szó, mégis két szóra bontható", "words": ["Törtető", "Tolvaj", "Tesó", "Sóhaj"], "note": "tör+tető, tol+vaj, te+só, só+haj" }
     ]
+  },
+  {
+    "id": "rsz-045",
+    "start": "2026-11-06",
+    "groups": [
+      { "level": 1, "title": "Énekhangok", "words": ["Szoprán", "Alt", "Tenor", "Basszus"] },
+      { "level": 2, "title": "Szavak a Himnuszból", "words": ["Kar", "Sors", "Nép", "Múlt"] },
+      { "level": 3, "title": "A hegedű részei", "words": ["Nyak", "Fogólap", "Lélek", "Húrtartó"] },
+      { "level": 4, "title": "Kúpszeletek", "words": ["Kör", "Ellipszis", "Parabola", "Hiperbola"] }
+    ]
   }
 ];
