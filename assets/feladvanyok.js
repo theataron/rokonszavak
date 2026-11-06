@@ -455,5 +455,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A hegedű részei", "words": ["Nyak", "Fogólap", "Lélek", "Húrtartó"] },
       { "level": 4, "title": "Kúpszeletek", "words": ["Kör", "Ellipszis", "Parabola", "Hiperbola"] }
     ]
+  },
+  {
+    "id": "rsz-046",
+    "start": "2026-11-07",
+    "groups": [
+      { "level": 1, "title": "Frizurák", "words": ["Konty", "Copf", "Irokéz", "Raszta"] },
+      { "level": 2, "title": "A PÉNZ szlengben", "words": ["Lé", "Guba", "Dohány", "Lóvé"] },
+      { "level": 3, "title": "Botanikailag bogyó", "words": ["Paprika", "Avokádó", "Kivi", "Szőlő"] },
+      { "level": 4, "title": "Botanikailag fű", "words": ["Bambusz", "Nád", "Rizs", "Kukorica"] }
+    ]
   }
 ];
