@@ -465,5 +465,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Botanikailag bogyó", "words": ["Paprika", "Avokádó", "Kivi", "Szőlő"] },
       { "level": 4, "title": "Botanikailag fű", "words": ["Bambusz", "Nád", "Rizs", "Kukorica"] }
     ]
+  },
+  {
+    "id": "rsz-047",
+    "start": "2026-11-08",
+    "groups": [
+      { "level": 1, "title": "Tornaszerek", "words": ["Ló", "Korlát", "Nyújtó", "Talaj"] },
+      { "level": 2, "title": "A rendi társadalom rétegei", "words": ["Jobbágy", "Zsellér", "Nemes", "Polgár"] },
+      { "level": 3, "title": "A magyar koronázási jelvények", "words": ["Jogar", "Palást", "Kard", "Országalma"] },
+      { "level": 4, "title": "Valaha higanyt tartalmazott", "words": ["Lázmérő", "Fénycső", "Fogtömés", "Barométer"] }
+    ]
   }
 ];
