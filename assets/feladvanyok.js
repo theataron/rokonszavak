@@ -475,5 +475,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "A magyar koronázási jelvények", "words": ["Jogar", "Palást", "Kard", "Országalma"] },
       { "level": 4, "title": "Valaha higanyt tartalmazott", "words": ["Lázmérő", "Fénycső", "Fogtömés", "Barométer"] }
     ]
+  },
+  {
+    "id": "rsz-048",
+    "start": "2026-11-09",
+    "groups": [
+      { "level": 1, "title": "Festészeti technikák", "words": ["Freskó", "Tempera", "Pasztell", "Olaj"] },
+      { "level": 2, "title": "Hajszálcsövesség", "words": ["Kanóc", "Szivacs", "Töltőtoll", "Itatóspapír"] },
+      { "level": 3, "title": "Szublimál", "words": ["Szárazjég", "Naftalin", "Jód", "Kámfor"] },
+      { "level": 4, "title": "Egyiptomi csapások", "words": ["Béka", "Sáska", "Jégeső", "Sötétség"] }
+    ]
   }
 ];
