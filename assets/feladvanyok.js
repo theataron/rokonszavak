@@ -485,5 +485,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Szublimál", "words": ["Szárazjég", "Naftalin", "Jód", "Kámfor"] },
       { "level": 4, "title": "Egyiptomi csapások", "words": ["Béka", "Sáska", "Jégeső", "Sötétség"] }
     ]
+  },
+  {
+    "id": "rsz-049",
+    "start": "2026-11-10",
+    "groups": [
+      { "level": 1, "title": "Mondatrészek", "words": ["Alany", "Tárgy", "Jelző", "Határozó"] },
+      { "level": 2, "title": "Helynévből lett köznév", "words": ["Bikini", "Majonéz", "Konyak", "Hamburger"], "note": "Bikini-atoll, Mahón (Menorca), Cognac, Hamburg" },
+      { "level": 3, "title": "Labdarúgóposztok", "words": ["Bekk", "Szélső", "Center", "Söprögető"] },
+      { "level": 4, "title": "Mikrohullámmal működik", "words": ["Radar", "Wifi", "GPS", "Mobil"] }
+    ]
   }
 ];
