@@ -495,5 +495,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Labdarúgóposztok", "words": ["Bekk", "Szélső", "Center", "Söprögető"] },
       { "level": 4, "title": "Mikrohullámmal működik", "words": ["Radar", "Wifi", "GPS", "Mobil"] }
     ]
+  },
+  {
+    "id": "rsz-050",
+    "start": "2026-11-11",
+    "groups": [
+      { "level": 1, "title": "Textilminták", "words": ["Csíkos", "Halszálka", "Leopárd", "Skót"] },
+      { "level": 2, "title": "A szív részei", "words": ["Pitvar", "Kamra", "Billentyű", "Sövény"] },
+      { "level": 3, "title": "Tükör van benne", "words": ["Periszkóp", "Diszkógömb", "Lézer", "Fodrászat"] },
+      { "level": 4, "title": "Pásztorok", "words": ["Juhász", "Kanász", "Csikós", "Bojtár"] }
+    ]
   }
 ];
