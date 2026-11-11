@@ -505,5 +505,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Tükör van benne", "words": ["Periszkóp", "Diszkógömb", "Lézer", "Fodrászat"] },
       { "level": 4, "title": "Pásztorok", "words": ["Juhász", "Kanász", "Csikós", "Bojtár"] }
     ]
+  },
+  {
+    "id": "rsz-051",
+    "start": "2026-11-12",
+    "groups": [
+      { "level": 1, "title": "Csapadékfajták", "words": ["Dara", "Zúzmara", "Harmat", "Zápor"] },
+      { "level": 2, "title": "Ultrahangot használ", "words": ["Denevér", "Delfin", "Kutyasíp", "Szonár"] },
+      { "level": 3, "title": "Kémiailag sók", "words": ["Gipsz", "Márvány", "Hipó", "Szalalkáli"] },
+      { "level": 4, "title": "Erjesztéssel készül", "words": ["Kakaóbab", "Szalámi", "Ecet", "Kenyér"] }
+    ]
   }
 ];
