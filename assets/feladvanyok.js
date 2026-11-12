@@ -515,5 +515,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Kémiailag sók", "words": ["Gipsz", "Márvány", "Hipó", "Szalalkáli"] },
       { "level": 4, "title": "Erjesztéssel készül", "words": ["Kakaóbab", "Szalámi", "Ecet", "Kenyér"] }
     ]
+  },
+  {
+    "id": "rsz-052",
+    "start": "2026-11-13",
+    "groups": [
+      { "level": 1, "title": "SI-előtagok", "words": ["Deka", "Mega", "Nano", "Giga"] },
+      { "level": 2, "title": "Ótörök jövevényszavak", "words": ["Alma", "Tükör", "Kecske", "Gyertya"] },
+      { "level": 3, "title": "Személynévből lett köznév", "words": ["Szendvics", "Nikotin", "Szaxofon", "Dízel"], "note": "Sandwich grófja, Jean Nicot, Adolphe Sax, Rudolf Diesel" },
+      { "level": 4, "title": "A zongora részei", "words": ["Pedál", "Kalapács", "Tompító", "Fedél"] }
+    ]
   }
 ];
