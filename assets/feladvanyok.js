@@ -525,5 +525,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Személynévből lett köznév", "words": ["Szendvics", "Nikotin", "Szaxofon", "Dízel"], "note": "Sandwich grófja, Jean Nicot, Adolphe Sax, Rudolf Diesel" },
       { "level": 4, "title": "A zongora részei", "words": ["Pedál", "Kalapács", "Tompító", "Fedél"] }
     ]
+  },
+  {
+    "id": "rsz-053",
+    "start": "2026-11-14",
+    "groups": [
+      { "level": 1, "title": "Kétéltűek", "words": ["Gőte", "Unka", "Varangy", "Ásóbéka"] },
+      { "level": 2, "title": "Véletlenül fedezték fel", "words": ["Teflon", "Szacharin", "Viagra", "Röntgen"] },
+      { "level": 3, "title": "Az ókori világ hét csodája", "words": ["Piramis", "Kolosszus", "Mauzóleum", "Függőkert"] },
+      { "level": 4, "title": "Shakespeare-darabok", "words": ["Vízkereszt", "Ahogy tetszik", "Szeget szeggel", "Téli rege"] }
+    ]
   }
 ];
