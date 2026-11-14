@@ -535,5 +535,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Az ókori világ hét csodája", "words": ["Piramis", "Kolosszus", "Mauzóleum", "Függőkert"] },
       { "level": 4, "title": "Shakespeare-darabok", "words": ["Vízkereszt", "Ahogy tetszik", "Szeget szeggel", "Téli rege"] }
     ]
+  },
+  {
+    "id": "rsz-054",
+    "start": "2026-11-15",
+    "groups": [
+      { "level": 1, "title": "Latin-amerikai versenytáncok", "words": ["Szamba", "Rumba", "Csacsacsa", "Paso doble"] },
+      { "level": 2, "title": "Ötvözetek", "words": ["Bronz", "Sárgaréz", "Acél", "Alpakka"] },
+      { "level": 3, "title": "Holdak a Naprendszerben", "words": ["Io", "Európa", "Titán", "Triton"] },
+      { "level": 4, "title": "Királyaink mellékneve", "words": ["Könyves", "Vak", "Kun", "Nagy"], "note": "Könyves Kálmán, Vak Béla, Kun László, Nagy Lajos" }
+    ]
   }
 ];
