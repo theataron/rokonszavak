@@ -545,5 +545,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Holdak a Naprendszerben", "words": ["Io", "Európa", "Titán", "Triton"] },
       { "level": 4, "title": "Királyaink mellékneve", "words": ["Könyves", "Vak", "Kun", "Nagy"], "note": "Könyves Kálmán, Vak Béla, Kun László, Nagy Lajos" }
     ]
+  },
+  {
+    "id": "rsz-055",
+    "start": "2026-11-16",
+    "groups": [
+      { "level": 1, "title": "Koktélok", "words": ["Mimóza", "Bellini", "Hugo", "Manhattan"] },
+      { "level": 2, "title": "Tempójelzések", "words": ["Vivace", "Andante", "Largo", "Presto"] },
+      { "level": 3, "title": "Szelek", "words": ["Bóra", "Főn", "Misztrál", "Passzát"] },
+      { "level": 4, "title": "Magyar bulvárlapok", "words": ["Blikk", "Bors", "Ripost", "Story"] }
+    ]
   }
 ];
