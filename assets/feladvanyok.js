@@ -555,5 +555,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Szelek", "words": ["Bóra", "Főn", "Misztrál", "Passzát"] },
       { "level": 4, "title": "Magyar bulvárlapok", "words": ["Blikk", "Bors", "Ripost", "Story"] }
     ]
+  },
+  {
+    "id": "rsz-056",
+    "start": "2026-11-17",
+    "groups": [
+      { "level": 1, "title": "Macskafajták", "words": ["Szfinx", "Ragdoll", "Bengáli", "Abesszin"] },
+      { "level": 2, "title": "Teák", "words": ["Assam", "Matcha", "Oolong", "Earl Grey"] },
+      { "level": 3, "title": "Megesszük a virágát", "words": ["Brokkoli", "Articsóka", "Szegfűszeg", "Sáfrány"] },
+      { "level": 4, "title": "Országok régi neve", "words": ["Perzsia", "Sziám", "Burma", "Kampucsea"], "note": "Irán, Thaiföld, Mianmar, Kambodzsa" }
+    ]
   }
 ];
