@@ -565,5 +565,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Megesszük a virágát", "words": ["Brokkoli", "Articsóka", "Szegfűszeg", "Sáfrány"] },
       { "level": 4, "title": "Országok régi neve", "words": ["Perzsia", "Sziám", "Burma", "Kampucsea"], "note": "Irán, Thaiföld, Mianmar, Kambodzsa" }
     ]
+  },
+  {
+    "id": "rsz-057",
+    "start": "2026-11-18",
+    "groups": [
+      { "level": 1, "title": "Építészeti stílusok", "words": ["Barokk", "Rokokó", "Gótika", "Bauhaus"] },
+      { "level": 2, "title": "Zselatin van benne", "words": ["Gumimaci", "Pillecukor", "Kocsonya", "Panna cotta"] },
+      { "level": 3, "title": "Arany János balladái", "words": ["Ágnes asszony", "Vörös Rébék", "Bor vitéz", "Hídavatás"] },
+      { "level": 4, "title": "Szlengben: nagyon jó", "words": ["Zsír", "Állat", "Atom", "Brutál"] }
+    ]
   }
 ];
