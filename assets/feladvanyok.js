@@ -575,5 +575,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Arany János balladái", "words": ["Ágnes asszony", "Vörös Rébék", "Bor vitéz", "Hídavatás"] },
       { "level": 4, "title": "Szlengben: nagyon jó", "words": ["Zsír", "Állat", "Atom", "Brutál"] }
     ]
+  },
+  {
+    "id": "rsz-058",
+    "start": "2026-11-19",
+    "groups": [
+      { "level": 1, "title": "Gyógynövények", "words": ["Cickafark", "Zsálya", "Kamilla", "Orbáncfű"] },
+      { "level": 2, "title": "Bibliai könyvek", "words": ["Teremtés", "Kivonulás", "Számok", "Bírák"], "note": "Mózes 1., 2. és 4. könyve, valamint a Bírák könyve, katolikus nevükön" },
+      { "level": 3, "title": "Mesterséges nyelvek", "words": ["Eszperantó", "Klingon", "Volapük", "Ido"] },
+      { "level": 4, "title": "Sakkmegnyitások", "words": ["Szicíliai", "Spanyol", "Holland", "Skandináv"] }
+    ]
   }
 ];
