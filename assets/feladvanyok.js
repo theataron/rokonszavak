@@ -585,5 +585,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Mesterséges nyelvek", "words": ["Eszperantó", "Klingon", "Volapük", "Ido"] },
       { "level": 4, "title": "Sakkmegnyitások", "words": ["Szicíliai", "Spanyol", "Holland", "Skandináv"] }
     ]
+  },
+  {
+    "id": "rsz-059",
+    "start": "2026-11-20",
+    "groups": [
+      { "level": 1, "title": "Teniszkifejezések", "words": ["Ász", "Röpte", "Lob", "Tenyeres"] },
+      { "level": 2, "title": "Nem newtoni folyadékok", "words": ["Ketchup", "Fogkrém", "Futóhomok", "Vér"], "note": "Nyomásra vagy rázásra megváltozik a folyósságuk" },
+      { "level": 3, "title": "Oscar-díjas magyar filmek", "words": ["Mephisto", "Saul fia", "Mindenki", "A légy"] },
+      { "level": 4, "title": "A népviselet darabjai", "words": ["Szűr", "Párta", "Ködmön", "Pruszlik"] }
+    ]
   }
 ];
