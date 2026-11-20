@@ -595,5 +595,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Oscar-díjas magyar filmek", "words": ["Mephisto", "Saul fia", "Mindenki", "A légy"] },
       { "level": 4, "title": "A népviselet darabjai", "words": ["Szűr", "Párta", "Ködmön", "Pruszlik"] }
     ]
+  },
+  {
+    "id": "rsz-060",
+    "start": "2026-11-21",
+    "groups": [
+      { "level": 1, "title": "Disznótoron kerül az asztalra", "words": ["Hurka", "Kolbász", "Tepertő", "Orjaleves"] },
+      { "level": 2, "title": "Cukrászdai sütemények", "words": ["Lúdláb", "Indiáner", "Kardinális", "Minyon"] },
+      { "level": 3, "title": "Egyházi tisztségek", "words": ["Bíboros", "Érsek", "Apát", "Prépost"] },
+      { "level": 4, "title": "Budapesti gyógyfürdők", "words": ["Rudas", "Király", "Lukács", "Dandár"] }
+    ]
   }
 ];
