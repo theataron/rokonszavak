@@ -605,5 +605,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Egyházi tisztségek", "words": ["Bíboros", "Érsek", "Apát", "Prépost"] },
       { "level": 4, "title": "Budapesti gyógyfürdők", "words": ["Rudas", "Király", "Lukács", "Dandár"] }
     ]
+  },
+  {
+    "id": "rsz-061",
+    "start": "2026-11-22",
+    "groups": [
+      { "level": 1, "title": "Téli álmot alszik", "words": ["Sün", "Mormota", "Pele", "Ürge"] },
+      { "level": 2, "title": "Szláv jövevényszavak", "words": ["Asztal", "Ablak", "Szilva", "Szerda"] },
+      { "level": 3, "title": "Magyar eurovíziós dalok", "words": ["Kedvesem", "Origo", "Viszlát nyár", "Az én apám"] },
+      { "level": 4, "title": "Görög betűk", "words": ["Delta", "Mű", "Ró", "Kappa"] }
+    ]
   }
 ];
