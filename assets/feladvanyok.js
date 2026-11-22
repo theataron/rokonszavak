@@ -615,5 +615,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Magyar eurovíziós dalok", "words": ["Kedvesem", "Origo", "Viszlát nyár", "Az én apám"] },
       { "level": 4, "title": "Görög betűk", "words": ["Delta", "Mű", "Ró", "Kappa"] }
     ]
+  },
+  {
+    "id": "rsz-062",
+    "start": "2026-11-23",
+    "groups": [
+      { "level": 1, "title": "Kőzetek", "words": ["Bazalt", "Tufa", "Pala", "Andezit"] },
+      { "level": 2, "title": "Mágnes van benne", "words": ["Hangszóró", "Iránytű", "Bankkártya", "Hűtőajtó"] },
+      { "level": 3, "title": "Móricz Zsigmond művei", "words": ["Rokonok", "Barbárok", "Hét krajcár", "Úri muri"] },
+      { "level": 4, "title": "Lószínek", "words": ["Pej", "Deres", "Fakó", "Sárga"], "note": "A sárga ló vörösesbarna, a pej barna fekete sörénnyel" }
+    ]
   }
 ];
