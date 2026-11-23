@@ -625,5 +625,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Móricz Zsigmond művei", "words": ["Rokonok", "Barbárok", "Hét krajcár", "Úri muri"] },
       { "level": 4, "title": "Lószínek", "words": ["Pej", "Deres", "Fakó", "Sárga"], "note": "A sárga ló vörösesbarna, a pej barna fekete sörénnyel" }
     ]
+  },
+  {
+    "id": "rsz-063",
+    "start": "2026-11-24",
+    "groups": [
+      { "level": 1, "title": "A kosárlabdában", "words": ["Palánk", "Gyűrű", "Zsákolás", "Lepattanó"] },
+      { "level": 2, "title": "Pókerkezek", "words": ["Pár", "Drill", "Sor", "Full"] },
+      { "level": 3, "title": "Budapesti városrészek nevének eleje", "words": ["Angyal", "Rózsa", "Sas", "Csillag"], "note": "Angyalföld, Rózsadomb, Sashegy, Csillaghegy" },
+      { "level": 4, "title": "Magánhangzói: i, á", "words": ["Virág", "Király", "Szilánk", "Pisztráng"] }
+    ]
   }
 ];
