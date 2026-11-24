@@ -635,5 +635,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Budapesti városrészek nevének eleje", "words": ["Angyal", "Rózsa", "Sas", "Csillag"], "note": "Angyalföld, Rózsadomb, Sashegy, Csillaghegy" },
       { "level": 4, "title": "Magánhangzói: i, á", "words": ["Virág", "Király", "Szilánk", "Pisztráng"] }
     ]
+  },
+  {
+    "id": "rsz-064",
+    "start": "2026-11-25",
+    "groups": [
+      { "level": 1, "title": "Kifejezések a vívásban", "words": ["Tőr", "Asszó", "Páston", "Találat"] },
+      { "level": 2, "title": "Magyar fesztiválok", "words": ["Sziget", "Strand", "Campus", "Ozora"] },
+      { "level": 3, "title": "Amerikából származik", "words": ["Pulyka", "Krumpli", "Kakaó", "Napraforgó"] },
+      { "level": 4, "title": "Disney-mesék jellegzetes tárgyai", "words": ["Alma", "Üvegcipő", "Orsó", "Lámpa"], "note": "Hófehérke, Hamupipőke, Csipkerózsika, Aladdin" }
+    ]
   }
 ];
