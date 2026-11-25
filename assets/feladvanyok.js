@@ -645,5 +645,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Amerikából származik", "words": ["Pulyka", "Krumpli", "Kakaó", "Napraforgó"] },
       { "level": 4, "title": "Disney-mesék jellegzetes tárgyai", "words": ["Alma", "Üvegcipő", "Orsó", "Lámpa"], "note": "Hófehérke, Hamupipőke, Csipkerózsika, Aladdin" }
     ]
+  },
+  {
+    "id": "rsz-065",
+    "start": "2026-11-26",
+    "groups": [
+      { "level": 1, "title": "Pókszabásúak", "words": ["Kullancs", "Atka", "Skorpió", "Kaszáspók"] },
+      { "level": 2, "title": "Fröccsök", "words": ["Házmester", "Maflás", "Krúdy", "Hosszúlépés"] },
+      { "level": 3, "title": "Tőzsdei kifejezések", "words": ["Bika", "Medve", "Osztalék", "Részvény"] },
+      { "level": 4, "title": "Kínából származik", "words": ["Puskapor", "Porcelán", "Sárkány", "Nyomtatás"] }
+    ]
   }
 ];
