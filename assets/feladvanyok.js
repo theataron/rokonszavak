@@ -653,7 +653,7 @@ window.FELADVANYOK = [
       { "level": 1, "title": "Pókszabásúak", "words": ["Kullancs", "Atka", "Skorpió", "Kaszáspók"] },
       { "level": 2, "title": "Fröccsök", "words": ["Házmester", "Maflás", "Krúdy", "Hosszúlépés"] },
       { "level": 3, "title": "Fagylaltízek", "words": ["Puncs", "Pisztácia", "Kókusz", "Vanília"] },
-      { "level": 4, "title": "Üvegben tartjuk", "words": ["Befőtt", "Parfüm", "Tinta", "Spiritusz"] }
+      { "level": 4, "title": "Üvegben tartjuk", "words": ["Befőtt", "Parfüm", "Tinta", "Méz"] }
     ]
   }
 ];
