@@ -655,5 +655,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Fagylaltízek", "words": ["Puncs", "Pisztácia", "Kókusz", "Vanília"] },
       { "level": 4, "title": "Üvegben tartjuk", "words": ["Befőtt", "Parfüm", "Tinta", "Méz"] }
     ]
+  },
+  {
+    "id": "rsz-066",
+    "start": "2026-11-27",
+    "groups": [
+      { "level": 1, "title": "Magyar egész estés rajzfilmek", "words": ["Macskafogó", "Szaffi", "Vuk", "Lúdas Matyi"] },
+      { "level": 2, "title": "A vasútnál", "words": ["Sorompó", "Talpfa", "Bakter", "Kalauz"] },
+      { "level": 3, "title": "Népszokások", "words": ["Busójárás", "Regölés", "Luca széke", "Kiszebáb"] },
+      { "level": 4, "title": "A ROSSZ rokon értelmű szavai", "words": ["Gatya", "Gáz", "Béna", "Vacak"] }
+    ]
   }
 ];
