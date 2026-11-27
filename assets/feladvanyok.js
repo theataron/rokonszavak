@@ -665,5 +665,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Népszokások", "words": ["Busójárás", "Regölés", "Luca széke", "Kiszebáb"] },
       { "level": 4, "title": "A ROSSZ rokon értelmű szavai", "words": ["Gatya", "Gáz", "Béna", "Vacak"] }
     ]
+  },
+  {
+    "id": "rsz-067",
+    "start": "2026-11-28",
+    "groups": [
+      { "level": 1, "title": "Kifejezések a fényképezésben", "words": ["Rekesz", "Vaku", "Objektív", "Záridő"] },
+      { "level": 2, "title": "A borkészítés szavai", "words": ["Must", "Seprő", "Cefre", "Aszú"] },
+      { "level": 3, "title": "Valaha olimpiai szám volt", "words": ["Kötélhúzás", "Póló", "Krikett", "Festészet"], "note": "1900 és 1948 között; a festészet a művészeti versenyek része volt" },
+      { "level": 4, "title": "A RENDŐR szlengben", "words": ["Zsaru", "Kopó", "Fakabát", "Hekus"] }
+    ]
   }
 ];
