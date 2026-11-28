@@ -675,5 +675,15 @@ window.FELADVANYOK = [
       { "level": 3, "title": "Valaha olimpiai szám volt", "words": ["Kötélhúzás", "Póló", "Krikett", "Festészet"], "note": "1900 és 1948 között; a festészet a művészeti versenyek része volt" },
       { "level": 4, "title": "A RENDŐR szlengben", "words": ["Zsaru", "Kopó", "Fakabát", "Hekus"] }
     ]
+  },
+  {
+    "id": "rsz-068",
+    "start": "2026-11-29",
+    "groups": [
+      { "level": 1, "title": "A ló járásmódjai", "words": ["Lépés", "Ügetés", "Vágta", "Poroszkálás"] },
+      { "level": 2, "title": "Ultibemondások", "words": ["Betli", "Parti", "Ulti", "Négy ász"] },
+      { "level": 3, "title": "Sírunk tőle", "words": ["Hagyma", "Szomorú film", "Gyász", "Könnygáz"] },
+      { "level": 4, "title": "A sejt részei", "words": ["Mag", "Fal", "Riboszóma", "Vakuólum"] }
+    ]
   }
 ];
